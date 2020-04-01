@@ -9,6 +9,7 @@ jobs:
       - run:
           name: Install dependencies and test project
           command: |
+            cd curriculum-ui
             npm install
             npm run test
       - sonarcloud/scan
