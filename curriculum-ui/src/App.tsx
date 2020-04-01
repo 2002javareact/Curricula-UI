@@ -7,7 +7,6 @@ function App() {
   return (
     <Provider store = {store}>    
        {/* Remove once App.test.tsx is fixed*/}
-      <p>learn react</p>
       <div className="App">
         <Router> 
           <Switch> 
