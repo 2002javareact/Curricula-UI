@@ -18,6 +18,10 @@ const enhancer = composeEnhancers(
 
 //actually build the store
 export const store:Store<any> = createStore(
-    state,
-    enhancer
+    // TODO: Please remove ()=>{} Placeholder until we actually have a state
+    ()=>{}
+    /*
+      state,
+      enhancer
+    */
 )
