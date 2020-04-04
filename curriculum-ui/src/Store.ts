@@ -1,6 +1,6 @@
 import { compose, applyMiddleware, Store, createStore } from "redux"
 import reduxThunk from 'redux-thunk'
-import { state } from "./Reducers"
+import { state } from "./reducers"
 
 // this is where we use the redux libraries to actually buil the store
 // you shouldn't ever have to change this file, just have it
