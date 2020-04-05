@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { store } from './Store';
 import { Provider } from 'react-redux';
-import { CreateCurriculumFormComponent } from './components/create-curriculum-form-component/CreateCurriculumFormComponent';
+import CreateCurriculumFormComponent from './components/create-curriculum-form-component/CreateCurriculumFormContainer';
 function App() {
   return (
     <Provider store = {store}>    
