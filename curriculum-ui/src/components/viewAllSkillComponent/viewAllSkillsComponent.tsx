@@ -1,13 +1,14 @@
-import React from "react";
-import { Skill } from "./models/Skill";
-import { IState } from "../Reducers";
-import { connect } from "react-redux";
-import { viewAllComponentsActionMapper } from "../action-mappers/viewAllSkillActionMapper"
-import { Card, CardText, Container, Row, } from "reactstrap";
+import { skill } from "../models/skill"
+import React from "react"
+import { Card, CardText, Container, Row } from "reactstrap"
+import { IState } from "../../reducers"
+import { connect } from "react-redux"
+import { viewAllComponentsActionMapper } from "../../action-mappers/viewAllSkillActionMapper"
+
 
 
 export interface IViewAllSkillsProps{
-    allSkills:Skill[]
+    allSkills:skill[]
     errorMessage:string
     viewAllComponentsActionMapper:()=>void
 }

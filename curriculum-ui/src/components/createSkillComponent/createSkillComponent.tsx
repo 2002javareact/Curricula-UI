@@ -1,9 +1,12 @@
-import React, { SyntheticEvent } from "react";
-import { Skill } from "./models/Skill";
-import { Category } from "./models/category";
+import React from "react";
+import { skill } from "../models/skill";
+import { Category } from "../models/category";
+import { SyntheticEvent } from "react";
+import { Input, Container } from "reactstrap";
+
 
 export interface ICreateSkillProps{
-    createdSkill: Skill
+    createdSkill: skill
     errorMessage: string
     createSkillActionMapper:(n:string, c:Category)=>void
 }
@@ -41,8 +44,13 @@ export class createSkillComponent extends React.Component<ICreateSkillProps,ICre
     render(){
         
         return(
+
+            <>
+                <Container className = "skillNameInput">
+                    <Input onChange={this.updateSkillName} value={this.state.skillName} type="text" placeholder="skill name" required />
+                 </Container>
+            </>
          
-            <p></p>
         )
     }
 }

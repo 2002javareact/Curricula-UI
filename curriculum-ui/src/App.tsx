@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { store } from './Store';
 import { Provider } from 'react-redux';
-import { createSkillComponent } from './components/CreateSkillComponent';
-import  viewAllSkillsComponent  from './components/ViewAllSkillsComponent';
+import { createSkillComponent } from './components/createSkillComponent/createSkillComponent';
+import  viewAllSkillsComponent  from './components/viewAllSkillComponent/viewAllSkillsComponent';
 function App() {
   return (
     <Provider store = {store}>    
