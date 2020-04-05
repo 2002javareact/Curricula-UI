@@ -2,7 +2,7 @@ import React from "react";
 import { skill } from "../models/skill";
 import { Category } from "../models/category";
 import { SyntheticEvent } from "react";
-import { Input, Container } from "reactstrap";
+import { Input, Container, Row, Col } from "reactstrap";
 
 
 export interface ICreateSkillProps{
@@ -47,7 +47,14 @@ export class createSkillComponent extends React.Component<ICreateSkillProps,ICre
 
             <>
                 <Container className = "skillNameInput">
-                    <Input onChange={this.updateSkillName} value={this.state.skillName} type="text" placeholder="skill name" required />
+                    <Row xs= "2">
+                        <Col>
+                            <Input onChange={this.updateSkillName} value={this.state.skillName} type="text" placeholder="skill name" required />
+                        </Col>
+                        <Col>
+                            
+                        </Col>
+                    </Row>
                  </Container>
             </>
          
