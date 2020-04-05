@@ -1,9 +1,9 @@
 import React, { SyntheticEvent } from 'react';
-import { Container, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, Button} from 'reactstrap';
+import { Container, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, Button, Alert} from 'reactstrap';
 import { Curriculum } from '../../models/Curriculum';
 
 interface ICreateCurriculumFormProps {
-  createCurriculumActionMapper:(c:Curriculum)=>void
+  createCurriculumActionMapper:(c:Curriculum)=>any
 }
 
 interface ICreateCurriculumFormState {
@@ -11,7 +11,8 @@ interface ICreateCurriculumFormState {
   existSkillList:Array<any>,
   notExistSkillList:Array<any>,
   categoryList:Array<any>, 
-  category:string
+  category:string,
+  isLoading:boolean
 }
 
 export class CreateCurriculumFormComponent extends React.Component<ICreateCurriculumFormProps,ICreateCurriculumFormState>{
@@ -22,7 +23,8 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
       existSkillList:[],
       notExistSkillList:[],
       categoryList:[],
-      category:''
+      category:'',
+      isLoading:false
     }
     this.handlerName=this.handlerName.bind(this);
     this.handlerCategory=this.handlerCategory.bind(this);
@@ -51,7 +53,8 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
   // TODO
   async submitCurriculum(e:SyntheticEvent){
     e.preventDefault();
-    const response = this.props.createCurriculumActionMapper({
+    this.setState({isLoading:true})
+    const response = await this.props.createCurriculumActionMapper({
       "id": 0,
       "name": "test3",
       "skillList": [
@@ -65,6 +68,8 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
           }
         }
       ]
+    }).then((e:any)=>{
+      this.setState({isLoading:false})
     })
     console.log(response);
   }
@@ -114,6 +119,7 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
                 )}
               </FormGroup>
             </Form>
+            {this.state.isLoading && <Alert>Loading</Alert>}
           </Col>
         </Row>
       </Container>
