@@ -4,16 +4,16 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { store } from './Store';
 import { Provider } from 'react-redux';
-import { createSkillComponent } from './components/createSkillComponent/createSkillComponent';
-import  viewAllSkillsComponent  from './components/viewAllSkillComponent/viewAllSkillsComponent';
+import { CreateSkillComponent } from './components/CreateSkillComponent/CreateSkillComponent';
+import  ViewAllSkillsComponent  from './components/ViewAllSkillComponent/ViewAllSkillsComponent';
 function App() {
   return (
     <Provider store = {store}>    
     <div className="App">
       <Router> 
         <Switch>
-          <Route path ='/createSkill' component = {createSkillComponent}/>
-          <Route path ='/viewAllSkills' component = {viewAllSkillsComponent}/>
+          <Route path ='/CreateSkill' component = {CreateSkillComponent}/>
+          <Route path ='/ViewAllSkills' component = {ViewAllSkillsComponent}/>
           
         </Switch>
           </Router>          

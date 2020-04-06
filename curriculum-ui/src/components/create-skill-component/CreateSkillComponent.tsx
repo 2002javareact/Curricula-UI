@@ -1,8 +1,8 @@
-import React from "react";
-import { skill } from "../models/skill";
-import { Category } from "../models/category";
-import { SyntheticEvent } from "react";
+
+import { skill } from "../models/Skill";
+import { Category } from "../models/Category";
 import { Input, Container, Row, Col, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, Button } from "reactstrap";
+import React, { SyntheticEvent } from "react";
 
 
 export interface ICreateSkillProps{
@@ -17,7 +17,7 @@ export interface ICreateSkillState{
 
 }
 
-export class createSkillComponent extends React.Component<ICreateSkillProps,ICreateSkillState>{
+export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICreateSkillState>{
     constructor(props:any){
         super(props)
         this.state = {

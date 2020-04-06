@@ -1,9 +1,9 @@
 const devEnvironment = {
-    project3BaseUrl:'http://localhost:8080'
+    curriculaBaseUrl:'http://localhost:8080'
 }
 
 const prodEnvironment = {
-    project3BaseUrl:''
+    curriculaBaseUrl:''
 }
 
 export let environment = devEnvironment

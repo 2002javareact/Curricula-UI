@@ -1,9 +1,9 @@
-import { skill } from "../models/skill"
-import React from "react"
+import { skill } from "../models/Skill"
 import { Card, CardText, Container, Row } from "reactstrap"
 import { IState } from "../../reducers"
 import { connect } from "react-redux"
 import { viewAllComponentsActionMapper } from "../../action-mappers/viewAllSkillActionMapper"
+import React from "react"
 
 
 
@@ -14,7 +14,7 @@ export interface IViewAllSkillsProps{
 }
 
 
-export class viewAllSkillsComponent extends React.Component<IViewAllSkillsProps,any>{
+export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,any>{
     componentDidMount(){
         if(this.props.allSkills.length === 0)
         return (this.props.viewAllComponentsActionMapper())
@@ -50,5 +50,5 @@ const mapDispatchToProps = {
     viewAllComponentsActionMapper
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(viewAllSkillsComponent)
+export default connect(mapStateToProps,mapDispatchToProps)(ViewAllSkillsComponent)
 
