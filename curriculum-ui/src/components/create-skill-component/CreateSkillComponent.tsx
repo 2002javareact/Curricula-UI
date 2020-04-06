@@ -1,12 +1,12 @@
 
-import { skill } from "../models/Skill";
+import { Skill } from "../models/Skill";
 import { Category } from "../models/Category";
 import { Input, Container, Row, Col, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, Button } from "reactstrap";
 import React, { SyntheticEvent } from "react";
 
 
 export interface ICreateSkillProps{
-    createdSkill: skill
+    createdSkill: Skill
     errorMessage: string
     createSkillActionMapper:(n:string, c:Category)=>void
 }

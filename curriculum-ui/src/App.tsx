@@ -15,8 +15,7 @@ function App() {
       <Router> 
         <Switch>
           <Route path ='/CreateSkill' component = {CreateSkillComponent}/>
-          <Route path ='/ViewAllSkills' component = {ViewAllSkillsComponent}/>
-          
+          <Route path ='/ViewAllSkills' component = {ViewAllSkillsComponent}/>           
         </Switch>
           </Router>          
         </div>

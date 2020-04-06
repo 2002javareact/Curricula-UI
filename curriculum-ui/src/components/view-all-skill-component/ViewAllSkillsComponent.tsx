@@ -1,4 +1,4 @@
-import { skill } from "../models/Skill"
+import { Skill } from "../models/Skill"
 import { Card, CardText, Container, Row } from "reactstrap"
 import { IState } from "../../reducers"
 import { connect } from "react-redux"
@@ -8,7 +8,7 @@ import React from "react"
 
 
 export interface IViewAllSkillsProps{
-    allSkills:skill[]
+    allSkills:Skill[]
     errorMessage:string
     viewAllComponentsActionMapper:()=>void
 }
@@ -26,15 +26,20 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
         let view = this.props.allSkills.map((skill) => {
             return (
            <Card className = "skill">
-               <CardText>{skill.skillName}</CardText>
+               <CardText style={{backgroundColor: skill.category.categoryColor}}>{skill.skillName}</CardText>
            </Card>
         )})
         return(
-            <Container className ="listOfSkills">
-                <Row xs="4">
-                    {view}
-                </Row>
-            </Container>
+            <>
+                <Card style = {{textAlign: "center"}}>
+                <h4>All Skills</h4>
+                </Card>
+                <Container className ="listOfSkills">
+                    <Row xs="4">
+                        {view}
+                    </Row>
+                </Container>
+            </>
         )
     }
 }
