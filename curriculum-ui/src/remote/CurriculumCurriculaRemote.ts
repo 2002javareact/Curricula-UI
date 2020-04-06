@@ -1,5 +1,5 @@
-import { curriculaClient } from "./curricula-client";
-import { Curriculum } from "../../models/Curriculum";
+import { curriculaClient } from "./CurriculaClient";
+import { Curriculum } from "../models/Curriculum";
 
 
 export const curriculaCreateCurriculum = async (curriculum:Curriculum) => {
