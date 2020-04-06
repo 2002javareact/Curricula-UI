@@ -2,7 +2,7 @@ import React from "react";
 import { skill } from "../models/skill";
 import { Category } from "../models/category";
 import { SyntheticEvent } from "react";
-import { Input, Container, Row, Col } from "reactstrap";
+import { Input, Container, Row, Col, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, Button } from "reactstrap";
 
 
 export interface ICreateSkillProps{
@@ -13,7 +13,8 @@ export interface ICreateSkillProps{
 
 export interface ICreateSkillState{
     skillName:string
-    category:string
+    category:String[]
+
 }
 
 export class createSkillComponent extends React.Component<ICreateSkillProps,ICreateSkillState>{
@@ -21,7 +22,7 @@ export class createSkillComponent extends React.Component<ICreateSkillProps,ICre
         super(props)
         this.state = {
             skillName:'',
-            category:''
+            category:["database", "sourcecode", "framework", "ide", "devops", "architecture" ]
         }
     }
 
@@ -47,13 +48,30 @@ export class createSkillComponent extends React.Component<ICreateSkillProps,ICre
 
             <>
                 <Container className = "skillNameInput">
-                    <Row xs= "2">
+                    <Row xs= "3">
+                        <Form onSubmit = {this.submit}>
                         <Col>
                             <Input onChange={this.updateSkillName} value={this.state.skillName} type="text" placeholder="skill name" required />
                         </Col>
                         <Col>
-                            
+                        <UncontrolledButtonDropdown>
+                        <DropdownToggle caret>
+                            Category
+                        </DropdownToggle>
+                        <DropdownMenu>
+                            <DropdownItem>{this.state.category[0]}</DropdownItem>
+                            <DropdownItem >{this.state.category[1]}</DropdownItem>
+                            <DropdownItem>{this.state.category[2]}</DropdownItem>
+                            <DropdownItem>{this.state.category[3]}</DropdownItem>
+                            <DropdownItem>{this.state.category[4]}</DropdownItem>
+                            <DropdownItem>{this.state.category[5]}</DropdownItem>
+                        </DropdownMenu>
+                        </UncontrolledButtonDropdown>
                         </Col>
+                        <Col>
+                            <Button>Create</Button>
+                        </Col>
+                        </Form>
                     </Row>
                  </Container>
             </>
