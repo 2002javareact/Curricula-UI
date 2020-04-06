@@ -2,7 +2,7 @@ import { skill } from "../models/Skill"
 import { Card, CardText, Container, Row } from "reactstrap"
 import { IState } from "../../reducers"
 import { connect } from "react-redux"
-import { viewAllComponentsActionMapper } from "../../action-mappers/viewAllSkillActionMapper"
+import { viewAllComponentsActionMapper } from "../../action-mappers/view-all-skill-action-mapper"
 import React from "react"
 
 

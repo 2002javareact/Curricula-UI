@@ -1,6 +1,6 @@
 import { Category } from "./Category"
 
-export class skill{
+export class Skill{
     skillId: number 
     skillName: string
     category: Category 

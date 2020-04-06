@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { IgetAllSkillState } from ".";
-import { getAllSkillTypes } from "../action-mappers/viewAllSkillActionMapper";
+import { getAllSkillTypes } from "../action-mappers/view-all-skill-action-mapper";
 
 const initialState:IgetAllSkillState = {
     allSkills:[],
