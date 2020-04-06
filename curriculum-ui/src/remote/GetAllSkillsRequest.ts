@@ -1,7 +1,7 @@
 import { curriculaClient } from "./CurriculaClient"
-import { TokenExpiredError } from "../errors/TokenExpiredError"
-import { UserNotFoundError } from "../errors/UserNotFoundError"
-import { InternalServiceError } from "../errors/InternalServiceError"
+import { TokenExpiredError } from "../errors/tokenExpiredError"
+import { UserNotFoundError } from "../errors/userNotFoundError"
+import { InternalServiceError } from "../errors/internalServiceError"
 
 export const getAllSkills = async ()=>{
     try{
