@@ -7,21 +7,27 @@ import { Provider } from 'react-redux';
 import CreateCurriculumFormComponent from './components/create-curriculum-form-component/CreateCurriculumFormContainer';
 import { ViewAllSkillsComponent } from './components/view-all-skill-component/ViewAllSkillsComponent';
 import { CreateSkillComponent } from './components/create-skill-component/CreateSkillComponent';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import NavBarComponent from "./components/navbar-component/NavbarComponent";
+import { MultiRouteCategoryComponent } from "./components/category-components/multi-route-category-component/MultiRouteCategoryComponent";
 function App() {
   return (
-    <Provider store = {store}>    
-       {/* Remove once App.test.tsx is fixed*/}
+    <Provider store={store}>
+      {/* Remove once App.test.tsx is fixed*/}
       <div className="App">
-        <Router> 
+        <Router>
           {/* Navbar */}
           <Switch> 
             <Route path="/curriculum/create" component={CreateCurriculumFormComponent}/>
             <Route path="/viewAllSkills" component={ViewAllSkillsComponent}/>
             <Route path="/createSkills" component={CreateSkillComponent}/>
+            <Route path="/curriculum/create" component={CreateCurriculumFormComponent}/>
+            <Route path="/category" component={MultiRouteCategoryComponent} />
           </Switch>
-        </Router>          
+        </Router>
       </div>
-    </Provider>    
+    </Provider>
   );
 }
 
