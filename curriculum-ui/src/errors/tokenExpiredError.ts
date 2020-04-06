@@ -1,7 +1,7 @@
-import { httpError } from "./httpErrors";
+import { HttpError } from "./HttpErrors";
 
 
-export class tokenExpiredError extends httpError{
+export class TokenExpiredError extends HttpError{
     constructor(){
         super('The incoming token has expired.', 401)
     }

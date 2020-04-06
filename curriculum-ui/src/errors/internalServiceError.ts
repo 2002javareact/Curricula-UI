@@ -1,7 +1,7 @@
-import { httpError } from "./httpErrors";
+import { HttpError } from "./HttpErrors";
 
 
-export class internalServiceError extends httpError{
+export class InternalServiceError extends HttpError{
     constructor(){
         super('Internal Service Error', 500)
     }

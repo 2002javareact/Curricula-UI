@@ -21,11 +21,9 @@ export interface ICurriculumState{
 }
 export interface IState {
     getAllSkills:IGetAllSkillState
-    createSkill:ICreateSkillState
 
 }
 
 export const state = combineReducers<IState>({
-    getAllSkills:getAllSkillsReducer,
-    createSkill:createSkillReducer
+    getAllSkills:getAllSkillsReducer
 })
