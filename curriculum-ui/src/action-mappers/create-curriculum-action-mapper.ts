@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { Curriculum } from "../components/models/Curriculum"
+=======
+import { Curriculum } from "../models/Curriculum"
+>>>>>>> dev
 import { curriculaCreateCurriculum } from "../remote/CurriculumCurriculaRemote"
 import { Dispatch } from "redux";
 

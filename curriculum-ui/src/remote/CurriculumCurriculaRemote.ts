@@ -1,5 +1,9 @@
 import { curriculaClient } from "./CurriculaClient";
+<<<<<<< HEAD:curriculum-ui/src/remote/CurriculumCurriculaRemote.ts
 import { Curriculum } from "../components/models/Curriculum";
+=======
+import { Curriculum } from "../models/Curriculum";
+>>>>>>> dev:curriculum-ui/src/remote/curricula/curriculum-curricula-remote.ts
 
 
 export const curriculaCreateCurriculum = async (curriculum:Curriculum) => {
@@ -20,4 +24,4 @@ export const curriculaCreateCurriculum = async (curriculum:Curriculum) => {
       console.log("Throw an internal server error")
     }
   }
-}
+}    

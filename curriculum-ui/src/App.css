@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .listOfSkills{
     margin-top:3em;
 }
@@ -6,4 +7,40 @@
     text-align: center;
     margin: 1em;
     border-radius: 20%;
+=======
+.App {
+  text-align: center;
+  /* put background color to change that white form background */
+  background-color: var(--charcoal);
+}
+/* Used to change the color of the navbar */
+.navbar {
+  background-color: blue;
+  /* try to make sticky navbar */
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+.navbar-light .navbar-brand {
+  color: black;
+}
+/* Changes color of Navbar Brand when hovering over */
+.navbar-light .navbar-brand:hover {
+  color: white;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+  color: orange;
+}
+/* Makes the dropdown appear when hovering over */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+/* dropdown link styling */
+.dropdown-link {
+  color: red;
+}
+.dropdown-link:hover {
+  color: green;
+  text-decoration: none;
+>>>>>>> dev
 }

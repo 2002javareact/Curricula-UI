@@ -1,23 +1,40 @@
+<<<<<<< HEAD
 import { Skill } from "../models/Skill"
 import { Card, CardText, Container, Row } from "reactstrap"
 import { IState } from "../../reducers"
 import { connect } from "react-redux"
 import { viewAllComponentsActionMapper } from "../../action-mappers/view-all-skill-action-mapper"
 import React from "react"
+=======
+import { Skill } from "../../models/Skill"
+import { Card, CardText, Container, Row } from "reactstrap"
+import { IState } from "../../reducers"
+import { connect } from "react-redux"
+import React from "react"
+import { viewAllSkillsActionMapper } from "../../action-mappers/view-all-skill-action-mapper"
+>>>>>>> dev
 
 
 
 export interface IViewAllSkillsProps{
     allSkills:Skill[]
     errorMessage:string
+<<<<<<< HEAD
     viewAllComponentsActionMapper:()=>void
+=======
+    viewAllSkillsActionMapper:()=>void
+>>>>>>> dev
 }
 
 
 export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,any>{
     componentDidMount(){
         if(this.props.allSkills.length === 0)
+<<<<<<< HEAD
         return (this.props.viewAllComponentsActionMapper())
+=======
+            return (this.props.viewAllSkillsActionMapper())
+>>>>>>> dev
 
         else{}
     }
@@ -52,7 +69,11 @@ const mapStateToProps = (state:IState) => {
 }
 
 const mapDispatchToProps = {
+<<<<<<< HEAD
     viewAllComponentsActionMapper
+=======
+    viewAllSkillsActionMapper
+>>>>>>> dev
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(ViewAllSkillsComponent)
