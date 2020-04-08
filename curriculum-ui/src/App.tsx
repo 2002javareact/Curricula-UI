@@ -8,7 +8,7 @@ import CreateCurriculumFormComponent from './components/create-curriculum-form-c
 import  ViewAllSkillsComponent  from './components/view-all-skill-component/ViewAllSkillsComponent';
 import { CreateSkillComponent } from './components/create-skill-component/CreateSkillComponent';
 import NavBarComponent from "./components/navbar-component/NavbarComponent";
-import { MultiRouteCategoryComponent } from "./components/category-components/multi-route-category-component/MultiRouteCategoryComponent";
+import { MultiRouteCategoryComponent } from "./components/multi-route-category-component/MultiRouteCategoryComponent";
 function App() {
   return (
     <Provider store={store}>

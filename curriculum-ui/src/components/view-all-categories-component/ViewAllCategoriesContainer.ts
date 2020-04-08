@@ -1,6 +1,6 @@
-import { IState } from "../../../reducers"
+import { IState } from "../../reducers"
 import { ViewAllCategoriesComponent } from "./ViewAllCategoriesComponent"
-import { getAllCategoriesActionMapper } from "../../../action-mappers/categories-getall-action-mappers"
+import { getAllCategoriesActionMapper } from "../../action-mappers/categories-getall-action-mappers"
 import { connect } from "react-redux"
 
 const mapStateToProps = (state:IState) => {
