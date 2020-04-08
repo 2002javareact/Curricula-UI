@@ -29,12 +29,14 @@ export async function getCategoryById(categoryId:number|undefined):Promise<Categ
 
 export const FetchAllCategories = async ()=>{   
     try{
-        let allCategory = await curriculaClient.get(`/category/`)
-
+        let allCategory = await curriculaClient.get(`/category`)
+        console.log(allCategory);
+        
         if(allCategory.status === 400){
             throw new CategoryNotFoundError()
         }
         return allCategory.data
+        
     } catch (e) {
         if(e.status === 400){
             throw e
@@ -42,6 +44,7 @@ export const FetchAllCategories = async ()=>{
             throw new CategoryNotFoundError()
         }
         else{
+            console.log(e);
             throw new InternalServiceError()
         }
     }
