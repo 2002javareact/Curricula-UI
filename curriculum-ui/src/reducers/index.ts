@@ -17,14 +17,15 @@ export interface ICreateSkillState{
 }
 
 export interface ICurriculumState{
-curriculum:Curriculum
-errorMessage:string
+  curriculum:Curriculum
+  errorMessage:string
 }
 export interface IState {
   getAllSkills:IGetAllSkillState
-
+  createCurriculum:ICurriculumState
 }
 
 export const state = combineReducers<IState>({
-  getAllSkills:getAllSkillsReducer
+  getAllSkills:getAllSkillsReducer,
+  createCurriculum:curriculumReducer
 })
