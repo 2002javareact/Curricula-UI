@@ -47,3 +47,26 @@ export const FetchAllCategories = async ()=>{
     }
 }//end of class
 
+
+export async function CreateCategory(categoryId: number, categoryColor: string, categoryName: string): Promise<Category> {
+    let catData = {
+        categoryId,categoryColor, categoryName
+    }
+    try {
+       // console.log('we are in remote');
+        
+
+        let allCategory = await curriculaClient.post('/category', catData)
+        //console.log('we are in remote '+response);
+        if(allCategory.status === 404){
+            throw new CategoryNotFoundError()
+        }
+        return allCategory.data
+    } catch (e) {
+        if(e.status === 404){
+            throw e
+        } else{
+            throw new InternalServiceError()
+        }
+    }
+}

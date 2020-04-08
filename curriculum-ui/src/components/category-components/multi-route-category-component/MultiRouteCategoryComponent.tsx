@@ -1,9 +1,9 @@
 import React from "react";
 import { Switch, Route } from "react-router";
 import { ViewAllCategoriesComponent } from "../view-all-categories-component/ViewAllCategoriesComponent";
-import { CreateCategoryComponent } from "../create-category-component/CreateCategoryComponent";
+//import { CreateCategoryComponent } from "../create-category-component/CreateCategoryComponent";
 import { UpdateCategoryComponent } from "../update-category-component/UpdateCategoryComponent";
-
+import CreateCategoryComponent from "../create-category-component/CreateCategoryContainer"
 export class MultiRouteCategoryComponent extends React.Component<any, any> {
   render() {
     return (
@@ -24,11 +24,7 @@ export class MultiRouteCategoryComponent extends React.Component<any, any> {
           {/* Create A Category */}
           <Route
             path={`${this.props.match.path}/create`}
-            render={props => (
-              <CreateCategoryComponent
-                history={props.history}
-                match={props.match}
-                location={props.location}
+           
               />
             )}
           />

@@ -5,6 +5,8 @@ import { Skill } from "../models/Skill";
 import { Category } from "../models/Category";
 import { getAllSkillsReducer } from "./view-all-skills-reducers";
 import { categoriesReducer } from "./category-reducer";
+import { create } from "domain";
+import { createReducer } from "./create-category-reducer";
 
 export interface IGetAllSkillState{
   allSkills:[]
@@ -27,15 +29,21 @@ export interface ICategoriesState{
   errorMessage:string
 }
 
+export interface ICreateCategoryState{
+  createCategory:Category
+  errorMessage:string
+}
+
 export interface IState {
   getAllSkills:IGetAllSkillState
   createCurriculum:ICurriculumState
   allCategory:ICategoriesState
-
+  createCategory: ICreateCategoryState
 }
 
 export const state = combineReducers<IState>({
   getAllSkills:getAllSkillsReducer,
   createCurriculum:curriculumReducer,
-  allCategory:categoriesReducer
+  allCategory:categoriesReducer,
+  createCategory:createReducer
 })
