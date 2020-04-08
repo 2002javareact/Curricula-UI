@@ -23,7 +23,7 @@ errorMessage:string
 }
 
 export interface ICategoriesState{
-  allCategory:Category[]
+  allCategory:[]
   errorMessage:string
 }
 
@@ -35,5 +35,5 @@ export interface IState {
 
 export const state = combineReducers<IState>({
   getAllSkills:getAllSkillsReducer,
-  allCategory:categoriesReducer
+  allCategory:categoriesReducer,
 })
