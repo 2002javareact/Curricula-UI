@@ -5,7 +5,7 @@ import { connect } from "react-redux"
 
 const mapStateToProps = (state:IState) => {
     return {
-        allCategories: state.allCategory.allCategory,
+        allCategory: state.allCategory.allCategory,
         //loggedUser: state.loggedUser.loggedUser,
         errorMessage: state.allCategory.errorMessage        
     }
