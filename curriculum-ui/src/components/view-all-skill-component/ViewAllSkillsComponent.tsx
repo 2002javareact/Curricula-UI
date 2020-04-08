@@ -2,22 +2,22 @@ import { Skill } from "../../models/Skill"
 import { Card, CardText, Container, Row } from "reactstrap"
 import { IState } from "../../reducers"
 import { connect } from "react-redux"
-import { viewAllComponentsActionMapper } from "../../action-mappers/view-all-skill-action-mapper"
 import React from "react"
+import { viewAllSkillsActionMapper } from "../../action-mappers/view-all-skill-action-mapper"
 
 
 
 export interface IViewAllSkillsProps{
     allSkills:Skill[]
     errorMessage:string
-    viewAllComponentsActionMapper:()=>void
+    viewAllSkillsActionMapper:()=>void
 }
 
 
 export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,any>{
     componentDidMount(){
         if(this.props.allSkills.length === 0)
-        return (this.props.viewAllComponentsActionMapper())
+            return (this.props.viewAllSkillsActionMapper())
 
         else{}
     }
@@ -52,7 +52,7 @@ const mapStateToProps = (state:IState) => {
 }
 
 const mapDispatchToProps = {
-    viewAllComponentsActionMapper
+    viewAllSkillsActionMapper
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(ViewAllSkillsComponent)
