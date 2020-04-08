@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { store } from './Store';
 import { Provider } from 'react-redux';
 import CreateCurriculumFormComponent from './components/create-curriculum-form-component/CreateCurriculumFormContainer';
-import { ViewAllSkillsComponent } from './components/view-all-skill-component/ViewAllSkillsComponent';
+import  ViewAllSkillsComponent  from './components/view-all-skill-component/ViewAllSkillsComponent';
 import { CreateSkillComponent } from './components/create-skill-component/CreateSkillComponent';
 import NavBarComponent from "./components/navbar-component/NavbarComponent";
 import { MultiRouteCategoryComponent } from "./components/category-components/multi-route-category-component/MultiRouteCategoryComponent";

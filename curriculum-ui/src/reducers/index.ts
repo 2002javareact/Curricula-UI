@@ -18,8 +18,8 @@ export interface ICreateSkillState{
 }
 
 export interface ICurriculumState{
-curriculum:Curriculum
-errorMessage:string
+  curriculum:Curriculum
+  errorMessage:string
 }
 
 export interface ICategoriesState{
@@ -28,12 +28,14 @@ export interface ICategoriesState{
 }
 
 export interface IState {
-  getAllSkills:IGetAllSkillState,
+  getAllSkills:IGetAllSkillState
+  createCurriculum:ICurriculumState
   allCategory:ICategoriesState
 
 }
 
 export const state = combineReducers<IState>({
   getAllSkills:getAllSkillsReducer,
+  createCurriculum:curriculumReducer,
   allCategory:categoriesReducer
 })

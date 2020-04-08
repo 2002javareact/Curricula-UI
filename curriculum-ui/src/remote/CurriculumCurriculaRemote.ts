@@ -20,4 +20,4 @@ export const curriculaCreateCurriculum = async (curriculum:Curriculum) => {
       console.log("Throw an internal server error")
     }
   }
-}
+}    
