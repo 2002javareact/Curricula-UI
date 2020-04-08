@@ -26,6 +26,11 @@ export interface ICategoriesState{
   allCategory:[]
   errorMessage:string
 }
+export interface ICreateVIsualizationState{
+    createVIsualization:Skill
+    listCurriculum:Curriculum[]
+    errorMessage:string
+  }
 
 export interface IState {
   getAllSkills:IGetAllSkillState
