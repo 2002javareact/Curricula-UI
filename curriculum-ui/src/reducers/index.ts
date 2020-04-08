@@ -23,7 +23,7 @@ export interface ICurriculumState{
 }
 
 export interface ICategoriesState{
-  allCategory:Category[]
+  allCategory:[]
   errorMessage:string
 }
 
