@@ -5,9 +5,11 @@ import { Input, Container, Row, Col, UncontrolledButtonDropdown, DropdownToggle,
 import React, { SyntheticEvent } from "react";
 
 
+
+
 export interface ICreateSkillProps{
     createdSkill: Skill
-    categories:Category[]
+    allCategory:Category[]
     errorMessage: string
     createSkillActionMapper:(n:string, c:Category)=>void    
     getAllCategoriesActionMapper: () => void
@@ -27,7 +29,7 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
         }      
     }
     componentDidMount() {
-        if (this.props.categories.length === 0) {
+        if (this.props.allCategory.length === 0) {
           return (this.props.getAllCategoriesActionMapper())
         }
         else { }
@@ -44,29 +46,25 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
             skillName: e.currentTarget.value
         })
     }
-    updateCategory = (e:any) =>{
+    updateCategory = (category:Category) => (e:any) =>{
         this.setState({
-            category:e.currentTarget.value
+            category
         })
     }
 
     
  
     render(){
-        let view = this.props.categories.map((category) =>{
+        let view = this.props.allCategory.map((category) =>{
             return (
-                <DropdownItem onChange={this.updateCategory}>{category.categoryName}</DropdownItem>
+                <DropdownItem onClick= {this.updateCategory(category)}>{category.categoryName}</DropdownItem>
             )})
-
         return(                
-            <>
-                <Container className = "skillNameInput">
-                    <Row xs= "3">
+            <>  
+                <br/><br/><br/>
+                <Container>
                         <Form onSubmit = {this.submit}>
-                        <Col>
-                            <Input onChange={this.updateSkillName} value={this.state.skillName} type="text" placeholder="skill name" required />
-                        </Col>
-                        <Col>
+                            <Input onChange={this.updateSkillName} className = "skillNameInput" value={this.state.skillName} type="text" placeholder="skill name" required />
                         <UncontrolledButtonDropdown>
                         <DropdownToggle caret>
                             Category
@@ -75,12 +73,8 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
                            {view}
                         </DropdownMenu>
                         </UncontrolledButtonDropdown>
-                        </Col>
-                        <Col>
                             <Button>Create</Button>
-                        </Col>
                         </Form>
-                    </Row>
                  </Container>
             </>
          

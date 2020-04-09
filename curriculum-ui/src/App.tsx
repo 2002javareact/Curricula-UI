@@ -1,15 +1,15 @@
 import React from 'react';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { store } from './Store';
 import { Provider } from 'react-redux';
 import CreateCurriculumFormComponent from './components/create-curriculum-form-component/CreateCurriculumFormContainer';
 import  ViewAllSkillsComponent  from './components/view-all-skill-component/ViewAllSkillsComponent';
-import { CreateSkillComponent } from './components/create-skill-component/CreateSkillComponent';
+import  CreateSkillComponent  from './components/create-skill-component/CreateSkillContainer';
 import NavBarComponent from "./components/navbar-component/NavbarComponent";
 import { MultiRouteCategoryComponent } from "./components/multi-route-category-component/MultiRouteCategoryComponent";
-import  ViewAllCategoriesComponent  from './components/view-all-categories-component/ViewAllCategoriesContainer';
+import  viewAllVisualizationComponent  from './components/visualization-components/view-all-visualization-component/ViewAllVisualizationContainer';
 function App() {
   return (
     <Provider store={store}>
@@ -19,10 +19,10 @@ function App() {
           <NavBarComponent/>
           <Switch> 
             <Route path="/curriculum/create" component={CreateCurriculumFormComponent}/>
-            <Route path="/viewAllSkills" component={ViewAllSkillsComponent}/>
-            <Route path="/createSkills" component={CreateSkillComponent}/>
+            <Route path="/skills/create" component={CreateSkillComponent}/>
+            <Route path="/skills" component={ViewAllSkillsComponent}/>            
             <Route path="/category" component={MultiRouteCategoryComponent} />
-            <Route path="/categories" component={ViewAllCategoriesComponent} />
+            <Route path="/" component={viewAllVisualizationComponent}/>
           </Switch>
         </Router>
       </div>

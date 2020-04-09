@@ -6,7 +6,7 @@ import { CreateSkillComponent } from "./CreateSkillComponent"
 const mapStateToProps = (state:IState) => {
     return {
         createdSkill: state.skills.createdSkill,
-        categories:state.allCategory.allCategory,
+        allCategory:state.allCategory.allCategory,
         errorMessage: state.skills.errorMessage        
     }
 }

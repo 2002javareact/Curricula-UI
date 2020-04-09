@@ -1,5 +1,5 @@
 import { Dispatch } from "redux"
-import { getAllSkills } from "../remote/GetAllSkillsRequest"
+import { getAllSkills, createSkill } from "../remote/SkillsRequest"
 import { Category } from "../models/Category"
 
 export const getAllSkillTypes = {
@@ -31,7 +31,7 @@ export const viewAllSkillsActionMapper = () => async (dispatch:Dispatch) => {
 
 export const createSkillActionMapper = (skillName:string, category:Category) => async (dispatch:Dispatch) => {
     try{
-        let createdSkill = await createSkillActionMapper(skillName, category)
+        let createdSkill = await createSkill(skillName, category)
         dispatch({
             type: createSkillTypes.CREATE_SKILL,
             payload:{

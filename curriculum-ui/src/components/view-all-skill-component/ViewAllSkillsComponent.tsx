@@ -4,6 +4,7 @@ import { IState } from "../../reducers"
 import { connect } from "react-redux"
 import React from "react"
 import { viewAllSkillsActionMapper } from "../../action-mappers/skill-action-mapper"
+import { skillsReducer } from "../../reducers/skills-reducers"
 
 
 
@@ -31,6 +32,7 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
         )})
         return(
             <>
+            <br/><br/><br/>
                 <Card className = "allSkillsTitle">
                 <h3>All Skills</h3>
                 </Card>
