@@ -1,7 +1,6 @@
 import { Container, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, Button, Alert} from 'reactstrap';
 import React, { SyntheticEvent } from "react";
-import { Visualization } from "../../models/Visualization";
-import { Curriculum } from "../../models/Curriculum";
+import { Visualization } from "../../../models/Visualization";
 
 
 export interface ICreateVisualizationProps{
