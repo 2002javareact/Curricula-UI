@@ -33,3 +33,11 @@
   color: green;
   text-decoration: none;
 }
+
+.allSkillsTitle{
+  margin-top:1em;
+  margin-left:40%;
+  justify-content: center;
+  text-align: "center";
+  width:10em;
+}

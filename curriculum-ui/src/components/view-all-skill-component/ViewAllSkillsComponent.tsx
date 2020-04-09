@@ -3,7 +3,7 @@ import { Card, CardText, Container, Row } from "reactstrap"
 import { IState } from "../../reducers"
 import { connect } from "react-redux"
 import React from "react"
-import { viewAllSkillsActionMapper } from "../../action-mappers/view-all-skill-action-mapper"
+import { viewAllSkillsActionMapper } from "../../action-mappers/skill-action-mapper"
 
 
 
@@ -31,8 +31,8 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
         )})
         return(
             <>
-                <Card style = {{textAlign: "center"}}>
-                <h4>All Skills</h4>
+                <Card className = "allSkillsTitle">
+                <h3>All Skills</h3>
                 </Card>
                 <Container className ="listOfSkills">
                     <Row xs="4">
@@ -46,8 +46,8 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
 
 const mapStateToProps = (state:IState) => {
     return {
-        allSkills: state.getAllSkills.allSkills,
-        errorMessage: state.getAllSkills.errorMessage        
+        allSkills: state.skills.allSkills,
+        errorMessage: state.skills.errorMessage        
     }
 }
 

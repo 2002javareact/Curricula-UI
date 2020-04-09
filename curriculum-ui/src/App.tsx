@@ -9,6 +9,7 @@ import  ViewAllSkillsComponent  from './components/view-all-skill-component/View
 import { CreateSkillComponent } from './components/create-skill-component/CreateSkillComponent';
 import NavBarComponent from "./components/navbar-component/NavbarComponent";
 import { MultiRouteCategoryComponent } from "./components/multi-route-category-component/MultiRouteCategoryComponent";
+import  ViewAllCategoriesComponent  from './components/view-all-categories-component/ViewAllCategoriesContainer';
 function App() {
   return (
     <Provider store={store}>
@@ -21,6 +22,7 @@ function App() {
             <Route path="/viewAllSkills" component={ViewAllSkillsComponent}/>
             <Route path="/createSkills" component={CreateSkillComponent}/>
             <Route path="/category" component={MultiRouteCategoryComponent} />
+            <Route path="/categories" component={ViewAllCategoriesComponent} />
           </Switch>
         </Router>
       </div>

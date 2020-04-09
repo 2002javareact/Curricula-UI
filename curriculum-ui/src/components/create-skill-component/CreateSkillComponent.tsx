@@ -7,14 +7,15 @@ import React, { SyntheticEvent } from "react";
 
 export interface ICreateSkillProps{
     createdSkill: Skill
+    categories:Category[]
     errorMessage: string
-    createSkillActionMapper:(n:string, c:Category)=>void
+    createSkillActionMapper:(n:string, c:Category)=>void    
+    getAllCategoriesActionMapper: () => void
 }
 
 export interface ICreateSkillState{
     skillName:string
-    category:String[]
-
+    category:Category
 }
 
 export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICreateSkillState>{
@@ -22,13 +23,19 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
         super(props)
         this.state = {
             skillName:'',
-            category:["database", "sourcecode", "framework", "ide", "devops", "architecture" ]
-        }
+            category: new Category(0,'','')
+        }      
     }
+    componentDidMount() {
+        if (this.props.categories.length === 0) {
+          return (this.props.getAllCategoriesActionMapper())
+        }
+        else { }
+      }
 
     submit =  async (e: SyntheticEvent) =>{
         e.preventDefault()
-        this.props.createSkillActionMapper(this.state.skillName,new Category(0,'',''))
+        this.props.createSkillActionMapper(this.state.skillName, this.state.category)
 
     }
 
@@ -42,10 +49,16 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
             category:e.currentTarget.value
         })
     }
-    render(){
-        
-        return(
 
+    
+ 
+    render(){
+        let view = this.props.categories.map((category) =>{
+            return (
+                <DropdownItem onChange={this.updateCategory}>{category.categoryName}</DropdownItem>
+            )})
+
+        return(                
             <>
                 <Container className = "skillNameInput">
                     <Row xs= "3">
@@ -59,12 +72,7 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
                             Category
                         </DropdownToggle>
                         <DropdownMenu>
-                            <DropdownItem>{this.state.category[0]}</DropdownItem>
-                            <DropdownItem >{this.state.category[1]}</DropdownItem>
-                            <DropdownItem>{this.state.category[2]}</DropdownItem>
-                            <DropdownItem>{this.state.category[3]}</DropdownItem>
-                            <DropdownItem>{this.state.category[4]}</DropdownItem>
-                            <DropdownItem>{this.state.category[5]}</DropdownItem>
+                           {view}
                         </DropdownMenu>
                         </UncontrolledButtonDropdown>
                         </Col>
