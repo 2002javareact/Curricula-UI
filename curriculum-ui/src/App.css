@@ -4,15 +4,46 @@
   background-color: var(--charcoal);
 }
 /* Used to change the color of the navbar */
-.navbar {
-  background-color: blue;
+nav.navbar {
+  background-color:  white;
   /* try to make sticky navbar */
   /*position: fixed;*/
   top: 0;
   width: 100%;
+  border-width: .4em;
+  border-style: solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  /* Moves NavBar above all othe elements on the page */
+  z-index: 9999;
 }
+
+div.visualizationCard{
+  width: 24%;
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+ 
+
+  box-shadow: 8px 8px 15px black;
+}
+
+div.row{
+  margin-left: 1%;
+  margin-right: 1%;
+}
+
+a{
+  color: #f26925;
+}
+
+.navbar-light .navbar-nav .nav-link{
+  color: white;
+}
+
 .navbar-light .navbar-brand {
-  color: black;
+  color: white;
 }
 /* Changes color of Navbar Brand when hovering over */
 .navbar-light .navbar-brand:hover {
@@ -27,7 +58,7 @@
 }
 /* dropdown link styling */
 .dropdown-link {
-  color: red;
+  color: #f26925;
 }
 .dropdown-link:hover {
   color: green;

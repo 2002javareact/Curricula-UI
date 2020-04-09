@@ -24,7 +24,7 @@ const NavBarComponent = (props: any) => {
 
   return (
     <>
-      <Navbar className="navbar" light expand="md">
+      <Navbar className="navbar" expand="md">
         {/* PUT TITLE HERE */}
         <NavbarBrand href="/">Visualization API</NavbarBrand>
         <NavbarToggler onClick={toggle} />

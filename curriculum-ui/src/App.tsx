@@ -1,7 +1,13 @@
 import React from 'react';
+<<<<<<< HEAD
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+=======
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+>>>>>>> dev
 import { store } from './Store';
 import { Provider } from 'react-redux';
 
@@ -9,9 +15,10 @@ import CreateCurriculumFormComponent from './components/create-curriculum-form-c
 import  ViewAllSkillsComponent  from './components/view-all-skill-component/ViewAllSkillsComponent';
 import { CreateSkillComponent } from './components/create-skill-component/CreateSkillComponent';
 import NavBarComponent from "./components/navbar-component/NavbarComponent";
-import { MultiRouteCategoryComponent } from "./components/category-components/multi-route-category-component/MultiRouteCategoryComponent";
-import UpdateSkillComponent from './components/update-skill-components/UpdateSkillContainer';
 
+import UpdateSkillComponent from './components/update-skill-components/UpdateSkillContainer';
+import  viewAllVisualizationComponent  from './components/visualization-components/view-all-visualization-component/ViewAllVisualizationContainer';
+import { MultiRouteCategoryComponent } from './components/multi-route-category-component/MultiRouteCategoryComponent';
 function App() {
   return (
     <Provider store={store}>
@@ -25,6 +32,7 @@ function App() {
             <Route path="/skills/create" component={CreateSkillComponent}/>
             <Route path="/skills/update" component={UpdateSkillComponent} />
             <Route path="/category" component={MultiRouteCategoryComponent} />
+            <Route path="/" component={viewAllVisualizationComponent}/>
           </Switch>
         </Router>
       </div>
