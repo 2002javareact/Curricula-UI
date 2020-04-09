@@ -1,6 +1,6 @@
 import React from 'react';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { store } from './Store';
 import { Provider } from 'react-redux';
@@ -9,6 +9,7 @@ import  ViewAllSkillsComponent  from './components/view-all-skill-component/View
 import { CreateSkillComponent } from './components/create-skill-component/CreateSkillComponent';
 import NavBarComponent from "./components/navbar-component/NavbarComponent";
 import { MultiRouteCategoryComponent } from "./components/multi-route-category-component/MultiRouteCategoryComponent";
+import  viewAllVisualizationComponent  from './components/visualization-components/view-all-visualization-component/ViewAllVisualizationContainer';
 function App() {
   return (
     <Provider store={store}>
@@ -21,6 +22,7 @@ function App() {
             <Route path="/viewAllSkills" component={ViewAllSkillsComponent}/>
             <Route path="/createSkills" component={CreateSkillComponent}/>
             <Route path="/category" component={MultiRouteCategoryComponent} />
+            <Route path="/" component={viewAllVisualizationComponent}/>
           </Switch>
         </Router>
       </div>
