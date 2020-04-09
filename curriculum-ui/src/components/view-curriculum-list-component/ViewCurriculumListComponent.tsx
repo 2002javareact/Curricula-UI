@@ -35,15 +35,17 @@ export class ViewCurriculumListComponent extends React.Component<IViewCurriculum
         <Row className="p-4 m-4 border border-secondary">
           <Col>
             <h3> Curriculum List </h3>
-            <Card>
-              <CardBody>
-                {/* Curriculum Name */}
-                <CardTitle></CardTitle>
-                {/* List of skills */}
-                <NavLink
-                  to={"/curriculum"}>View</NavLink>
-              </CardBody>
-            </Card>
+            {this.props.curriculumList.map((el)=>(
+              <Card>
+                <CardBody>
+                  {/* Curriculum Name */}
+                  <CardTitle>{`${el.curriculumId}  ${el.curriculumName}`}</CardTitle>
+                  {/* List of skills */}
+                  <NavLink
+                    to={"/curriculum"}>View</NavLink>
+                </CardBody>
+              </Card>
+            ))}
           </Col>
         </Row>
       </Container>
