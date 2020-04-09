@@ -17,14 +17,14 @@ export const createCurriculumActionMapper = (curriculum:Curriculum) => async (di
         response
       }
     })
-    dispatch({
-      type:curriculumTypes.FAILED_TO_CREATE_CURRICULUM,
-      payload:{
-        response
-      }
-    })
   }
   catch(e){
     //TODO Throw internal server error
+    dispatch({
+      type:curriculumTypes.FAILED_TO_CREATE_CURRICULUM,
+      payload:{
+        errorMessage: "Internal Server Error"
+      }
+    })
   }
 }
