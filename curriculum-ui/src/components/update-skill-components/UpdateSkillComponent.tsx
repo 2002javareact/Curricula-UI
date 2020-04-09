@@ -23,13 +23,15 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillState,any>
             category:new Category(0,'',''),
             name:'',
         }
+        this.setId=this.setId.bind(this);
+        this.setName=this.setName.bind(this);
+        this.setCategory=this.setCategory.bind(this);
     }
     
     updateSkill(){
         if(this.state.id === 0){
             let updateSkill = new Skill(this.state.id, this.state.name, this.state.category)
             return (this.props.updateSkillActionMapper(updateSkill))
-
         }else{
 
         }
@@ -38,10 +40,11 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillState,any>
         this.setState({id:e.target.value})
     }
     setName(e:any){
+        
         this.setState({name:e.target.value})
     }
     setCategory(e:any){
-        //this.setState({category:e.target.value})
+        this.setState({category:e.target.value})
     }
     
     render(){
