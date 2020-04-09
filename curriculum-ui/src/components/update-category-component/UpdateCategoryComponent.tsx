@@ -62,6 +62,7 @@ export class UpdateCategoryComponent extends React.Component<
   render() {
     return (
       <>
+        <h3>Update Category</h3>
         <Form onSubmit={this.submitUpdate}>
           {/* only thing required should be the user id */}
           <FormGroup row>
@@ -112,6 +113,7 @@ export class UpdateCategoryComponent extends React.Component<
           </FormGroup>
           <Button color="success">Update Category</Button>
         </Form>
+        {/* have some sort of ternary to display card if submitted. if not, empty paragraph */}
       </>
     );
   }
