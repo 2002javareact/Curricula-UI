@@ -4,7 +4,6 @@ import { IState } from "../../reducers"
 import { connect } from "react-redux"
 import React from "react"
 import { viewAllSkillsActionMapper } from "../../action-mappers/skill-action-mapper"
-import { skillsReducer } from "../../reducers/skills-reducers"
 
 
 
