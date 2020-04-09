@@ -1,7 +1,7 @@
-import { IState } from "../../reducers";
+import { IState } from "../../../reducers";
 import { connect } from "react-redux";
 import { CreateCurriculumFormComponent } from "./CreateCurriculumFormComponent";
-import { createCurriculumActionMapper } from '../../action-mappers/create-curriculum-action-mapper';
+import { createCurriculumActionMapper } from '../../../action-mappers/create-curriculum-action-mapper';
 
 
 const mapStateToProps = (state:IState) => {

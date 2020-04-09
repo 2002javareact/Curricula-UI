@@ -1,6 +1,6 @@
 import React, { SyntheticEvent } from 'react';
 import { Container, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, Button, Alert} from 'reactstrap';
-import { Curriculum } from '../../models/Curriculum';
+import { Curriculum } from '../../../models/Curriculum';
 
 interface ICreateCurriculumFormProps {
   createCurriculumActionMapper:(c:Curriculum)=>any
@@ -77,7 +77,7 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
     return(
       <Container>
         <Row className="p-4 m-4 border border-secondary">
-          <Col>
+          <Col >
             <h2>Create Curriculum Form</h2>
             <Form>
               <FormGroup>

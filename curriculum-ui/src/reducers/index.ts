@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { Curriculum } from "../models/Curriculum";
 import { curriculumReducer } from "./curriculum-reducer";
+import { viewandUpdateReducer } from "../reducers/view-and-update-reducer";
 import { Skill } from "../models/Skill";
 import { Category } from "../models/Category";
 import { getAllSkillsReducer } from "./view-all-skills-reducers";
@@ -22,6 +23,10 @@ curriculum:Curriculum
 errorMessage:string
 }
 
+export interface IViewCurriculumState{
+  viewandUpdateCurriculum:Curriculum
+  errorMessage:string
+}
 export interface ICategoriesState{
   allCategory:Category[]
   errorMessage:string
@@ -30,10 +35,12 @@ export interface ICategoriesState{
 export interface IState {
   getAllSkills:IGetAllSkillState,
   allCategory:ICategoriesState
+  viewUpdateCurriculum:IViewCurriculumState
 
 }
 
 export const state = combineReducers<IState>({
   getAllSkills:getAllSkillsReducer,
-  allCategory:categoriesReducer
+  allCategory:categoriesReducer,
+  viewUpdateCurriculum:viewandUpdateReducer
 })
