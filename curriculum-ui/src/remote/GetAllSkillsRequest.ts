@@ -10,7 +10,7 @@ export const getAllSkills = async ()=>{
     if(allSkills.status === 400){
         throw new TokenExpiredError()
     }
-
+    console.log(allSkills.data)
     return allSkills.data
 
 } catch (e) {

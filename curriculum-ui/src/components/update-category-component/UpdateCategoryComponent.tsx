@@ -1,6 +1,6 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import { Form, FormGroup, Label, Col, Input, Button } from "reactstrap";
-import { Category } from "../../../models/Category";
+import { Category } from "../../models/Category";
 
 //prop interface
 interface IUpdateCategoryProps {
@@ -36,7 +36,28 @@ export class UpdateCategoryComponent extends React.Component<
     };
   }
 
-  submitUpdate() {}
+  //dynamically update field functions
+  updateColor(c: any) {
+    this.setState({
+      categoryColor: c.currentTarget.value
+    });
+  }
+
+  updateName(n: any) {
+    this.setState({
+      categoryName: n.currentTarget.value
+    });
+  }
+
+  submitUpdate = async (e: SyntheticEvent) => {
+    e.preventDefault;
+    //call action mapper
+    this.props.updateCategoryActionMapper(
+      this.state.categoryId,
+      this.state.categoryColor,
+      this.state.categoryName
+    );
+  };
 
   render() {
     return (

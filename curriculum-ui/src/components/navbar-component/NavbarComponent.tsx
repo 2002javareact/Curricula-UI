@@ -24,7 +24,7 @@ const NavBarComponent = (props: any) => {
 
   return (
     <>
-      <Navbar className="navbar" light expand="md">
+      <Navbar className="navbar" expand="md">
         {/* PUT TITLE HERE */}
         <NavbarBrand href="/">Visualization API</NavbarBrand>
         <NavbarToggler onClick={toggle} />
@@ -66,7 +66,7 @@ const NavBarComponent = (props: any) => {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/">
+                  <Link className="dropdown-link" to="/curriculum/create">
                     Create A Curriculum
                   </Link>
                 </DropdownItem>
@@ -84,13 +84,13 @@ const NavBarComponent = (props: any) => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/">
+                  <Link className="dropdown-link" to="/viewAllSkills">
                     View All Skills
                   </Link>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/">
+                  <Link className="dropdown-link" to="/createSkills">
                     Create A Skill
                   </Link>
                 </DropdownItem>
