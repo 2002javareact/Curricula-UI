@@ -2,6 +2,7 @@ import {UpdateSkillComponent} from "./UpdateSkillComponent"
 import { connect } from "react-redux"
 import { IState } from "../../reducers"
 import {updateSkillActionMapper} from "../../action-mappers/update-skill"
+import {getAllCategoriesActionMapper} from "../../action-mappers/categories-getall-action-mappers"
 
 const mapStateToProps = (state:IState) => {
     return {
@@ -11,7 +12,8 @@ const mapStateToProps = (state:IState) => {
 }
 
 const mapDispatchToProps = {
-    updateSkillActionMapper
+    updateSkillActionMapper,
+    getAllCategoriesActionMapper,
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(UpdateSkillComponent)

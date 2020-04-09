@@ -11,11 +11,19 @@ import { Category } from "../../models/Category";
 
 export interface IUpdateSkillState{
     errorMessage:string
+    allCategories:Category[]
     updateSkillActionMapper:(skillToUpdate:Skill)=>void
+    getAllCategoriesActionMapper:()=>void
 }
 
 
 export class UpdateSkillComponent extends React.Component<IUpdateSkillState,any>{
+    componentDidMount(){
+        if(this.props.allCategories.length === 0)
+            return (this.props.getAllCategoriesActionMapper())
+
+        else{}
+    }
     constructor(props:any){
         super(props)
         this.state={
@@ -26,6 +34,7 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillState,any>
         this.setId=this.setId.bind(this);
         this.setName=this.setName.bind(this);
         this.setCategory=this.setCategory.bind(this);
+        this.updateSkill=this.updateSkill.bind(this);
     }
     
     updateSkill(){
@@ -44,10 +53,21 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillState,any>
         this.setState({name:e.target.value})
     }
     setCategory(e:any){
+        console.log(e.target.value);
+        
         this.setState({category:e.target.value})
     }
     
     render(){
+        if(this.props.allCategories.length === 0){
+
+        }else{
+            let listOfCategories = this.props.allCategories.map((category:Category)=>{
+                return(
+                <option onSubmit={this.state.setCategory}>{category.categoryName}</option>
+                )
+            })
+        }
         return(
             <Container>
             <Card style={{width: "18rem"}}>
