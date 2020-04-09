@@ -1,25 +1,50 @@
 import { combineReducers } from "redux";
 import { Curriculum } from "../models/Curriculum";
 import { curriculumReducer } from "./curriculum-reducer";
-import { curriculumListReducer } from "./curriculum-list-reducer";
+import { allCurriculumReducer } from "./all-curriculum-reducer";
+import { Skill } from "../models/Skill";
+import { Category } from "../models/Category";
+import { getAllSkillsReducer } from "./view-all-skills-reducers";
+import { categoriesReducer } from "./category-reducer";
 
-
-export interface IState {
-  curriculum:ICurriculumState,
-  curriculumList:ICurriculumListState
+export interface IGetAllSkillState{
+  allSkills:[]
+  errorMessage:string
 }
 
-export interface ICurriculumListState {
+export interface IAllCurriculumState {
   curriculumList:Array<Curriculum>,
   errorMessage:string
 }
-
-export interface ICurriculumState {
-  curriculum:Curriculum,
+export interface ICreateSkillState{
+  createdSkill:Skill
+  listCategories:Category[]
   errorMessage:string
+}
+
+export interface ICurriculumState{
+  curriculum:Curriculum
+  errorMessage:string
+}
+
+export interface ICategoriesState{
+  allCategory:[]
+  errorMessage:string
+}
+
+export interface IState {
+  getAllSkills:IGetAllSkillState
+  createCurriculum:ICurriculumState
+  allCategory:ICategoriesState
+  curriculum:ICurriculumState,
+  allCurriculum:IAllCurriculumState
+
 }
 
 export const state = combineReducers<IState>({
   curriculum: curriculumReducer,
-  curriculumList: curriculumListReducer
+  allCurriculum: allCurriculumReducer,
+  getAllSkills:getAllSkillsReducer,
+  createCurriculum:curriculumReducer,
+  allCategory:categoriesReducer
 })

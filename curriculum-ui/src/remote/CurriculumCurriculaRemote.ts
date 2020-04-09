@@ -1,5 +1,5 @@
-import { curriculaClient } from "./curricula-client";
-import { Curriculum } from "../../models/Curriculum";
+import { curriculaClient } from "./CurriculaClient";
+import { Curriculum } from "../models/Curriculum";
 
 
 export const curriculaCreateCurriculum = async (curriculum:Curriculum) => {
@@ -7,7 +7,7 @@ export const curriculaCreateCurriculum = async (curriculum:Curriculum) => {
     const response = await curriculaClient.post('/curriculum', {
         curriculum_id:curriculum.curriculumId,
         curriculum_name:curriculum.curriculumName,
-        skills:curriculum.skillList
+        skills:curriculum.skills
       });
     return response.data;
   }
@@ -36,4 +36,4 @@ export const curriculaGetCurriculumList = async () => {
       console.log("TODO!   THrow an internal server Error")
     }
   }
-}
+}    

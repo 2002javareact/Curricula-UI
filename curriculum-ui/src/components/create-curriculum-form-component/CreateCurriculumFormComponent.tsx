@@ -57,7 +57,7 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
     const response = await this.props.createCurriculumActionMapper({
       "curriculumId": 0,
       "curriculumName": "test3",
-      "skillList": [
+      "skills": [
         {
           "skillId": 1,
           "skillName": "POSTGRES",

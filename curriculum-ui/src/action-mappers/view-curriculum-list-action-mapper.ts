@@ -1,5 +1,5 @@
 import { Curriculum } from "../models/Curriculum"
-import { curriculaGetCurriculumList } from "../remote/curricula/curriculum-curricula-remote"
+import { curriculaGetCurriculumList } from "../remote/CurriculumCurriculaRemote"
 import { Dispatch } from "redux";
 
 

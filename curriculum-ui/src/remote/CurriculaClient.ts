@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { environment } from '../../environment'
+import { environment } from '../environment'
 
 //set up our base environment for our webflicks connection
 export const curriculaClient = axios.create({
