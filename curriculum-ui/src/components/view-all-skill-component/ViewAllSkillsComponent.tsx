@@ -23,12 +23,16 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
     }
 
     render(){
+        this.props.allSkills.sort((a,b) =>{
+            return a.category.categoryId - b.category.categoryId})
+            
         let view = this.props.allSkills.map((skill) => {
             return (
            <Card className = "skill">
                <CardText style={{backgroundColor: skill.category.categoryColor}}>{skill.skillName}</CardText>
            </Card>
         )})
+     
         return(
             <>
             <br/><br/><br/>
