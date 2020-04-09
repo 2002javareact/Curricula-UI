@@ -6,6 +6,8 @@ import { Skill } from "../models/Skill";
 import { Category } from "../models/Category";
 import { getAllSkillsReducer } from "./view-all-skills-reducers";
 import { categoriesReducer } from "./category-reducer";
+import { Visualization } from "../models/Visualization";
+import { visualizationReducer } from "./visualization-reducer";
 
 export interface IGetAllSkillState{
   allSkills:[]
@@ -31,13 +33,27 @@ export interface ICategoriesState{
   allCategory:[]
   errorMessage:string
 }
+export interface ICreateVIsualizationState{
+    createVIsualization:Skill
+    listCurriculum:Curriculum[]
+    errorMessage:string
+  }
+
+export interface IViewAllVisualizationsState{
+  allVisualizations:Visualization[]
+  errorMessage: string
+}
 
 export interface IState {
   getAllSkills:IGetAllSkillState
   createCurriculum:ICurriculumState
   allCategory:ICategoriesState
+<<<<<<< HEAD
   curriculum:ICurriculumState,
   allCurriculum:IAllCurriculumState
+=======
+  allVisualizations: IViewAllVisualizationsState
+>>>>>>> dev
 
 }
 
@@ -46,5 +62,6 @@ export const state = combineReducers<IState>({
   allCurriculum: allCurriculumReducer,
   getAllSkills:getAllSkillsReducer,
   createCurriculum:curriculumReducer,
-  allCategory:categoriesReducer
+  allCategory:categoriesReducer,
+  allVisualizations:visualizationReducer,
 })

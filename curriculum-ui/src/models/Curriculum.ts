@@ -1,8 +1,9 @@
+import { Skill } from "./Skill";
 
 export class Curriculum {
   curriculumId:number
   curriculumName:string
-  skills:Array<any>
+  skills:Array<Skill>
   constructor(curriculumId:number,curriculumName:string,skills:Array<any>){
     this.curriculumId=curriculumId;
     this.curriculumName=curriculumName;
