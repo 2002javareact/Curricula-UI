@@ -48,12 +48,9 @@ export interface IState {
   getAllSkills:IGetAllSkillState
   createCurriculum:ICurriculumState
   allCategory:ICategoriesState
-<<<<<<< HEAD
   curriculum:ICurriculumState,
   allCurriculum:IAllCurriculumState
-=======
   allVisualizations: IViewAllVisualizationsState
->>>>>>> dev
 
 }
 
