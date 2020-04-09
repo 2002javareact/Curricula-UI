@@ -1,8 +1,8 @@
 import { AnyAction } from "redux";
 import { IUpdateSkillState } from ".";
 import { updateSkillTypes } from "../action-mappers/update-skill";
-import { Skill } from "../components/models/Skill";
-import { Category } from "../components/models/Category";
+import { Skill } from "../models/Skill";
+import { Category } from "../models/Category";
 
 const initialState:IUpdateSkillState = {
     skillToUpdate:new Skill(0,'',new Category(0,'','')),

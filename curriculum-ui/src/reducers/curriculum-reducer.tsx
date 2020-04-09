@@ -1,4 +1,4 @@
-import { Curriculum } from "../components/models/Curriculum"
+import { Curriculum } from "../models/Curriculum"
 import { AnyAction } from "redux"
 import { curriculumTypes } from "../action-mappers/create-curriculum-action-mapper"
 import { ICurriculumState } from '.'

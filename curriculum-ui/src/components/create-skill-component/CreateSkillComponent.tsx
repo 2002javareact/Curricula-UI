@@ -1,13 +1,7 @@
-
-<<<<<<< HEAD
-import { Skill } from "../models/Skill";
-import { Category } from "../models/Category";
-=======
 import { Skill } from "../../models/Skill";
-import { Category } from "../../models/Category";
->>>>>>> dev
 import { Input, Container, Row, Col, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, Button } from "reactstrap";
 import React, { SyntheticEvent } from "react";
+import { Category } from "../../models/Category";
 
 
 export interface ICreateSkillProps{

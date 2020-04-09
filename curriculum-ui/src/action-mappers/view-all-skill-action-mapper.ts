@@ -8,17 +8,9 @@ export const getAllSkillTypes = {
 
 
 
-<<<<<<< HEAD
-export const viewAllComponentsActionMapper = () => async (dispatch:Dispatch) => {
-    // try to get all users from a remote function
-    try{
-        let skillsArray = await getAllSkills()
-        //if we do call dispatch with those users
-=======
 export const viewAllSkillsActionMapper = () => async (dispatch:Dispatch) => {
     try{
         let skillsArray = await getAllSkills()
->>>>>>> dev
         dispatch({
             type: getAllSkillTypes.GET_ALL_SKILLS,
             payload:{
@@ -26,16 +18,8 @@ export const viewAllSkillsActionMapper = () => async (dispatch:Dispatch) => {
             }
         })
     } catch (e){
-<<<<<<< HEAD
-            //catch any errors and dispatch a bad action
-=======
->>>>>>> dev
         dispatch({
             type:getAllSkillTypes.FAILED_TO_RETRIEVE_SKILLS
         })
     }
-<<<<<<< HEAD
-    //function completes
-=======
->>>>>>> dev
 }

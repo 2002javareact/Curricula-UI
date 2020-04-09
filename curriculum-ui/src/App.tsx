@@ -4,31 +4,14 @@ import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { store } from './Store';
 import { Provider } from 'react-redux';
-<<<<<<< HEAD
-import { CreateSkillComponent } from './components/create-skill-component/CreateSkillComponent';
-import  ViewAllSkillsComponent  from './components/view-all-skill-component/ViewAllSkillsComponent';
-import  CreateCurriculumFormComponent  from './components/create-curriculum-form-component/CreateCurriculumFormContainer';
 
-
-function App() {
-  return (
-    <Provider store = {store}>    
-    <div className="App">
-      <Router> 
-        <Switch>
-          <Route path ='/CreateSkill' component = {CreateSkillComponent}/>
-          <Route path ='/ViewAllSkills' component = {ViewAllSkillsComponent}/>    
-          <Route path="/curriculum/create" component={CreateCurriculumFormComponent}/>       
-        </Switch>
-          </Router>          
-        </div>
-    </Provider>    
-=======
 import CreateCurriculumFormComponent from './components/create-curriculum-form-component/CreateCurriculumFormContainer';
 import  ViewAllSkillsComponent  from './components/view-all-skill-component/ViewAllSkillsComponent';
 import { CreateSkillComponent } from './components/create-skill-component/CreateSkillComponent';
 import NavBarComponent from "./components/navbar-component/NavbarComponent";
 import { MultiRouteCategoryComponent } from "./components/category-components/multi-route-category-component/MultiRouteCategoryComponent";
+import UpdateSkillComponent from './components/update-skill-components/UpdateSkillContainer';
+
 function App() {
   return (
     <Provider store={store}>
@@ -38,14 +21,14 @@ function App() {
           <NavBarComponent/>
           <Switch> 
             <Route path="/curriculum/create" component={CreateCurriculumFormComponent}/>
-            <Route path="/viewAllSkills" component={ViewAllSkillsComponent}/>
-            <Route path="/createSkills" component={CreateSkillComponent}/>
+            <Route path="/skills/viewall" component={ViewAllSkillsComponent}/>
+            <Route path="/skills/create" component={CreateSkillComponent}/>
+            <Route path="/skills/update" component={UpdateSkillComponent} />
             <Route path="/category" component={MultiRouteCategoryComponent} />
           </Switch>
         </Router>
       </div>
     </Provider>
->>>>>>> dev
   );
 }
 

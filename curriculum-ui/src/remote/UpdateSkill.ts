@@ -2,7 +2,7 @@ import { curriculaClient } from "./CurriculaClient"
 import { TokenExpiredError } from "../errors/TokenExpiredError"
 import { UserNotFoundError } from "../errors/UserNotFoundError"
 import { InternalServiceError } from "../errors/InternalServiceError"
-import { Skill } from "../components/models/Skill"
+import { Skill } from "../models/Skill"
 
 export const updateSkill = async (skillToUpdate:Skill)=>{
     try{

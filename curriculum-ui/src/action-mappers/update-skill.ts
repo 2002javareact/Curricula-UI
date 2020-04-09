@@ -1,6 +1,6 @@
 import { Dispatch } from "redux"
 import { updateSkill } from "../remote/UpdateSkill"
-import { Skill } from "../components/models/Skill"
+import { Skill } from "../models/Skill"
 
 export const updateSkillTypes = {
     UPDATED_SKILL: 'PROJECT-3_UPDATED_SKILL',

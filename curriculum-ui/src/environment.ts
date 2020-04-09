@@ -10,10 +10,6 @@ const prodEnvironment = {
 export let environment = devEnvironment
 
 if(process.env.REACT_APP_ENV === 'production'){
-<<<<<<< HEAD
-    environment = devEnvironment
-=======
   environment = devEnvironment
->>>>>>> dev
 }
 

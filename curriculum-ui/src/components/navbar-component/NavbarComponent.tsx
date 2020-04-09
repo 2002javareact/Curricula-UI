@@ -84,19 +84,19 @@ const NavBarComponent = (props: any) => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/viewAllSkills">
+                  <Link className="dropdown-link" to="/skills/viewall">
                     View All Skills
                   </Link>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/createSkills">
+                  <Link className="dropdown-link" to="/skills/create">
                     Create A Skill
                   </Link>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/">
+                  <Link className="dropdown-link" to="/skills/update">
                     Edit A Skill
                   </Link>
                 </DropdownItem>
