@@ -11,18 +11,15 @@ import { Category } from "../../models/Category";
 
 export interface IUpdateSkillState{
     errorMessage:string
-    allCategories:Category[]
+    allCategory:Category[]
     updateSkillActionMapper:(skillToUpdate:Skill)=>void
     getAllCategoriesActionMapper:()=>void
 }
 
 
 export class UpdateSkillComponent extends React.Component<IUpdateSkillState,any>{
-    componentDidMount(){
-        if(this.props.allCategories.length === 0)
-            return (this.props.getAllCategoriesActionMapper())
-
-        else{}
+    componentWillMount(){
+           this.props.getAllCategoriesActionMapper()
     }
     constructor(props:any){
         super(props)
@@ -59,15 +56,15 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillState,any>
     }
     
     render(){
-        if(this.props.allCategories.length === 0){
-
-        }else{
-            let listOfCategories = this.props.allCategories.map((category:Category)=>{
+        
+        //figure out how to return one category
+            let listOfCategories = this.props.allCategory.map((category)=>{
+                console.log(category);
                 return(
                 <option onSubmit={this.state.setCategory}>{category.categoryName}</option>
                 )
             })
-        }
+        
         return(
             <Container>
             <Card style={{width: "18rem"}}>
@@ -79,7 +76,7 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillState,any>
                     <Input type="text" onChange={this.setName} placeholder="Name:" value={this.state.name}></Input>
                 </FormGroup>
                 <FormGroup>
-                    <Input type="text" onChange={this.setCategory} placeholder="Category:" value={this.state.category}></Input>
+        <Input type="select" onChange={this.setCategory} placeholder="Category:">{listOfCategories}</Input>
                 </FormGroup>
             </Form>
             </Card>

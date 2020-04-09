@@ -6,6 +6,7 @@ import {getAllCategoriesActionMapper} from "../../action-mappers/categories-geta
 
 const mapStateToProps = (state:IState) => {
     return {
+        allCategory: state.allCategory.allCategory,
         skillToUpdate: state.updateSkillsState.skillToUpdate,
         errorMessage: state.getAllSkills.errorMessage        
     }
