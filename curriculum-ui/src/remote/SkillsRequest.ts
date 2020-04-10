@@ -3,7 +3,6 @@ import { InternalServiceError } from "../errors/InternalServiceError"
 import { CategoryNotFoundError } from "../errors/CategoryNotFoundError"
 import { Category } from "../models/Category"
 import { BadRequestError } from "../errors/BadRequestError"
-import { Skill } from "../models/Skill"
 
 export const getAllSkills = async ()=>{
     try{
@@ -38,11 +37,14 @@ export const createSkill = async (skillName:string,category:Category)=> {
     
 }
 
-export const updateSkill = async (skillToUpdate:Skill)=>{
+export const updateSkill = async (id:number, name:string, category:Category)=>{
     try{
     let req = {
-        skillToUpdate
+        id,
+        name,
+        category
     }
+    
     let res = await curriculaClient.patch('/skill', req)
     if(res.status === 400){
         throw new BadRequestError()

@@ -51,10 +51,10 @@ export const createSkillActionMapper = (skillName:string, category:Category) => 
     }
 }
 
-export const updateSkillActionMapper = (skillToUpdate:Skill) => async (dispatch:Dispatch) => {
-    // try to get all users from a remote function
+export const updateSkillActionMapper = (id:number, name:string, category:Category) => async (dispatch:Dispatch) => {
+    
     try{
-        let updatedSkill = await updateSkill(skillToUpdate)
+        let updatedSkill = await updateSkill(id,name,category)
         dispatch({
             type: updateSkillTypes.UPDATED_SKILL,
             payload:{

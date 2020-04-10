@@ -15,10 +15,10 @@ interface IViewAllUsersProps {
 
 export class ViewAllCategoriesComponent extends React.Component<IViewAllUsersProps, any> {
 
-  componentDidMount() {
+  async componentDidMount() {
 
     if (this.props.allCategory.length === 0) {
-      return (this.props.getAllCategoriesActionMapper())
+      return (await this.props.getAllCategoriesActionMapper())
     }
     else { }
 
