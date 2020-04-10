@@ -25,7 +25,7 @@ function App() {
             <Route path="/skills/create" component={CreateSkillComponent}/>
             <Route path="/skills" component={ViewAllSkillsComponent}/>            
             <Route path="/category" component={MultiRouteCategoryComponent} />
-            <Route path="/test" component={ViewAndUpdateVisualizationComponent}/>
+            <Route path="/visualization/:id" component={ViewAndUpdateVisualizationComponent}/>
             <Route path="/" component={ViewAllVisualizationComponent}/>
           </Switch>
         </Router>
