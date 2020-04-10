@@ -16,10 +16,7 @@ export interface IViewAllSkillsProps{
 
 export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,any>{
     componentWillMount(){
-        if(this.props.allSkills.length === 0)
             return (this.props.viewAllSkillsActionMapper())
-
-        else{}
     }
 
     render(){

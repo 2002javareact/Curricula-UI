@@ -21,9 +21,9 @@ function App() {
         <Router>
           <NavBarComponent/>
           <Switch> 
-            <Route path="/curriculum" component={ViewAllCurriculumComponent} />
             <Route path="/curriculum/create" component={CreateCurriculumFormComponent}/>
             <Route path="/skills/update" component={UpdateSkillComponent}/>
+            <Route path="/curriculum" component={ViewAllCurriculumComponent} />
             <Route path="/skills/create" component={CreateSkillComponent}/>
             <Route path="/skills" component={ViewAllSkillsComponent}/>            
             <Route path="/category" component={MultiRouteCategoryComponent} />

@@ -2,7 +2,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Card, CardTitle, CardText, CardHeader, CardBody, Button, Container, Row } from 'reactstrap'
 import { Category } from '../../models/Category'
-import { FetchAllCategories } from '../../remote/Category'
+import { FetchAllCategories } from '../../remote/category-remote'
 
 //prop interface
 

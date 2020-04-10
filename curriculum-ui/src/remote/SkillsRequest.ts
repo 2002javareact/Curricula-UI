@@ -47,8 +47,7 @@ export const updateSkill = async (id:number, name:string, category:Category)=>{
         category
     }
     
-    let res = await curriculaClient.patch('/skill', req)
-    
+    let res = await curriculaClient.patch('/skill', new Skill(req.id,req.name,req.category))
     if(res.status === 400){
         throw new BadRequestError()
     }
