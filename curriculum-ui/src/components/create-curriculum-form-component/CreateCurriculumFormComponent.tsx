@@ -1,17 +1,21 @@
 import React, { SyntheticEvent } from 'react';
 import { Container, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, Button, Alert} from 'reactstrap';
 import { Curriculum } from '../../models/Curriculum';
+import { Skill } from '../../models/Skill';
+import { Category } from '../../models/Category';
 
 interface ICreateCurriculumFormProps {
-  createCurriculumActionMapper:(c:Curriculum)=>any
+  getAllCategoriesActionMapper:()=>any
+  getSkillsByCategoryIdActionMapper:(id:number)=>any,
+  createCurriculumActionMapper:(c:Curriculum)=>any,
+  allCategory:Array<Category>,
+  skillsByCategoryId:Array<Skill>
 }
-
 interface ICreateCurriculumFormState {
   name:string,
   existSkillList:Array<any>,
   notExistSkillList:Array<any>,
-  categoryList:Array<any>, 
-  category:string,
+  categoryId:number,
   isLoading:boolean
 }
 
@@ -22,21 +26,37 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
       name:'',
       existSkillList:[],
       notExistSkillList:[],
-      categoryList:[],
-      category:'',
+      categoryId:1,
       isLoading:false
     }
     this.handlerName=this.handlerName.bind(this);
     this.handlerCategory=this.handlerCategory.bind(this);
     this.handlerAddSkill=this.handlerAddSkill.bind(this);
     this.handlerRemoveSkill=this.handlerRemoveSkill.bind(this);
+    this.submitCategory=this.submitCategory.bind(this);
     this.submitCurriculum=this.submitCurriculum.bind(this);
   }
+  componentDidMount(){
+    if(this.props.allCategory){
+      this.props.getAllCategoriesActionMapper();
+    }
+  }
+  static getDerivedStateFromProps(props:any,state:ICreateCurriculumFormState){
+    const notExistSkillList=props.skillsByCategoryId.filter((el:any)=>!state.existSkillList.includes(el));
+    state={
+      name:state.name,
+      existSkillList:state.existSkillList,
+      notExistSkillList:notExistSkillList,
+      categoryId:state.categoryId,
+      isLoading:state.isLoading
+    }
+  }
   handlerName(e:any){this.setState({name:e.target.value})}
-  handlerCategory(e:any){this.setState({category:e.target.value})}
+  handlerCategory(e:any){this.setState({categoryId:e.target.value})}
   submitCategory(e:SyntheticEvent){
     e.preventDefault();
-    // TODO
+    this.props.getSkillsByCategoryIdActionMapper(this.state.categoryId);
+    
   }
   // TODO
   handlerAddSkill(e:any){
@@ -74,6 +94,7 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
     console.log(response);
   }
   render(){
+
     return(
       <Container>
         <Row className="p-4 m-4 border border-secondary">
@@ -85,12 +106,11 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
                 <Input type="text" onChange={this.handlerName} placeholder="Enter the Curriculum Name" defaultValue={this.state.name}/>
               </FormGroup>
             </Form>
-            <Form inline onSubmit={()=>{}}>
+            <Form inline onSubmit={this.submitCategory}>
               <FormGroup className="col-sm-10">
                 <Label className="p-0 col-sm-2">Category</Label>     
                 <Input type="select" name="category" className="col-sm-10" onChange={this.handlerCategory}>
-                  <option>1</option>
-                  {this.state.categoryList.map(el=><option>{el.name}</option>)}
+                  {this.props.allCategory.map((el:Category)=>(<option value={el.categoryId}>{el.categoryName}</option>))}
                 </Input>
               </FormGroup>
               <Button  className="col-sm-2">Search</Button>

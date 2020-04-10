@@ -7,9 +7,15 @@ import { getAllSkillsReducer } from "./view-all-skills-reducers";
 import { categoriesReducer } from "./category-reducer";
 import { Visualization } from "../models/Visualization";
 import { visualizationReducer } from "./visualization-reducer";
+import { getSkillsByCategoryIdReducer } from "./get-skill-category-reducer";
 
 export interface IGetAllSkillState{
   allSkills:[]
+  errorMessage:string
+}
+
+export interface IGetSkillsByCategoryIdState{
+  skillsByCategoryId:Skill[],
   errorMessage:string
 }
 
@@ -41,6 +47,7 @@ export interface IViewAllVisualizationsState{
 
 export interface IState {
   getAllSkills:IGetAllSkillState
+  skillsByCategoryId:IGetSkillsByCategoryIdState
   createCurriculum:ICurriculumState
   allCategory:ICategoriesState
   allVisualizations: IViewAllVisualizationsState
@@ -49,6 +56,7 @@ export interface IState {
 
 export const state = combineReducers<IState>({
   getAllSkills:getAllSkillsReducer,
+  skillsByCategoryId:getSkillsByCategoryIdReducer,
   createCurriculum:curriculumReducer,
   allCategory:categoriesReducer,
   allVisualizations:visualizationReducer,
