@@ -10,7 +10,7 @@ interface IVisualizationProps{
     getAllVisualizationsActionMapper: () => void
 }
 
-export class viewAllVisualizationComponent extends React.Component<IVisualizationProps,any>{
+export class ViewAllVisualizationComponent extends React.Component<IVisualizationProps,any>{
 
 componentDidMount(){
     if(this.props.allVisualizations.length === 0){

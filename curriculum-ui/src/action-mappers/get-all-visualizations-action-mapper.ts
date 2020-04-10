@@ -1,12 +1,14 @@
 import { Dispatch } from "redux"
 import { categoriesTypes } from "./categories-getall-action-mappers"
-import { getAllVisualizations } from "../remote/visualization-remote"
+import { getAllVisualizations, getOneVisualization } from "../remote/visualization-remote"
 
 
 
 export const visualizationTypes = {
     GET_ALL_VISUALIZATIONS: 'GET_ALL_VISUALIZATIONS',
-    FAILED_TO_RETRIEVE_VISUALIZATIONS: 'FAILED_TO_RETRIEVE_VISUALIZATIONS'
+    GET_ONE_VISUALIZATION: 'GET_ONE_VISUALIZATION',
+    FAILED_TO_RETRIEVE_VISUALIZATIONS: 'FAILED_TO_RETRIEVE_VISUALIZATIONS',
+    FAILED_TO_RETRIEVE_ONE_VISUALIZATION: 'FAILED_TO_RETRIEVE_ONE_VISUALIZATION'
 }
 
 export const getAllVisualizationsActionMapper = () => async (dispatch:Dispatch) => {
@@ -21,7 +23,26 @@ export const getAllVisualizationsActionMapper = () => async (dispatch:Dispatch) 
         })
     } catch (e) {
         dispatch({
-            type:categoriesTypes.FAILED_TO_RETRIEVE_CATEGORIES
+            type:visualizationTypes.FAILED_TO_RETRIEVE_VISUALIZATIONS
         })
     }
+}
+
+export const getOneVisualizationActionMapper = (id:number) => async (dispatch:Dispatch) => {
+try {
+    let oneVisualization = await getOneVisualization(id)
+
+    dispatch({
+        type: visualizationTypes.GET_ONE_VISUALIZATION,
+        payload:{
+            oneVisualization
+        }
+    })
+} catch (e) {
+    dispatch({
+        type:visualizationTypes.FAILED_TO_RETRIEVE_ONE_VISUALIZATION
+    })
+}
+
+
 }

@@ -10,8 +10,8 @@ import  ViewAllSkillsComponent  from './components/view-all-skill-component/View
 import  CreateSkillComponent  from './components/create-skill-component/CreateSkillContainer';
 import NavBarComponent from "./components/navbar-component/NavbarComponent";
 import { MultiRouteCategoryComponent } from "./components/multi-route-category-component/MultiRouteCategoryComponent";
-import  viewAllVisualizationComponent  from './components/visualization-components/view-all-visualization-component/ViewAllVisualizationContainer';
-import { updateAndViewVisualizationComponent } from './components/visualization-components/update-view-visualization-components/ViewAndUpdateVisualizationComponent';
+import  ViewAllVisualizationComponent  from './components/visualization-components/view-all-visualization-component/ViewAllVisualizationContainer';
+import  ViewAndUpdateVisualizationComponent from './components/visualization-components/update-view-visualization-components/ViewAndUpdateVisualizationContainer';
 function App() {
   return (
     <Provider store={store}>
@@ -25,8 +25,8 @@ function App() {
             <Route path="/skills/create" component={CreateSkillComponent}/>
             <Route path="/skills" component={ViewAllSkillsComponent}/>            
             <Route path="/category" component={MultiRouteCategoryComponent} />
-            <Route path="/test" component={updateAndViewVisualizationComponent}/>
-            <Route path="/" component={viewAllVisualizationComponent}/>
+            <Route path="/test" component={ViewAndUpdateVisualizationComponent}/>
+            <Route path="/" component={ViewAllVisualizationComponent}/>
           </Switch>
         </Router>
       </div>

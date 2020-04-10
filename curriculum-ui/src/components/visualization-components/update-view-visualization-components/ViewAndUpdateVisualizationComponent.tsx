@@ -12,10 +12,10 @@ interface IUpdateViewVisualizationProps {
     visualization: Visualization
     errorMessage: string
     getOneVisualizationActionMapper: (id: number) => void
-    updateVisualizationActionMapper: () => void
+    updateVisualizationActionMapper: (visualizationToUpdate:Visualization) => void
 }
 
-export class updateAndViewVisualizationComponent extends React.Component<IUpdateViewVisualizationProps, any>{
+export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdateViewVisualizationProps, any>{
 
     // constructor(props:any){
     //     super(props)
