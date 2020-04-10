@@ -5,7 +5,8 @@ import { AnyAction } from "redux";
 
 const initialState: IViewAllVisualizationsState = {
     allVisualizations:[],
-    errorMessage:''
+    errorMessage:'',
+    visualizationId:0,
 }
 
 export const visualizationReducer = (state = initialState, action:AnyAction) =>{

@@ -10,6 +10,7 @@ import { CreateSkillComponent } from './components/create-skill-component/Create
 import NavBarComponent from "./components/navbar-component/NavbarComponent";
 import { MultiRouteCategoryComponent } from "./components/multi-route-category-component/MultiRouteCategoryComponent";
 import  viewAllVisualizationComponent  from './components/visualization-components/view-all-visualization-component/ViewAllVisualizationContainer';
+import { updateAndViewVisualizationComponent } from './components/visualization-components/update-view-visualization-components/ViewAndUpdateVisualizationComponent';
 function App() {
   return (
     <Provider store={store}>
@@ -22,6 +23,7 @@ function App() {
             <Route path="/viewAllSkills" component={ViewAllSkillsComponent}/>
             <Route path="/createSkills" component={CreateSkillComponent}/>
             <Route path="/category" component={MultiRouteCategoryComponent} />
+            <Route path="/test" component={updateAndViewVisualizationComponent}/>
             <Route path="/" component={viewAllVisualizationComponent}/>
           </Switch>
         </Router>
