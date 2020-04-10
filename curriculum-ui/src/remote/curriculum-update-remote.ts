@@ -5,9 +5,9 @@ import { Curriculum } from "../models/Curriculum";
 export const curriculaUpdateCurriculum = async (curriculum:Curriculum) => {
     try {
         let response = await curriculaClient.patch('/curriculum', {
-            curriculum_id:curriculum.id,
-            curriculum_name:curriculum.name,
-            skills:curriculum.skillList
+            curriculum_id:curriculum.curriculumId,
+            curriculum_name:curriculum.curriculumName,
+            skills:curriculum.skills
           });
           return response.data;
     } catch (e) {

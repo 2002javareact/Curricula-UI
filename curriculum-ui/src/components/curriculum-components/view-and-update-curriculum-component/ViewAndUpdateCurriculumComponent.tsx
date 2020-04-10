@@ -56,7 +56,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<IViewAndUp
                     {this.props.getCurriculumById?(
                         <React.Fragment>
                             <Col lg={12}>
-                                <h3>Curriculum: {this.props.getCurriculumById.name}</h3>
+                                <h3>Curriculum: {this.props.getCurriculumById.curriculumName}</h3>
                             </Col>
                             <Col lg={12}>
                                 <Button className="curriculum-view-update-buttons" color="danger">
@@ -70,7 +70,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<IViewAndUp
                                 <Card className="curriculum-view-update-card">
                                     <CardTitle><h3 className="curriculum-view-update-left-text">Skills:</h3></CardTitle>
                                     <CardColumns>
-                                        {this.props.getCurriculumById.skillList.map(skills => <CardText>{skills.skillName}</CardText>)}
+                                        {this.props.getCurriculumById.skills.map(skills => <CardText>{skills.skillName}</CardText>)}
                                     </CardColumns>
                                 </Card>
                             </Col>

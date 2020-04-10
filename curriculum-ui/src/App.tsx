@@ -20,9 +20,9 @@ function App() {
         <Router>
           <NavBarComponent/>
           <Switch> 
-            <Route path="/curriculum" component={ViewAllCurriculumComponent} />
             <Route path="/curriculum/create" component={CreateCurriculumFormComponent}/>
             <Route path="/curriculum/view/:id" component={ViewAndUpdateCurriculumComponent}/>
+            <Route path="/curriculum" component={ViewAllCurriculumComponent} />
             <Route path="/skills/create" component={CreateSkillComponent}/>
             <Route path="/skills" component={ViewAllSkillsComponent}/>            
             <Route path="/category" component={MultiRouteCategoryComponent} />
