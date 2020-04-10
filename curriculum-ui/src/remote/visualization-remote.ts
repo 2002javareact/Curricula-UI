@@ -1,7 +1,6 @@
 import { curriculaClient } from "./CurriculaClient";
 import { InternalServiceError } from "../errors/InternalServiceError";
 import { Visualization } from "../models/Visualization";
-import { visualizationUpdateTypes } from "../action-mappers/update-visualization-action-mapper";
 
 
 export const getAllVisualizations = async () => {

@@ -2,11 +2,9 @@
 
 import React, { SyntheticEvent } from "react"
 import { Visualization } from "../../../models/Visualization";
-import { Redirect } from "react-router";
 import { Button, Card, Row, Container, Col, ButtonGroup } from "reactstrap";
 import { Curriculum } from "../../../models/Curriculum";
 import { Skill } from "../../../models/Skill";
-import { CardDeck } from "../../CardDeckComponent";
 import { Category } from "../../../models/Category";
 
 interface IUpdateViewVisualizationProps {
@@ -40,7 +38,7 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
 
         const newSkills: Skill[] = [];
 
-        this.props.visualization.curriculum.map(curriculum => curriculum.skills.map((skill) => {
+        this.props.visualization.curriculum.forEach(curriculum => curriculum.skills.map((skill) => {
             if (!newSkills.some(item => item.skillId === skill.skillId)) {
                 newSkills.push(skill);
             }
@@ -51,7 +49,7 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
 
         const categoryList: Category[] = []
 
-        newSkills.map((category) => {
+        newSkills.forEach((category) => {
 
             if (!categoryList.some(item => item.categoryId === category.category.categoryId)) {
                 categoryList.push(category.category)
