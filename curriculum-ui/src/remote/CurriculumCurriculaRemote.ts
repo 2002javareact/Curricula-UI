@@ -4,11 +4,7 @@ import { Curriculum } from "../models/Curriculum";
 
 export const curriculaCreateCurriculum = async (curriculum:Curriculum) => {
   try{
-    const response = await curriculaClient.post('/curriculum', {
-        curriculum_id:curriculum.curriculumId,
-        curriculum_name:curriculum.curriculumName,
-        skills:curriculum.skills
-      });
+    const response = await curriculaClient.post('/curriculum', curriculum);
     return response.data;
   }
   catch(e){
