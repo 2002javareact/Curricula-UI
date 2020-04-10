@@ -1,12 +1,13 @@
 import { AnyAction } from "redux";
 import { ISkillState } from ".";
-import { getAllSkillTypes, createSkillTypes } from "../action-mappers/skill-action-mapper";
+import { getAllSkillTypes, createSkillTypes, updateSkillTypes } from "../action-mappers/skill-action-mapper";
 import { Skill } from "../models/Skill";
 import { Category } from "../models/Category";
 
 const initialState:ISkillState = {
     createdSkill: new Skill(0,'',new Category(0,'','')),
     allSkills:[],   
+    skillToUpdate:new Skill(0,'',new Category(0,'','')),
     errorMessage:''
 }
 
@@ -36,6 +37,19 @@ export const skillsReducer = (state = initialState, action:AnyAction ) =>{
             return {
                 ...state,
                 errorMessage:'Create Skills Failed'
+            }
+        } 
+        case updateSkillTypes.UPDATED_SKILL:{
+            return {
+                ...state,
+                skillToUpdate: action.payload.updatedSkill,
+                errorMessage: 'Skills Displayed'
+            }
+        }  
+        case updateSkillTypes.FAILED_TO_UPDATE_SKILL:{
+            return {
+                ...state,
+                errorMessage:'Failed to Retrieve Skills'
             }
         } 
         default:

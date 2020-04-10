@@ -16,6 +16,7 @@ export interface IAllCurriculumState {
 export interface ISkillState{
   createdSkill:Skill
   allSkills:Skill[]
+  skillToUpdate:Skill
   errorMessage:string
 }
 
