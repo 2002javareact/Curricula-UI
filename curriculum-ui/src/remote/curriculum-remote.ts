@@ -1,4 +1,4 @@
-import { curriculaClient } from "./CurriculaClient";
+import { curriculaClient } from "./curricula-client";
 import { Curriculum } from "../models/Curriculum";
 
 

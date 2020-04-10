@@ -2,7 +2,7 @@ import { Category } from "../models/Category";
 
 import { CategoryNotFoundError } from "../errors/CategoryNotFoundError";
 import { InternalServiceError } from "../errors/InternalServiceError";
-import { curriculaClient } from "./CurriculaClient";
+import { curriculaClient } from "./curricula-client";
 
 export async function getCategoryById(categoryId:number|undefined):Promise<Category>{    
     try{

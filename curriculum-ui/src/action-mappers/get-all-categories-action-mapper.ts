@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { FetchAllCategories } from '../remote/Category'
+import { FetchAllCategories } from '../remote/category-remote'
 import { Category } from "../models/Category";
 
 
