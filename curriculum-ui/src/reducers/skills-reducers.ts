@@ -43,13 +43,13 @@ export const skillsReducer = (state = initialState, action:AnyAction ) =>{
             return {
                 ...state,
                 skillToUpdate: action.payload.updatedSkill,
-                errorMessage: 'Skills Displayed'
+                errorMessage: ''
             }
         }  
         case updateSkillTypes.FAILED_TO_UPDATE_SKILL:{
             return {
                 ...state,
-                errorMessage:'Failed to Retrieve Skills'
+                errorMessage:'Failed to Update Skills'
             }
         } 
         default:

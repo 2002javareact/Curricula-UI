@@ -41,7 +41,7 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
 
     submit =  async (e: SyntheticEvent) =>{
         e.preventDefault()
-        this.props.updateSkillActionMapper(new Skill(0,this.state.name, this.state.category))
+        this.props.updateSkillActionMapper(new Skill(this.state.skill.skillId,this.state.name, this.state.category))
 
     }
     updateSkill = (skill:Skill) => (e:any) =>{
@@ -98,7 +98,7 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
                     </DropdownMenu>
                 </UncontrolledButtonDropdown>
                 <FormGroup>
-                <Input onChange={this.updateSkillName} className = "skillNameInput" value={this.state.name} type="text" placeholder="skill name" required />
+                <Input onChange={this.updateSkillName} className = "skillNameInput" value={this.state.name} type="text" placeholder="skill name" />
                 </FormGroup>
                 <Button>Update</Button>
             </Form>
