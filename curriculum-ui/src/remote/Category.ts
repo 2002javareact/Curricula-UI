@@ -29,6 +29,7 @@ export async function getCategoryById(categoryId:number|undefined):Promise<Categ
 
 export const FetchAllCategories = async ()=>{   
     try{
+        
         let allCategory = await curriculaClient.get(`/category`)
         console.log(allCategory);
         
