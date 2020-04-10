@@ -12,8 +12,8 @@ export const categoriesReducer = (state = initialState, action:AnyAction ) =>{
         case categoriesTypes.GET_ALL_CATEGORIES:{
             return {
                 ...state,
-                allCategory: action.payload.categoryArray,
-                errorMessage: 'Categories Displayed'
+                allCategory: action.payload.categoryArray
+                
             }
         }  
         case categoriesTypes.FAILED_TO_RETRIEVE_CATEGORIES:{

@@ -2,37 +2,42 @@ import { Skill } from "../../models/Skill"
 import { Card, CardText, Container, Row } from "reactstrap"
 import { IState } from "../../reducers"
 import { connect } from "react-redux"
-import { viewAllComponentsActionMapper } from "../../action-mappers/view-all-skill-action-mapper"
 import React from "react"
+import { viewAllSkillsActionMapper } from "../../action-mappers/skill-action-mapper"
 
 
 
 export interface IViewAllSkillsProps{
     allSkills:Skill[]
     errorMessage:string
-    viewAllComponentsActionMapper:()=>void
+    viewAllSkillsActionMapper:()=>void
 }
 
 
 export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,any>{
     componentDidMount(){
         if(this.props.allSkills.length === 0)
-        return (this.props.viewAllComponentsActionMapper())
+            return (this.props.viewAllSkillsActionMapper())
 
         else{}
     }
 
     render(){
+        this.props.allSkills.sort((a,b) =>{
+            return a.category.categoryId - b.category.categoryId})
+            
         let view = this.props.allSkills.map((skill) => {
             return (
            <Card className = "skill">
                <CardText style={{backgroundColor: skill.category.categoryColor}}>{skill.skillName}</CardText>
            </Card>
         )})
+     
         return(
             <>
-                <Card style = {{textAlign: "center"}}>
-                <h4>All Skills</h4>
+            <br/><br/><br/>
+                <Card className = "allSkillsTitle">
+                <h3>All Skills</h3>
                 </Card>
                 <Container className ="listOfSkills">
                     <Row xs="4">
@@ -46,13 +51,13 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
 
 const mapStateToProps = (state:IState) => {
     return {
-        allSkills: state.getAllSkills.allSkills,
-        errorMessage: state.getAllSkills.errorMessage        
+        allSkills: state.skills.allSkills,
+        errorMessage: state.skills.errorMessage        
     }
 }
 
 const mapDispatchToProps = {
-    viewAllComponentsActionMapper
+    viewAllSkillsActionMapper
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(ViewAllSkillsComponent)

@@ -88,3 +88,15 @@ a{
   float: left;
   box-shadow: 8px 8px 15px black;
 }
+.allSkillsTitle{
+  margin-top:1em;
+  margin-left:40%;
+  justify-content: center;
+  text-align: "center";
+  width:10em;
+}
+
+.skillNameInput{
+  width: 10em;
+  margin-left:2em;
+}

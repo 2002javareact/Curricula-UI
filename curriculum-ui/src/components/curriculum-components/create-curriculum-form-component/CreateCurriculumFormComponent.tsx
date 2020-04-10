@@ -54,10 +54,8 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
   async submitCurriculum(e:SyntheticEvent){
     e.preventDefault();
     this.setState({isLoading:true})
-    const response = await this.props.createCurriculumActionMapper({
-      "id": 0,
-      "name": "test3",
-      "skillList": [
+    const curriculum = new Curriculum(0,this.state.name,
+      [
         {
           "skillId": 1,
           "skillName": "POSTGRES",
@@ -68,7 +66,8 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
           }
         }
       ]
-    }).then((e:any)=>{
+    );
+    const response = await this.props.createCurriculumActionMapper(curriculum).then((e:any)=>{
       this.setState({isLoading:false})
     })
     console.log(response);
