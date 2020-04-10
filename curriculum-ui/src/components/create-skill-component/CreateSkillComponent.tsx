@@ -1,7 +1,7 @@
 
 import { Skill } from "../../models/Skill";
 import { Category } from "../../models/Category";
-import { Input, Container,UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, Button } from "reactstrap";
+import { Input, Container,UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, Button, Row, Card } from "reactstrap";
 import React, { SyntheticEvent } from "react";
 
 
@@ -30,9 +30,9 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
             label:"Category"
         }      
     }
-    componentDidMount() {
+    async componentDidMount() {
         if (this.props.allCategory.length === 0) {
-          return (this.props.getAllCategoriesActionMapper())
+          return (await this.props.getAllCategoriesActionMapper())
         }
         else { }
       }
@@ -67,8 +67,10 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
         return(                
             <>  
                 <br/><br/><br/>
-                <Container>
+                <Container style={{width: "30rem"}}>
+                    
                         <Form onSubmit = {this.submit}>
+                        <Row>
                             <Input onChange={this.updateSkillName} className = "skillNameInput" value={this.state.skillName} type="text" placeholder="skill name" required />
                         <UncontrolledButtonDropdown>
                         <DropdownToggle caret>
@@ -79,7 +81,9 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
                         </DropdownMenu>
                         </UncontrolledButtonDropdown>
                             <Button>Create</Button>
+                            </Row>
                         </Form>
+                    
                  </Container>
             </>
          

@@ -1,7 +1,7 @@
 import { Category } from "../../models/Category";
 import { Skill } from "../../models/Skill";
 import React, { SyntheticEvent } from "react";
-import { Container, Card, Form, FormGroup, Input, DropdownItem, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, Button } from "reactstrap";
+import { Container, Card, Form, FormGroup, Input, DropdownItem, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, Button, Row } from "reactstrap";
 
 export interface IUpdateSkillProp{
     errorMessage:string
@@ -22,9 +22,9 @@ export interface IUpdateSkillState{
 
 
 export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpdateSkillState>{
-    componentDidMount() {
+    async componentDidMount() {
         if (this.props.allCategory.length === 0 && this.props.allSkills.length === 0) {
-          return (this.props.getAllCategoriesActionMapper(), this.props.viewAllSkillsActionMapper())
+          return (await this.props.getAllCategoriesActionMapper(), await this.props.viewAllSkillsActionMapper())
         }
         else { }
       }
@@ -37,11 +37,18 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
             skillLabel:"Skill",
             categoryLabel:"Category"
         }
+
+        this.updateSkill=this.updateSkill.bind(this);
+    this.updateCategory=this.updateCategory.bind(this);
+    this.updateSkillName=this.updateSkillName.bind(this);
+    this.submit=this.submit.bind(this);
     }
 
     submit =  async (e: SyntheticEvent) =>{
         e.preventDefault()
-        this.props.updateSkillActionMapper(new Skill(0,this.state.name, this.state.category))
+        console.log("here");
+        
+        this.props.updateSkillActionMapper(new Skill(this.state.skill.skillId,this.state.name, this.state.category))
 
     }
     updateSkill = (skill:Skill) => (e:any) =>{
@@ -76,11 +83,11 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
         })
         
         return(
-            
             <Container>
                 <br/><br/><br/>
-            <Card style={{width: "18rem"}}>
+            <Container>
             <Form>
+            <Row>
                 <UncontrolledButtonDropdown>
                     <DropdownToggle caret>
                        {this.state.skillLabel}
@@ -97,12 +104,14 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
                         {dropCategories}
                     </DropdownMenu>
                 </UncontrolledButtonDropdown>
-                <FormGroup>
+                {/** style this add class name*/}
+                <FormGroup >
                 <Input onChange={this.updateSkillName} className = "skillNameInput" value={this.state.name} type="text" placeholder="skill name" required />
                 </FormGroup>
                 <Button>Update</Button>
+                </Row>
             </Form>
-            </Card>
+            </Container>
             </Container>
         )
     }
