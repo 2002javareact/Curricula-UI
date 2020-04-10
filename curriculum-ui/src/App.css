@@ -29,6 +29,9 @@ div.visualizationCard{
   box-shadow: 8px 8px 15px black;
 }
 
+.bg-vis{
+  background-color: silver;
+}
 
 div.row{
   margin-left: 1%;

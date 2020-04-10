@@ -7,19 +7,20 @@ import { Button, Card, Row, Container, Col, ButtonGroup } from "reactstrap";
 import { Curriculum } from "../../../models/Curriculum";
 import { Skill } from "../../../models/Skill";
 import { CardDeck } from "../../CardDeckComponent";
+import { Category } from "../../../models/Category";
 
 interface IUpdateViewVisualizationProps {
     visualization: Visualization
     errorMessage: string
     getOneVisualizationActionMapper: (id: number) => void
-    updateVisualizationActionMapper: (visualizationToUpdate:Visualization) => void
+    updateVisualizationActionMapper: (visualizationToUpdate: Visualization) => void
 }
 
 export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdateViewVisualizationProps, any>{
 
-    constructor(props:any){
+    constructor(props: any) {
         super(props)
-        this.state ={skills:[]}
+        this.state = { skills: [] }
     }
 
     componentDidMount() {
@@ -28,7 +29,7 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
         }
     }
 
-    handlerSkillInCurriculum(e:SyntheticEvent,curriculum:Curriculum) {
+    handlerSkillInCurriculum(e: SyntheticEvent, curriculum: Curriculum) {
         e.preventDefault()
         this.setState({
             skills: curriculum.skills
@@ -39,19 +40,36 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
 
         const newSkills: Skill[] = [];
 
-        this.props.visualization.curriculum.map(curriculum => curriculum.skills.map((skill) => {    
-            if (!newSkills.some(item => item.skillId===skill.skillId)) {
+        this.props.visualization.curriculum.map(curriculum => curriculum.skills.map((skill) => {
+            if (!newSkills.some(item => item.skillId === skill.skillId)) {
                 newSkills.push(skill);
             }
         }))
         newSkills.sort((a, b) => {
-            return a.category.categoryName.localeCompare(b.category.categoryName)
+            return a.category.categoryColor.localeCompare(b.category.categoryColor)
         })
+
+        const categoryList: Category[] = []
+
+        newSkills.map((category) => {
+
+            if (!categoryList.some(item => item.categoryId === category.category.categoryId)) {
+                categoryList.push(category.category)
+            }
+
+        })
+
+        let categoryDisplay = categoryList.map((category)=>{
+            return(
+            <Card style={{ backgroundColor: category.categoryColor }} className="rounded-pill border-dark text-light m-1 font-weight-bold" >{category.categoryName}</Card>
+            
+        )})
+
         let displayCurriculum = this.props.visualization.curriculum.map((curriculum) => {
 
             return (
                 <>
-                    <Button onMouseOver={(e:SyntheticEvent)=>this.handlerSkillInCurriculum(e,curriculum)} className="bg-light border-0 text-dark">{curriculum.curriculumName}</Button>
+                    <Button onMouseOver={(e: SyntheticEvent) => this.handlerSkillInCurriculum(e, curriculum)} className="bg-light m-1 border-dark border-bottom border-top-0 border-left-0 border-right-0 shadow-lg text-dark">{curriculum.curriculumName}</Button>
                     {/* curriculum col
             onhover have a selected have list of skills
             save array of currentskills and compare with list of skills
@@ -68,34 +86,40 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
             )
         })
 
-let skillDisplay = newSkills.map((skill)=>{
-    return(
-        this.state.skills.some((item:Skill) => item.skillId===skill.skillId) ?
-        <Button style = {{backgroundColor: skill.category.categoryColor}} className="border-white rounded-pill text-dark">{skill.skillName}</Button>
-        :
-        <Button style = {{backgroundColor: `${skill.category.categoryColor}54` }} className="border-white rounded-pill text-dark">{skill.skillName}</Button>
-    )
-})
+        let skillDisplay = newSkills.map((skill) => {
+            return (
+                this.state.skills.some((item: Skill) => item.skillId === skill.skillId) ?
+                    <Button style={{ backgroundColor: skill.category.categoryColor }} className=" rounded-pill text-light m-1 font-weight-bold" >{skill.skillName}</Button>
+                    :
+                    <Button style={{ backgroundColor: `${skill.category.categoryColor}61` }} className=" rounded-pill text-light m-1 font-weight-bold">{skill.skillName}</Button>
+            )
+        })
+
 
 
         return (
-        
-        
-        <>
-        <br/><br/><br/><br/>
-        <Container>
-            <Row>
-                <Col>
-                <ButtonGroup vertical className="w-100">
-                        {displayCurriculum}
-                </ButtonGroup>
-                </Col>
-                <Col>
-                    {skillDisplay}
-                </Col>
-            </Row>
-        </Container>
-        </>)
+
+
+            <>
+                <br /><br /><br /><br />
+                <h3>{this.props.visualization.visualizationName}</h3>
+                <br />
+                <Container className="border border-dark p-4">
+                    <Row>
+                        <Col className="col-sm-6">
+                            <ButtonGroup vertical className="w-100">
+                                {displayCurriculum}
+                            </ButtonGroup>
+                        </Col>
+                        <Col className="col-sm-4">
+                            {skillDisplay}
+                        </Col>
+                        <Col className="col-sm-2">
+                            {categoryDisplay}
+                        </Col>
+                    </Row>
+                </Container>
+            </>)
     }
 
 }
