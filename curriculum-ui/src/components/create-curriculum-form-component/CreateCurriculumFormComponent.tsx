@@ -3,6 +3,7 @@ import { Container, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, Car
 import { Curriculum } from '../../models/Curriculum';
 import { Skill } from '../../models/Skill';
 import { Category } from '../../models/Category';
+import { Redirect } from 'react-router';
 
 interface ICreateCurriculumFormProps {
   getAllCategoriesActionMapper:()=>any
@@ -17,7 +18,8 @@ interface ICreateCurriculumFormState {
   notExistSkillList:Array<any>,
   categoryId:number,
   isLoading:boolean,
-  alert:string
+  alert:string,
+  isRedirect:boolean
 }
 
 export class CreateCurriculumFormComponent extends React.Component<ICreateCurriculumFormProps,ICreateCurriculumFormState>{
@@ -29,7 +31,8 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
       notExistSkillList:[],
       categoryId:1,
       isLoading:false,
-      alert:""
+      alert:"",
+      isRedirect:false
     }
     this.handlerName=this.handlerName.bind(this);
     this.handlerCategory=this.handlerCategory.bind(this);
@@ -82,13 +85,14 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
       this.setState({isLoading:true})
       const curriculum = new Curriculum(0,this.state.name,this.state.existSkillList);
       const response = await this.props.createCurriculumActionMapper(curriculum).then((e:any)=>{
-        this.setState({isLoading:false})
+        this.setState({isLoading:false,isRedirect:true})
       })
     }
   }
   render(){
     return(
       <Container>
+        {this.state.isRedirect && <Redirect to={"/curriculum"}/> }
         <Row className="p-4 m-4 border border-secondary">
           <Col>
             <h2>Create Curriculum Form</h2>
