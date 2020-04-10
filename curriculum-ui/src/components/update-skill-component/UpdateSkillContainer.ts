@@ -2,7 +2,7 @@ import { IState } from "../../reducers"
 import { connect } from "react-redux"
 import { UpdateSkillComponent } from "./UpdateSkillComponent"
 import { updateSkillActionMapper,viewAllSkillsActionMapper } from "../../action-mappers/skill-action-mapper"
-import { getAllCategoriesActionMapper } from "../../action-mappers/categories-getall-action-mappers"
+import { getAllCategoriesActionMapper } from "../../action-mappers/getall-categories-action-mappers"
 
 const mapStateToProps = (state:IState) => {
     return {
