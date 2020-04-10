@@ -11,6 +11,8 @@ export class MultiRouteCategoryComponent extends React.Component<any, any> {
         <Switch>
           {/* View All Categories */}
           {/* if no extra props are being passed in, can switch from using the render design pattern -dev */}
+          {console.log(this.props.match)
+          }
           <Route
             path={`${this.props.match.path}/view-all`}
             component={ViewAllCategoriesComponent}
