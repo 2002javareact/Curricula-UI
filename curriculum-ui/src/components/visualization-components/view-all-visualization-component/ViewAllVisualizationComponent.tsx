@@ -10,7 +10,7 @@ interface IVisualizationProps{
     getAllVisualizationsActionMapper: () => void
 }
 
-export class viewAllVisualizationComponent extends React.Component<IVisualizationProps,any>{
+export class ViewAllVisualizationComponent extends React.Component<IVisualizationProps,any>{
 
 componentDidMount(){
     if(this.props.allVisualizations.length === 0){
@@ -49,13 +49,6 @@ componentDidMount(){
         
             <CardDeck elementsPerRow={4}>
             {visualizationDisplay}
-            {visualizationDisplay}
-            {visualizationDisplay}
-            {visualizationDisplay}
-            {visualizationDisplay}
-            {visualizationDisplay}
-
-
             </CardDeck>
         
         </>)

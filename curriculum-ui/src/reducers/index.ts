@@ -46,6 +46,7 @@ export interface ICreateVIsualizationState{
 export interface IViewAllVisualizationsState{
   allVisualizations:Visualization[]
   errorMessage: string
+  visualization:Visualization
 }
 
 export interface IState {

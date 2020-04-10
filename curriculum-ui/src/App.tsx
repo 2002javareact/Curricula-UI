@@ -11,7 +11,8 @@ import  CreateSkillComponent  from './components/create-skill-component/CreateSk
 import UpdateSkillComponent from './components/update-skill-component/UpdateSkillContainer';
 import NavBarComponent from "./components/navbar-component/NavbarComponent";
 import { MultiRouteCategoryComponent } from "./components/multi-route-category-component/MultiRouteCategoryComponent";
-import  viewAllVisualizationComponent  from './components/visualization-components/view-all-visualization-component/ViewAllVisualizationContainer';
+import  ViewAllVisualizationComponent  from './components/visualization-components/view-all-visualization-component/ViewAllVisualizationContainer';
+import  ViewAndUpdateVisualizationComponent from './components/visualization-components/update-view-visualization-components/ViewAndUpdateVisualizationContainer';
 
 function App() {
   return (
@@ -27,7 +28,8 @@ function App() {
             <Route path="/skills/create" component={CreateSkillComponent}/>
             <Route path="/skills" component={ViewAllSkillsComponent}/>            
             <Route path="/category" component={MultiRouteCategoryComponent} />
-            <Route path="/" component={viewAllVisualizationComponent}/>
+            <Route path="/visualization/:id" component={ViewAndUpdateVisualizationComponent}/>
+            <Route path="/" component={ViewAllVisualizationComponent}/>
           </Switch>
         </Router>
       </div>
