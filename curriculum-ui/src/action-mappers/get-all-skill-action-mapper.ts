@@ -1,5 +1,5 @@
 import { Dispatch } from "redux"
-import { getAllSkills } from "../remote/skill-get-remote"
+import { getAllSkills } from "../remote/get-skill-remote"
 
 export const getAllSkillTypes = {
     GET_ALL_SKILLS: 'PROJECT-3_GET_ALL_SKILLS',

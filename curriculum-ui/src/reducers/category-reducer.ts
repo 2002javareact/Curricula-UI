@@ -1,6 +1,6 @@
 import { ICategoriesState } from ".";
 import { AnyAction } from "redux";
-import { categoriesTypes } from "../action-mappers/get-all-categories-action-mappers";
+import { categoriesTypes } from "../action-mappers/get-all-categories-action-mapper";
 
 const initialState: ICategoriesState = {
     allCategory:[],

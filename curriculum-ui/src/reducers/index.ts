@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 import { Curriculum } from "../models/Curriculum";
-import { curriculumReducer } from "./curriculum-reducer";
-import { allCurriculumReducer } from "./all-curriculum-reducer";
+import { curriculumReducer } from "./create-curriculum-reducer";
+import { allCurriculumReducer } from "./get-all-curriculum-reducer";
 import { Skill } from "../models/Skill";
 import { Category } from "../models/Category";
-import { getAllSkillsReducer } from "./view-all-skills-reducers";
+import { getAllSkillsReducer } from "./get-all-skills-reducer";
 import { categoriesReducer } from "./category-reducer";
 import { Visualization } from "../models/Visualization";
 import { visualizationReducer } from "./visualization-reducer";
