@@ -22,16 +22,7 @@ export interface IUpdateSkillState{
 
 
 export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpdateSkillState>{
-<<<<<<< HEAD
-    componentDidMount() {
-        if (this.props.allCategory.length === 0 && this.props.allSkills.length === 0) {
-          return (this.props.getAllCategoriesActionMapper(),this.props.viewAllSkillsActionMapper())
-        }
-        else { }
-      }
-=======
     
->>>>>>> d6db1ac295566a8cc35c6288d25800a4fabb9a52
     constructor(props:any){
         super(props)
         this.state={
@@ -53,7 +44,9 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
      
     }
     submit =  async (e: SyntheticEvent) =>{
-        e.preventDefault()       
+        e.preventDefault()     
+        console.log("here");
+          
         this.props.updateSkillActionMapper(this.state.skill.skillId,this.state.name, this.state.category)
 
     }

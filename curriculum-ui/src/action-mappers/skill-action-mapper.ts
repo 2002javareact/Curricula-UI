@@ -52,8 +52,10 @@ export const createSkillActionMapper = (skillName:string, category:Category) => 
 }
 
 export const updateSkillActionMapper = (id:number, name:string, category:Category) => async (dispatch:Dispatch) => {
-    
+    console.log(id, name, category);
     try{
+        
+        
         let updatedSkill = await updateSkill(id,name,category)
         dispatch({
             type: updateSkillTypes.UPDATED_SKILL,

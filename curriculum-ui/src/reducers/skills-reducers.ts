@@ -7,7 +7,7 @@ import { Category } from "../models/Category";
 const initialState:ISkillState = {
     createdSkill: new Skill(0,'',new Category(0,'','')),
     allSkills:[],   
-    skillToUpdate:new Skill(0,'',new Category(0,'','')),
+    updatedSkill:new Skill(0,'',new Category(0,'','')),
     errorMessage:''
 }
 
@@ -42,7 +42,7 @@ export const skillsReducer = (state = initialState, action:AnyAction ) =>{
         case updateSkillTypes.UPDATED_SKILL:{
             return {
                 ...state,
-                skillToUpdate: action.payload.updatedSkill,
+                updatedSkill: action.payload.updatedSkill,
                 errorMessage: ''
             }
         }  
