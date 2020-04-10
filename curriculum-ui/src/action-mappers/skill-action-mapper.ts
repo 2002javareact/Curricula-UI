@@ -1,6 +1,7 @@
 import { Dispatch } from "redux"
-import { getAllSkills, createSkill } from "../remote/SkillsRequest"
+import { getAllSkills, createSkill, updateSkill } from "../remote/SkillsRequest"
 import { Category } from "../models/Category"
+import { Skill } from "../models/Skill"
 
 export const getAllSkillTypes = {
     GET_ALL_SKILLS: 'PROJECT-3_GET_ALL_SKILLS',
@@ -10,6 +11,11 @@ export const getAllSkillTypes = {
 export const createSkillTypes ={
     CREATE_SKILL: 'PROJECT-3_SKILL_CREATED',
     FAILED_CREATE_SKILL:'PROJECT-3_FAILED_CREATE_SKILL'
+}
+
+export const updateSkillTypes = {
+    UPDATED_SKILL: 'PROJECT-3_UPDATED_SKILL',
+    FAILED_TO_UPDATE_SKILL:'PROJECT-3_FAILED_TO_UPDATE_SKILL'
 }
 
 
@@ -43,4 +49,24 @@ export const createSkillActionMapper = (skillName:string, category:Category) => 
             type:createSkillTypes.FAILED_CREATE_SKILL
         })
     }
+}
+
+export const updateSkillActionMapper = (id:number, name:string, category:Category) => async (dispatch:Dispatch) => {
+    console.log(id, name, category);
+    try{
+        
+        
+        let updatedSkill = await updateSkill(id,name,category)
+        dispatch({
+            type: updateSkillTypes.UPDATED_SKILL,
+            payload:{
+                updatedSkill
+            }
+        })
+    } catch (e){
+        dispatch({
+            type:updateSkillTypes.FAILED_TO_UPDATE_SKILL
+        })
+    }
+    //function completes
 }

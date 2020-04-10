@@ -1,7 +1,7 @@
 
 import { Skill } from "../../models/Skill";
 import { Category } from "../../models/Category";
-import { Input, Container,UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, Button } from "reactstrap";
+import { Input, Container,UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, Button, Row, Card } from "reactstrap";
 import React, { SyntheticEvent } from "react";
 
 
@@ -18,6 +18,7 @@ export interface ICreateSkillProps{
 export interface ICreateSkillState{
     skillName:string
     category:Category
+    label:string
 }
 
 export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICreateSkillState>{
@@ -25,14 +26,14 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
         super(props)
         this.state = {
             skillName:'',
-            category: new Category(0,'','')
+            category: new Category(0,'',''),
+            label:"Category"
         }      
     }
     componentDidMount() {
-        if (this.props.allCategory.length === 0) {
+
           return (this.props.getAllCategoriesActionMapper())
-        }
-        else { }
+
       }
 
     submit =  async (e: SyntheticEvent) =>{
@@ -46,11 +47,14 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
             skillName: e.currentTarget.value
         })
     }
+
     updateCategory = (category:Category) => (e:any) =>{
         this.setState({
-            category
+            category,
+            label:category.categoryName
         })
     }
+
 
     
  
@@ -62,19 +66,21 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
         return(                
             <>  
                 <br/><br/><br/>
-                <Container>
+                <Container style={{width: "30rem"}}>                    
                         <Form onSubmit = {this.submit}>
+                        <Row>
                             <Input onChange={this.updateSkillName} className = "skillNameInput" value={this.state.skillName} type="text" placeholder="skill name" required />
                         <UncontrolledButtonDropdown>
                         <DropdownToggle caret>
-                            Category
+                            {this.state.label}
                         </DropdownToggle>
                         <DropdownMenu>
                            {view}
                         </DropdownMenu>
                         </UncontrolledButtonDropdown>
                             <Button>Create</Button>
-                        </Form>
+                            </Row>
+                        </Form>                    
                  </Container>
             </>
          

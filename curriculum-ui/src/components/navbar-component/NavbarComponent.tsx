@@ -96,7 +96,7 @@ const NavBarComponent = (props: any) => {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/">
+                  <Link className="dropdown-link" to="/skills/update">
                     Edit A Skill
                   </Link>
                 </DropdownItem>

@@ -10,6 +10,7 @@ const mapStateToProps = (state:IState) => {
     }
 }
 
+
 const mapDispatchToProps = {
     getAllCategoriesActionMapper
 }

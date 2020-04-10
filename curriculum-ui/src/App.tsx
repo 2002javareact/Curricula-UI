@@ -8,9 +8,11 @@ import CreateCurriculumFormComponent from './components/create-curriculum-form-c
 import ViewAllCurriculumComponent from './components/view-all-curriculum-component/ViewAllCurriculumContainer';
 import  ViewAllSkillsComponent  from './components/view-all-skill-component/ViewAllSkillsComponent';
 import  CreateSkillComponent  from './components/create-skill-component/CreateSkillContainer';
+import UpdateSkillComponent from './components/update-skill-component/UpdateSkillContainer';
 import NavBarComponent from "./components/navbar-component/NavbarComponent";
 import { MultiRouteCategoryComponent } from "./components/multi-route-category-component/MultiRouteCategoryComponent";
 import  viewAllVisualizationComponent  from './components/visualization-components/view-all-visualization-component/ViewAllVisualizationContainer';
+
 function App() {
   return (
     <Provider store={store}>
@@ -20,6 +22,7 @@ function App() {
           <NavBarComponent/>
           <Switch> 
             <Route path="/curriculum/create" component={CreateCurriculumFormComponent}/>
+            <Route path="/skills/update" component={UpdateSkillComponent}/>
             <Route path="/curriculum" component={ViewAllCurriculumComponent} />
             <Route path="/skills/create" component={CreateSkillComponent}/>
             <Route path="/skills" component={ViewAllSkillsComponent}/>            
