@@ -1,4 +1,4 @@
-import { curriculaClient } from "./curricula-client";
+import { curriculaClient } from "./CurriculaClient";
 import { InternalServiceError } from "../errors/InternalServiceError";
 
 

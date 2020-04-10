@@ -1,6 +1,6 @@
 import { Curriculum } from "../models/Curriculum"
 import { AnyAction } from "redux"
-import { curriculumListTypes } from "../action-mappers/get-all-curriculum-action-mapper"
+import { curriculumListTypes } from "../action-mappers/view-curriculum-list-action-mapper"
 import { IAllCurriculumState } from '.'
 
 const initialState:IAllCurriculumState = {

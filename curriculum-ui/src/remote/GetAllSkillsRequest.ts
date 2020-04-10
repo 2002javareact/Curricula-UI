@@ -1,4 +1,4 @@
-import { curriculaClient } from "./curricula-client"
+import { curriculaClient } from "./CurriculaClient"
 import { TokenExpiredError } from "../errors/TokenExpiredError"
 import { UserNotFoundError } from "../errors/UserNotFoundError"
 import { InternalServiceError } from "../errors/InternalServiceError"
