@@ -1,23 +1,23 @@
 import { AnyAction } from "redux"
 import { Curriculum } from '../models/Curriculum';
-import {updateCurriculumTypes} from '../action-mappers/view-and-update-curriculum-action-mapper';
+import {updateCurriculumTypes} from '../action-mappers/update-curriculum-action-mapper';
 import {IViewCurriculumState} from '.';
 
 
 
 const initialState:IViewCurriculumState = {
-    viewandUpdateCurriculum:new Curriculum(0,'',[]),
+    updateCurriculum:new Curriculum(0,'',[]),
     errorMessage:''
   }
 
 
-  export const viewandUpdateReducer = (state=initialState,action:AnyAction)=>{
+  export const updateReducer = (state=initialState,action:AnyAction)=>{
 
     switch(action.type){
         case updateCurriculumTypes.UPDATE_CURRICULUM:{
           return {
             ...state,
-            curriculum:action.payload.curriculum
+            updateCurriculum:action.payload.updateCurriculum
           }
         }
         case updateCurriculumTypes.FAILED_TO_VIEW_AND_UPDATE_CURRICULUM:{
@@ -29,6 +29,3 @@ const initialState:IViewCurriculumState = {
         default: return state;
       }
     }
-
-
-

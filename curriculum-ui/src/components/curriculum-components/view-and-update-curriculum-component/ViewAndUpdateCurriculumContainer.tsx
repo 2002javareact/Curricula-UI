@@ -1,15 +1,19 @@
 import {IState} from "../../../reducers/";
 import { connect } from "react-redux";
 import { ViewAndUpdateCurriculumComponent } from "./ViewAndUpdateCurriculumComponent";
-import {viewAndUpdateCurriculumActionMapper} from "../../../action-mappers/view-and-update-curriculum-action-mapper";
+import {updateCurriculumActionMapper} from "../../../action-mappers/update-curriculum-action-mapper";
+import {getCurriculumByIdActionMapper} from 
+"../../../action-mappers/get-curriculum-by-id-action-mapper";
 
 
 const mapStateToProps = (state:IState) =>{
 
     return{
 
-    viewandUpdateCurriculum: state.viewUpdateCurriculum.viewandUpdateCurriculum,
-    errorMessage: state.viewUpdateCurriculum
+    updateCurriculum: state.updateCurriculum.updateCurriculum,
+    getCurriculumById: state.getCurriculumById.getCurriculumById,
+    errorMessageForUpdate: state.updateCurriculum.errorMessage,
+    errorMessageForById: state.getCurriculumById.errorMessage
     }
 
 }
@@ -17,7 +21,10 @@ const mapStateToProps = (state:IState) =>{
 
 const mapDispatchToProps = {
 
-    viewAndUpdateCurriculumActionMapper
+    updateCurriculumActionMapper,
+    getCurriculumByIdActionMapper
+
+
 }
 
 
