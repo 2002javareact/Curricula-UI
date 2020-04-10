@@ -24,6 +24,7 @@ export interface IGetSkillsByCategoryIdState{
 export interface ISkillState{
   createdSkill:Skill
   allSkills:Skill[]
+  updatedSkill:Skill
   errorMessage:string
 }
 
