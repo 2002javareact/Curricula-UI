@@ -69,7 +69,7 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
 
             return (
                 <>
-                    <Button onMouseOver={(e: SyntheticEvent) => this.handlerSkillInCurriculum(e, curriculum)} className="bg-light m-1 border-dark border-bottom border-top-0 border-left-0 border-right-0 shadow-lg text-dark">{curriculum.curriculumName}</Button>
+                    <Button onMouseOver={(e: SyntheticEvent) => this.handlerSkillInCurriculum(e, curriculum)} className="bg-light m-1 border-bottom border-top-0 border-left-0 border-right-0 text-dark">{curriculum.curriculumName}</Button>
                     {/* curriculum col
             onhover have a selected have list of skills
             save array of currentskills and compare with list of skills
@@ -89,9 +89,9 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
         let skillDisplay = newSkills.map((skill) => {
             return (
                 this.state.skills.some((item: Skill) => item.skillId === skill.skillId) ?
-                    <Button style={{ backgroundColor: skill.category.categoryColor }} className=" rounded-pill text-light m-1 font-weight-bold" >{skill.skillName}</Button>
+                    <Button style={{ backgroundColor: skill.category.categoryColor }} className="rounded-pill text-light m-1 font-weight-bold" >{skill.skillName}</Button>
                     :
-                    <Button style={{ backgroundColor: `${skill.category.categoryColor}61` }} className=" rounded-pill text-light m-1 font-weight-bold">{skill.skillName}</Button>
+                    <Button style={{ backgroundColor: `${skill.category.categoryColor}61` }} className="rounded-pill text-light m-1 font-weight-bold">{skill.skillName}</Button>
             )
         })
 
@@ -104,7 +104,7 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
                 <br /><br /><br /><br />
                 <h3>{this.props.visualization.visualizationName}</h3>
                 <br />
-                <Container className="border border-dark p-4">
+                <Container className="shadow-custom rounded p-3">
                     <Row>
                         <Col className="col-sm-6">
                             <ButtonGroup vertical className="w-100">
