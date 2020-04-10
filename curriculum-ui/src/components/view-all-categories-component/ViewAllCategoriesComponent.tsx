@@ -30,12 +30,21 @@ export class ViewAllCategoriesComponent extends React.Component<IViewAllUsersPro
 
     let viewCategory = this.props.allCategory.map((category, index) => {
       return (
-
-        <Card body inverse style={{ backgroundColor: category.categoryColor, borderColor: '#333', margin: '1em', width: '20vw', height: '40vh' }} >
-          <CardTitle style={{ color: 'black', fontSize: '2em' }} >{category.categoryName}</CardTitle>
-          <br /><br /><br />
-          <CardText style={{ color: 'black', fontSize: '1.2em' }} >COLOR: {category.categoryColor}</CardText>
-          <Button style={{ backgroundColor: '#464646', fontSize: '2em', color: 'black' }} > DELETE</Button>
+/*
+*** I removed inline styling, as per our new css rules please seperate it out  
+*** Put into CSS with custom classname or use bootstrap css classnames
+ Card- style={{borderColor: '#333', margin: '1em', width: '20vw', height: '40vh' }}
+ CardTitle- style={{ color: 'black', fontSize: '2em' }}
+ CardText- style={{ color: 'black', fontSize: '1.2em' }} 
+ Button- style={{ backgroundColor: '#464646', fontSize: '2em', color: 'black' }} 
+ ***
+ ***
+ */
+        <Card body inverse style={{ backgroundColor: category.categoryColor}} >
+          <CardTitle>{category.categoryName}</CardTitle>
+          <br/><br/><br/>
+          <CardText>COLOR: {category.categoryColor}</CardText>
+          <Button>DELETE</Button>
         </Card>
 
       )
