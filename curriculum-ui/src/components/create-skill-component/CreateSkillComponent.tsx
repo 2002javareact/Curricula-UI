@@ -30,11 +30,10 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
             label:"Category"
         }      
     }
-    async componentDidMount() {
-        if (this.props.allCategory.length === 0) {
-          return (await this.props.getAllCategoriesActionMapper())
-        }
-        else { }
+    componentDidMount() {
+
+          return (this.props.getAllCategoriesActionMapper())
+
       }
 
     submit =  async (e: SyntheticEvent) =>{

@@ -14,20 +14,18 @@ interface IViewAllUsersProps {
 //state interface?
 
 export class ViewAllCategoriesComponent extends React.Component<IViewAllUsersProps, any> {
+  refreshPage() {
+    window.location.reload(true);
+  }
+  componentDidUpdate() {
 
-  async componentDidMount() {
+   
+      return (this.props.getAllCategoriesActionMapper())
 
-    if (this.props.allCategory.length === 0) {
-      return (await this.props.getAllCategoriesActionMapper())
-    }
-    else { }
 
   }
 
-
-
   render() {
-
     let viewCategory = this.props.allCategory.map((category, index) => {
       return (
 
@@ -40,8 +38,8 @@ export class ViewAllCategoriesComponent extends React.Component<IViewAllUsersPro
 
       )
     })
-
-
+    
+    this.refreshPage()
     return (
       <>
 
@@ -55,9 +53,9 @@ export class ViewAllCategoriesComponent extends React.Component<IViewAllUsersPro
         </Container>
 
 
-
       </>
-    );
+    )
+    
   }
 }
 
