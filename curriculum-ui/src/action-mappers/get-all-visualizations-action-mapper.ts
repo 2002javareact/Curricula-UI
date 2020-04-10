@@ -1,5 +1,4 @@
 import { Dispatch } from "redux"
-import { categoriesTypes } from "./categories-getall-action-mappers"
 import { getAllVisualizations, getOneVisualization } from "../remote/visualization-remote"
 
 
