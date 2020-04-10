@@ -4,7 +4,7 @@ import { Curriculum } from "../models/Curriculum";
 
 export const curriculaCreateCurriculum = async (curriculum:Curriculum) => {
   try{
-    let response = await curriculaClient.post('/curriculum', {
+    const response = await curriculaClient.post('/curriculum', {
         curriculum_id:curriculum.curriculumId,
         curriculum_name:curriculum.curriculumName,
         skills:curriculum.skills
@@ -17,7 +17,23 @@ export const curriculaCreateCurriculum = async (curriculum:Curriculum) => {
     }
     else{
       // TODO
-      console.log("Throw an internal server error")
+      console.log("TODO!   Throw an internal server error")
+    }
+  }
+}
+
+export const curriculaGetCurriculumList = async () => {
+  try{
+    const response = await curriculaClient.get('/curriculum');
+    return response.data;
+  }
+  catch(e){
+    if(e.status<500){
+      throw e;
+    }
+    else{
+      // TODO
+      console.log("TODO!   THrow an internal server Error")
     }
   }
 }    
