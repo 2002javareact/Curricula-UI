@@ -1,8 +1,8 @@
 import React, { SyntheticEvent } from 'react';
 import { Container, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, Button, Alert} from 'reactstrap';
-import { Curriculum } from '../../models/Curriculum';
-import { Skill } from '../../models/Skill';
-import { Category } from '../../models/Category';
+import { Curriculum } from '../../../models/Curriculum';
+import { Skill } from '../../../models/Skill';
+import { Category } from '../../../models/Category';
 import { Redirect } from 'react-router';
 
 interface ICreateCurriculumFormProps {
@@ -46,6 +46,8 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
       this.props.getAllCategoriesActionMapper();
     }
   }
+
+  //TODO: Copy this and delete this comment 
   static getDerivedStateFromProps(props:any,state:ICreateCurriculumFormState){
     const notExistSkillList=props.skillsByCategoryId.filter((el:Skill)=>!state.existSkillList.some((item:Skill)=>el.skillId===item.skillId));
     return {
@@ -94,7 +96,7 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
       <Container>
         {this.state.isRedirect && <Redirect to={"/curriculum"}/> }
         <Row className="p-4 m-4 border border-secondary">
-          <Col>
+          <Col >
             <h2>Create Curriculum Form</h2>
             <Form>
               <FormGroup>
