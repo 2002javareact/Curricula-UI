@@ -6,6 +6,7 @@ import { Button, Card, Row, Container, Col, ButtonGroup } from "reactstrap";
 import { Curriculum } from "../../../models/Curriculum";
 import { Skill } from "../../../models/Skill";
 import { Category } from "../../../models/Category";
+import { Redirect } from "react-router";
 
 interface IUpdateViewVisualizationProps {
     visualization: Visualization
@@ -18,12 +19,16 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
 
     constructor(props: any) {
         super(props)
-        this.state = { skills: [] }
+        this.state = { skills: [], updateVisualization: false }
     }
 
     componentDidMount() {
         if (this.props.visualization.visualizationId === 0) {
             this.props.getOneVisualizationActionMapper(+window.location.href.substring(window.location.href.lastIndexOf('/') + 1))
+        }else{
+            this.setState({
+                updateVisualization: true
+            })
         }
     }
 
@@ -96,8 +101,11 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
 
 
         return (
-
-
+            this.state.updateVisualization?
+            <>
+            </>
+            
+            :
             <>
                 <br /><br /><br /><br />
                 <h3>{this.props.visualization.visualizationName}</h3>
