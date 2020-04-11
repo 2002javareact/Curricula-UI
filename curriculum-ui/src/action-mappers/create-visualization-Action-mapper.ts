@@ -8,7 +8,7 @@ export const visualizationTypes = {
 }
 
 export const createVisualizationActionMapper = (n:string,c:Array<any>) => async (dispatch:Dispatch) => {
-  /*try{
+  try{
     let response = await curriculaCreatevisualization(n,c);
     dispatch({
       type:visualizationTypes.CREATE_VISULIZATION,
@@ -25,5 +25,5 @@ export const createVisualizationActionMapper = (n:string,c:Array<any>) => async 
   }
   catch(e){
  
-  }*/
+  }
 }

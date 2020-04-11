@@ -9,7 +9,6 @@ const mapStateToProps = (state:IState) => {
 }
 
 const mapDispatchToProps = {
-  //TODO viewskillactionmapper
   createVisualizationActionMapper
 }
 
