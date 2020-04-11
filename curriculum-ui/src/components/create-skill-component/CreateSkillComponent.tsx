@@ -3,6 +3,8 @@ import { Skill } from "../../models/Skill";
 import { Category } from "../../models/Category";
 import { Input, Container,UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, Button, Row, Card } from "reactstrap";
 import React, { SyntheticEvent } from "react";
+import { Redirect } from "react-router";
+
 
 
 
@@ -63,7 +65,8 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
             return (
                 <DropdownItem onClick= {this.updateCategory(category)}>{category.categoryName}</DropdownItem>
             )})
-        return(                
+        return( 
+            this.props.createdSkill.skillId === 0?               
             <>  
                 <br/><br/><br/>
                 <Container style={{width: "30rem"}}>                    
@@ -83,6 +86,8 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
                         </Form>                    
                  </Container>
             </>
+            :
+            <Redirect to = "/skills"/>
          
         )
     }

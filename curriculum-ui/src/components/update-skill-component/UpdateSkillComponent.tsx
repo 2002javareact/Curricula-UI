@@ -2,6 +2,7 @@ import { Category } from "../../models/Category";
 import { Skill } from "../../models/Skill";
 import React, { SyntheticEvent } from "react";
 import { Container, Form, FormGroup, Input, DropdownItem, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, Button, Row } from "reactstrap";
+import { Redirect } from "react-router";
 
 export interface IUpdateSkillProp{
     errorMessage:string
@@ -80,6 +81,7 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
         })
         
         return(
+            this.props.skillToUpdate.skillId === 0?
             <Container>
                 <br/><br/><br/>
             <Form onSubmit = {this.submit}>
@@ -108,6 +110,8 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
             </Row>
             </Form>
             </Container>
+            :
+            <Redirect to = "/skills"/>
         )
     }
 }
