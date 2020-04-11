@@ -6,7 +6,6 @@ import { Button, Card, Row, Container, Col, ButtonGroup, Form, FormGroup, Label,
 import { Curriculum } from "../../../models/Curriculum";
 import { Skill } from "../../../models/Skill";
 import { Category } from "../../../models/Category";
-import { Redirect } from "react-router";
 
 interface IUpdateViewVisualizationProps {
     visualization: Visualization
@@ -114,7 +113,7 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
         if (this.props.visualization.curriculum !== null) {
             this.props.visualization.curriculum.forEach((curriculum: Curriculum) => {
                 if (curriculum.skills !== null) {
-                    curriculum.skills.map((skill) => {
+                    curriculum.skills.forEach((skill) => {
                         if (!newSkills.some(item => item.skillId === skill.skillId)) {
                             newSkills.push(skill);
                         }
