@@ -49,11 +49,7 @@ componentDidMount(){
         
             <CardDeck elementsPerRow={4}>
             {visualizationDisplay}
-            {visualizationDisplay}
-            {visualizationDisplay}
-            {visualizationDisplay}
-            {visualizationDisplay}
-            {visualizationDisplay}
+           
 
 
             </CardDeck>

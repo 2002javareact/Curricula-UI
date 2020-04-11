@@ -46,6 +46,8 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
       this.props.getAllCategoriesActionMapper();
     }
   }
+
+  //TODO: Copy this and delete this comment 
   static getDerivedStateFromProps(props:any,state:ICreateCurriculumFormState){
     const notExistSkillList=props.skillsByCategoryId.filter((el:Skill)=>!state.existSkillList.some((item:Skill)=>el.skillId===item.skillId));
     return {
