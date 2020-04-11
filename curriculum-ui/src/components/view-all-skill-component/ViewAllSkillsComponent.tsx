@@ -52,7 +52,9 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
                     </Row>
                 </Container>
                 <CardDeck className = "skillLegend">
+                    <Row xs="6">
                     {legend}
+                    </Row>
                 </CardDeck>
             </>
 
