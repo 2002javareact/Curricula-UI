@@ -1,13 +1,16 @@
 import { combineReducers } from "redux";
 import { Curriculum } from "../models/Curriculum";
-import { curriculumReducer } from "./curriculum-reducer";
-import { allCurriculumReducer } from "./all-curriculum-reducer";
+import { curriculumReducer } from "./get-all-curriculums-reducers";
+import { updateReducer } from "./update-curriculum-reducer";
 import { Skill } from "../models/Skill";
 import { skillsReducer } from "./skills-reducers";
 import { categoriesReducer } from "./category-reducer";
+import { getCurriculumByIdReducer } from "./get-curriculum-by-id-reducer";
+
 import { Category } from "../models/Category";
 import { Visualization } from "../models/Visualization";
 import { visualizationReducer } from "./visualization-reducer";
+import { allCurriculumReducer } from "./all-curriculum-reducer";
 import { getSkillsByCategoryIdReducer } from "./get-skill-category-reducer";
 
 export interface IAllCurriculumState {
@@ -33,8 +36,27 @@ export interface ICurriculumState{
   errorMessage:string
 }
 
+export interface IViewCurriculumState{
+  updateCurriculum:Curriculum
+  errorMessage:string
+}
 export interface ICategoriesState{
-  allCategory:Category[]
+  allCategory:[]
+  errorMessage:string
+}
+export interface ICreateVIsualizationState{
+    createVIsualization:Skill
+    listCurriculum:Curriculum[]
+    errorMessage:string
+  }
+
+export interface IViewAllVisualizationsState{
+  // allVisualizations:Visualization[]
+  errorMessage: string
+}
+
+export interface IGetCurriculumByIdState{
+  getCurriculumById:Curriculum
   errorMessage:string
 }
 export interface ICreateVIsualizationState{
@@ -52,9 +74,11 @@ export interface IViewAllVisualizationsState{
 export interface IState {
   //getAllSkills:IGetAllSkillState
   skillsByCategoryId:IGetSkillsByCategoryIdState
-  skills:ISkillState
   createCurriculum:ICurriculumState
   allCategory:ICategoriesState
+  updateCurriculum:IViewCurriculumState
+  getCurriculumById:IGetCurriculumByIdState
+  skills:ISkillState
   curriculum:ICurriculumState,
   allCurriculum:IAllCurriculumState
   allVisualizations: IViewAllVisualizationsState
@@ -62,6 +86,8 @@ export interface IState {
 }
 
 export const state = combineReducers<IState>({
+  updateCurriculum:updateReducer,
+  getCurriculumById:getCurriculumByIdReducer,
   //getAllSkills:getAllSkillsReducer,
   skillsByCategoryId:getSkillsByCategoryIdReducer,
   skills:skillsReducer,
