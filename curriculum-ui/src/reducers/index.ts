@@ -27,6 +27,7 @@ export interface IGetSkillsByCategoryIdState{
 export interface ISkillState{
   createdSkill:Skill
   allSkills:Skill[]
+  updatedSkill:Skill
   errorMessage:string
 }
 
@@ -67,6 +68,7 @@ export interface ICreateVIsualizationState{
 export interface IViewAllVisualizationsState{
   allVisualizations:Visualization[]
   errorMessage: string
+  visualization:Visualization
 }
 
 export interface IState {

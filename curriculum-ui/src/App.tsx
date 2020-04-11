@@ -8,10 +8,13 @@ import CreateCurriculumFormComponent from './components/curriculum-components/cr
 import ViewAllCurriculumComponent from './components/view-all-curriculum-component/ViewAllCurriculumContainer';
 import  ViewAllSkillsComponent  from './components/view-all-skill-component/ViewAllSkillsComponent';
 import  CreateSkillComponent  from './components/create-skill-component/CreateSkillContainer';
+import UpdateSkillComponent from './components/update-skill-component/UpdateSkillContainer';
 import NavBarComponent from "./components/navbar-component/NavbarComponent";
 import { MultiRouteCategoryComponent } from "./components/multi-route-category-component/MultiRouteCategoryComponent";
-import  viewAllVisualizationComponent  from './components/visualization-components/view-all-visualization-component/ViewAllVisualizationContainer';
-import ViewAndUpdateCurriculumComponent from './components/curriculum-components/view-and-update-curriculum-component/ViewAndUpdateCurriculumContainer';
+import  ViewAllVisualizationComponent  from './components/visualization-components/view-all-visualization-component/ViewAllVisualizationContainer';
+import  ViewAndUpdateVisualizationComponent from './components/visualization-components/update-view-visualization-components/ViewAndUpdateVisualizationContainer';
+import ViewAndUpdateCurriculumComponent  from './components/curriculum-components/view-and-update-curriculum-component/ViewAndUpdateCurriculumContainer';
+
 function App() {
   return (
     <Provider store={store}>
@@ -22,11 +25,13 @@ function App() {
           <Switch> 
             <Route path="/curriculum/create" component={CreateCurriculumFormComponent}/>
             <Route path="/curriculum/view/:id" component={ViewAndUpdateCurriculumComponent}/>
+            <Route path="/skills/update" component={UpdateSkillComponent}/>
             <Route path="/curriculum" component={ViewAllCurriculumComponent} />
             <Route path="/skills/create" component={CreateSkillComponent}/>
             <Route path="/skills" component={ViewAllSkillsComponent}/>            
             <Route path="/category" component={MultiRouteCategoryComponent} />
-            <Route path="/" component={viewAllVisualizationComponent}/>
+            <Route path="/visualization/:id" component={ViewAndUpdateVisualizationComponent}/>
+            <Route path="/" component={ViewAllVisualizationComponent}/>
           </Switch>
         </Router>
       </div>
