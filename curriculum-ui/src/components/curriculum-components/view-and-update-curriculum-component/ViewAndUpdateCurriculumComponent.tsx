@@ -1,5 +1,5 @@
 import React , { SyntheticEvent }from 'react';
-import { Container, Button, Row, Col, Card, CardTitle, CardText, CardColumns, InputGroup, Input, InputGroupButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Label, UncontrolledDropdown } from 'reactstrap';
+import { Container, Button, Row, Col, Card, CardTitle, CardText, CardColumns, InputGroup, Input, InputGroupButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Label, UncontrolledDropdown, Form, FormGroup } from 'reactstrap';
 import { Curriculum } from '../../../models/Curriculum';
 import {  BrowserRouter as Router, Route, Link, useParams} from "react-router-dom";
 import { Skill } from '../../../models/Skill';
@@ -96,30 +96,33 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<IViewAndUp
                                 </Card>
                             </Col> */}
                             <Col lg={12}>
-                                <p>Currently in curriculum</p>
+                                <p className="curriculum-view-update-left-text">Currently in curriculum:</p>
                             </Col>
-                            {this.props.getCurriculumById.skills.map(skills => <Card><CardTitle>{skills.skillName}</CardTitle><button color="danger">Remove</button></Card>)}
+                            {this.props.getCurriculumById.skills.map(skills => <Card className="curriculum-view-update-card-skills"><CardTitle>{skills.skillName}</CardTitle><Button color="danger">Remove</Button></Card>)}
                             <Col lg={12}>
-                                <p>Not in curriculum</p>
+                                <br/>
+                                <p className="curriculum-view-update-left-text">Not in curriculum:</p>
                             </Col>
                             <Col lg={12}>
-                                <Label>Category</Label>
-                                <Input/>
-                                <UncontrolledDropdown>
-                                    <DropdownToggle caret>
-                                        Dropdown
-                                    </DropdownToggle>
-                                    <DropdownMenu>
-                                        <DropdownItem header>Header</DropdownItem>
-                                        <DropdownItem disabled>Action</DropdownItem>
-                                        <DropdownItem>Another Action</DropdownItem>
-                                        <DropdownItem divider />
-                                        <DropdownItem>Another Action</DropdownItem>
-                                    </DropdownMenu>
-                                </UncontrolledDropdown>
+                                <Form>
+                                    <FormGroup>
+                                        <Label className="curriculum-view-update-left-text">Category</Label>
+                                        <Input type="text" className="col-sm-6"/>
+                                        <UncontrolledDropdown>
+                                            <DropdownToggle caret>
+                                                Dropdown
+                                            </DropdownToggle>
+                                            <DropdownMenu>
+                                                <DropdownItem>Header</DropdownItem>
+                                                <DropdownItem>Action</DropdownItem>
+                                                <DropdownItem></DropdownItem>
+                                            </DropdownMenu>
+                                        </UncontrolledDropdown>
+                                    </FormGroup>
+                                </Form>
                             </Col>
                             <Col>
-                            {this.props.allSkills.map(skills => <Card><CardTitle>{skills.skillName}</CardTitle><button color="danger">Add</button></Card>)}
+                            {this.props.allSkills.map(skills => <Card className="curriculum-view-update-card-skills"><CardTitle>{skills.skillName}</CardTitle><Button color="success">Add</Button></Card>)}
                             </Col>
 
 
@@ -169,10 +172,6 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<IViewAndUp
             </Container>
             }
             </React.Fragment>
-
-
-            
-          
         )
     }
 

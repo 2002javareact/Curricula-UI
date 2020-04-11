@@ -72,6 +72,7 @@ a{
 .curriculum-view-update-left-text{
   text-align: left;
   margin-left: 17px;
+  font-weight: bold;
 }
 
 .curriculum-view-update-buttons{
@@ -88,6 +89,17 @@ a{
   float: left;
   box-shadow: 8px 8px 15px black;
 }
+
+.curriculum-view-update-card-skills{
+  width: 20%;
+  margin-top: 1em;
+  margin-left: 15px;
+  margin-right: 15px;
+ 
+  float: left;
+  box-shadow: 8px 8px 15px black;
+}
+
 .allSkillsTitle{
   margin-top:1em;
   margin-left:40%;
