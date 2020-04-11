@@ -33,7 +33,6 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
             updateVisualization: false,
             visualizationName: "",
             updateCurriculumList: []
-
         }
     }
 
@@ -42,16 +41,6 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
             await this.props.getOneVisualizationActionMapper(+window.location.href.substring(window.location.href.lastIndexOf('/') + 1))
         } else {
             await this.props.viewCurriculumListActionMapper()
-            /*
-                1) each curriculum in update list has 2 states:
-                  unchecked and checked or not in vis' curricuums and in vis curriculums
-                2) we need an object that has the curriculum and has that status
-                  list of objects for each{
-                      status,
-                      curriculum
-                        -id,name-status
-                  }
-            */
             const checkedCurriculumList = this.props.allCurriculumList.map((c: Curriculum) => {
                 if (this.props.visualization.curriculum.some((c2: Curriculum) => c.curriculumId === c2.curriculumId)) {
                     return this.convertCurriculumToCheckedObject(c, true);
@@ -66,6 +55,7 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
             })
         }
     }
+
     convertCurriculumToCheckedObject(curriculum: Curriculum, isExist: boolean) {
         return ({
             curriculumId: curriculum.curriculumId,
@@ -101,26 +91,6 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
             }
         })
         this.setState({ updateCurriculumList: newCurriculumList })
-        // const options: number[] = []
-        // let index
-
-        // if (e.target.checked) {
-        //     options.push(+e.target.value)
-        // } else {
-        //     index = options.indexOf(+e.target.value)
-        //     if (index) {
-        //         options.splice(index, 1)
-        //     }
-        // }
-
-
-
-        // });
-        // if (array !== null) {
-        //     this.setState({
-        //         updateCurriculumList: array
-        //     })
-        // }
     }
 
     updateVisualization = async (e: SyntheticEvent) => {
@@ -136,11 +106,6 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
         await this.props.updateVisualizationActionMapper(new Visualization(this.props.visualization.visualizationId, this.state.visualizationName, array))
         this.props.getOneVisualizationActionMapper(this.props.visualization.visualizationId)
     }
-
-
-
-
-
 
     render() {
 
