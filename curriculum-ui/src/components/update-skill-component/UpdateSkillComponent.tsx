@@ -50,7 +50,7 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
         console.log("here");
           
         this.props.updateSkillActionMapper(this.state.skill.skillId,this.state.name, this.state.category)
-        this.forceUpdate
+        this.forceUpdate()
     }
     updateSkill = (skill:Skill) => (e:any) =>{
         this.setState({

@@ -65,32 +65,3 @@ a{
   text-decoration: none;
 }
 
-.skillsTitle{
-  margin-top:1em;
-}
-
-.skillNameInput{
-  width: 10em;
-  margin-left:2em;
-}
-
-.skill{
-  margin: 5px;
-}
-
-.listOfSkills{
-  margin-left: 15em;
-}
-
-.skillLegend{
-  margin-top:2em;
-  margin-left:10em;
-}
-
-.legendCard{
-  margin-top:2.25em;
-  height:5px;
-}
-.legendText{
-  margin: 2em;
-}

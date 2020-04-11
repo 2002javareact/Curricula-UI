@@ -26,18 +26,19 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
 
     render(){
         this.props.allSkills.sort((a,b) =>{
-            return a.category.categoryId - b.category.categoryId})
+            return a.category.categoryColor.localeCompare(b.category.categoryColor)})
 
             let view = this.props.allSkills.map((skill) => { 
             return (
-           <Button className = "skill" style={{backgroundColor: skill.category.categoryColor}}>{skill.skillName}</Button>
+           <Button className="rounded-pill text-light m-auto font-weight-bold"
+           style={{backgroundColor: skill.category.categoryColor}}>{skill.skillName}</Button>
         )})
-
+                
         let legend = this.props.allCategory.map((category) => {
             return(
                 <>
-                <h6 className = "legendText">{category.categoryName}</h6>
-                <Button className = "legendCard" style={{backgroundColor: category.categoryColor}}/>
+                <Button className="rounded-pill text-light m-auto font-weight-bold p-10"
+                                style={{backgroundColor: category.categoryColor}}>{category.categoryName}</Button>
                 </>
             )
         })
@@ -51,11 +52,12 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
                         {view}
                     </Row>
                 </Container>
-                <CardDeck className = "skillLegend">
+                <br/><br/>
+                <Container>
                     <Row xs="6">
                     {legend}
                     </Row>
-                </CardDeck>
+                </Container>
             </>
 
         )
