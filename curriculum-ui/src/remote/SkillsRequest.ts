@@ -39,6 +39,7 @@ export const createSkill = async (skillName:string,category:Category)=> {
 }
 
 export const updateSkill = async (id:number, name:string, category:Category)=>{
+    
     try{
     let req = {
         id,

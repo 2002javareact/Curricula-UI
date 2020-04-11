@@ -38,6 +38,7 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
     this.updateCategory=this.updateCategory.bind(this);
     this.updateSkillName=this.updateSkillName.bind(this);
     this.submit=this.submit.bind(this);
+
     }
 
     componentDidMount() {
@@ -45,9 +46,11 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
      
     }
     submit =  async (e: SyntheticEvent) =>{
-        e.preventDefault()       
+        e.preventDefault()     
+        console.log("here");
+          
         this.props.updateSkillActionMapper(this.state.skill.skillId,this.state.name, this.state.category)
-
+        this.forceUpdate
     }
     updateSkill = (skill:Skill) => (e:any) =>{
         this.setState({
