@@ -17,24 +17,62 @@ interface IUpdateViewVisualizationProps {
     viewCurriculumListActionMapper: () => void
 }
 
-export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdateViewVisualizationProps, any>{
+interface IUpdateViewVisualizationState {
+    visualizationName: string
+    updateCurriculumList: any[]
+    skills: Skill[]
+    updateVisualization: boolean
+}
+
+export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdateViewVisualizationProps, IUpdateViewVisualizationState>{
 
     constructor(props: any) {
         super(props)
-        this.state = { skills: [], updateVisualization: false }
-    }
+        this.state = {
+            skills: [],
+            updateVisualization: false,
+            visualizationName: "",
+            updateCurriculumList: []
 
-    componentDidMount() {
-        if (this.props.visualization.visualizationId === 0) {
-            this.props.getOneVisualizationActionMapper(+window.location.href.substring(window.location.href.lastIndexOf('/') + 1))
-        } else {
-            this.props.viewCurriculumListActionMapper()
-            this.setState({
-                updateVisualization: true
-            })
         }
     }
 
+    async componentDidMount() {
+        if (this.props.visualization.visualizationId === 0) {
+            await this.props.getOneVisualizationActionMapper(+window.location.href.substring(window.location.href.lastIndexOf('/') + 1))
+        } else {
+            await this.props.viewCurriculumListActionMapper()
+            /*
+                1) each curriculum in update list has 2 states:
+                  unchecked and checked or not in vis' curricuums and in vis curriculums
+                2) we need an object that has the curriculum and has that status
+                  list of objects for each{
+                      status,
+                      curriculum
+                        -id,name-status
+                  }
+            */
+            const checkedCurriculumList = this.props.allCurriculumList.map((c: Curriculum) => {
+                if (this.props.visualization.curriculum.some((c2: Curriculum) => c.curriculumId === c2.curriculumId)) {
+                    return this.convertCurriculumToCheckedObject(c, true);
+                }
+                else {
+                    return this.convertCurriculumToCheckedObject(c, false);
+                }
+            })
+            this.setState({
+                updateVisualization: true,
+                updateCurriculumList: checkedCurriculumList
+            })
+        }
+    }
+    convertCurriculumToCheckedObject(curriculum: Curriculum, isExist: boolean) {
+        return ({
+            curriculumId: curriculum.curriculumId,
+            curriculumName: curriculum.curriculumName,
+            isExist: isExist
+        })
+    }
     handlerSkillInCurriculum(e: SyntheticEvent, curriculum: Curriculum) {
         e.preventDefault()
         this.setState({
@@ -42,19 +80,87 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
         })
     }
 
+    updateVisualizationName = (e: any) => {
+        this.setState({
+            visualizationName: e.currentTarget.value
+        })
+    }
+
+    updateVisualizationCurriculum = (id: number) => {
+        console.log("iscalling " + id)
+        const newCurriculumList = this.state.updateCurriculumList.map((c: any) => {
+            if (c.curriculumId === id) {
+                return {
+                    curriculumId: c.curriculumId,
+                    curriculumName: c.curriculumName,
+                    isExist: !c.isExist
+                }
+            }
+            else {
+                return c;
+            }
+        })
+        this.setState({ updateCurriculumList: newCurriculumList })
+        // const options: number[] = []
+        // let index
+
+        // if (e.target.checked) {
+        //     options.push(+e.target.value)
+        // } else {
+        //     index = options.indexOf(+e.target.value)
+        //     if (index) {
+        //         options.splice(index, 1)
+        //     }
+        // }
+
+
+
+        // });
+        // if (array !== null) {
+        //     this.setState({
+        //         updateCurriculumList: array
+        //     })
+        // }
+    }
+
+    updateVisualization = async (e: SyntheticEvent) => {
+        e.preventDefault()
+
+        let array: any[] = []
+
+        this.state.updateCurriculumList.forEach((element: any) => {
+            if (element.isExist) {
+                array.push({ curriculumId: element.curriculumId })
+            }
+        })
+        await this.props.updateVisualizationActionMapper(new Visualization(this.props.visualization.visualizationId, this.state.visualizationName, array))
+        this.props.getOneVisualizationActionMapper(this.props.visualization.visualizationId)
+    }
+
+
+
+
+
+
     render() {
 
         const newSkills: Skill[] = [];
 
-        this.props.visualization.curriculum.forEach(curriculum => curriculum.skills.map((skill) => {
-            if (!newSkills.some(item => item.skillId === skill.skillId)) {
-                newSkills.push(skill);
-            }
-        }))
-        newSkills.sort((a, b) => {
-            return a.category.categoryColor.localeCompare(b.category.categoryColor)
-        })
-
+        if (this.props.visualization.curriculum !== null) {
+            this.props.visualization.curriculum.forEach((curriculum: Curriculum) => {
+                if (curriculum.skills !== null) {
+                    curriculum.skills.map((skill) => {
+                        if (!newSkills.some(item => item.skillId === skill.skillId)) {
+                            newSkills.push(skill);
+                        }
+                    }
+                    )
+                }
+            })
+            newSkills.sort((a, b) => {
+                return a.category.categoryColor.localeCompare(b.category.categoryColor)
+            })
+        }
         const categoryList: Category[] = []
 
         newSkills.forEach((skill) => {
@@ -69,12 +175,14 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
             )
         })
 
-        let displayCurriculum = this.props.visualization.curriculum.map((curriculum) => {
-            return (
-                <Button onMouseOver={(e: SyntheticEvent) => this.handlerSkillInCurriculum(e, curriculum)} className="bg-light m-1 border-bottom border-top-0 border-left-0 border-right-0 text-dark">{curriculum.curriculumName}</Button>
-            )
-        })
-
+        let displayCurriculum
+        if (this.props.visualization.curriculum !== null) {
+            displayCurriculum = this.props.visualization.curriculum.map((curriculum) => {
+                return (
+                    <Button onMouseOver={(e: SyntheticEvent) => this.handlerSkillInCurriculum(e, curriculum)} className="bg-light m-1 border-bottom border-top-0 border-left-0 border-right-0 text-dark">{curriculum.curriculumName}</Button>
+                )
+            })
+        }
         let skillDisplay = newSkills.map((skill) => {
             return (
                 this.state.skills.some((item: Skill) => item.skillId === skill.skillId) ?
@@ -84,15 +192,11 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
             )
         })
 
-        let curriculumCheckBoxes = this.props.allCurriculumList.map((curriculum) => {
-            
-            return( 
-            this.props.visualization.curriculum.some((item:Curriculum)=> item.curriculumId === curriculum.curriculumId)?
-            <CustomInput className="p-3" type="checkbox" id={`${curriculum.curriculumId}`} label={curriculum.curriculumName} value={curriculum.curriculumId} checked />
-            :
-            <CustomInput className="p-3" type="checkbox" id={`${curriculum.curriculumId}`} label={curriculum.curriculumName} value={curriculum.curriculumId} />
-            )
-        })
+
+        const curriculumCheckBoxes =
+            this.state.updateCurriculumList.map((el) => (
+                <CustomInput onChange={this.updateVisualizationCurriculum.bind(this, el.curriculumId)} className="p-3" type="checkbox" id={`${el.curriculumId}`} label={el.curriculumName} value={el.curriculumId} checked={el.isExist} />
+            ))
 
         return (
 
@@ -120,18 +224,16 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
                         <br /><br /><br /><br />
 
                         <Label>Warning Refresh will remove update and progress will be lost</Label>
-                        <Form className="w-50 p-3 m-auto">
-                        <Label for="exampleCheckbox">Check Curriculum to add or remove from current Visualization</Label>
+                        <Form onSubmit={this.updateVisualization} className="w-50 p-3 m-auto">
+                            <Label for="exampleCheckbox">Check Curriculum to add or remove from current Visualization</Label>
                             <FormGroup check inline>
-                                
-                                
-                                    {curriculumCheckBoxes}
-                                
+                                {curriculumCheckBoxes}
                             </FormGroup>
                             <FormGroup>
                                 <Label>Visualization Name</Label>
-                                <Input type="text" placeholder={`${this.props.visualization.visualizationName}`} />
+                                <Input type="text" onChange={this.updateVisualizationName.bind(this)} placeholder={`${this.props.visualization.visualizationName}`} />
                             </FormGroup>
+                            <Button>Submit</Button>
                         </Form>
                     </>
                     : <></>}

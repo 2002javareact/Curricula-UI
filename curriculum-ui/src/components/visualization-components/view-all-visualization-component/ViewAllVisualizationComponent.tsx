@@ -29,6 +29,7 @@ updateView(e: SyntheticEvent,id:number){
 
         // This maps the returned list of all visualizations to these card elements 
         let visualizationDisplay = this.props.allVisualizations.map((visualization) => {
+            if(visualization.curriculum){
             return(
                 <Card className="visualizationCard"> 
                     <CardTitle>{visualization.visualizationName}</CardTitle>
@@ -43,7 +44,7 @@ updateView(e: SyntheticEvent,id:number){
                     </ButtonGroup>
                 </Card>
             )
-    
+                }
 
         })
         
@@ -57,7 +58,6 @@ updateView(e: SyntheticEvent,id:number){
         <br/> <br/> <br/> <br/>
         <h3>All Visualizations</h3>
         <br/>
-        
             <CardDeck elementsPerRow={4}>
             {visualizationDisplay}
             </CardDeck>

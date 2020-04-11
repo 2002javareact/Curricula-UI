@@ -31,7 +31,7 @@ if(response.status === 200){
 
 export const updateVisualization = async (visualizationToUpdate:Visualization) => {
     try {
-        let response = await curriculaClient.patch(`/visualization/${visualizationToUpdate.visualizationId}`, visualizationToUpdate)
+        let response = await curriculaClient.patch(`/visualization/`, visualizationToUpdate)
 if(response.status === 200){
     return response.data
 }else{
