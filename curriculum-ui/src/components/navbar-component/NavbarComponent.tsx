@@ -72,7 +72,7 @@ const NavBarComponent = (props: any) => {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/curriculum/view/:id">
+                  <Link className="dropdown-link" to="/curriculum/view/1">
                     View/Edit A Curriculum
                   </Link>
                 </DropdownItem>
