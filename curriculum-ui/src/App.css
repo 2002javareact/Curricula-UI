@@ -65,3 +65,24 @@ a{
   text-decoration: none;
 }
 
+.skillNameInputCreate{
+  width:auto;
+  margin-left:40%; 
+  margin-right: 1em; 
+}
+
+.skillNameInput{
+  width:auto;
+  margin-right:1%;
+}
+.createButton, .updateButton{
+  margin-top: 2em;
+}
+
+.skillDropDown{
+  margin-left: 40%;
+  margin-right:1%;
+}
+.categoryDropDown{
+  margin-right:5%;
+}

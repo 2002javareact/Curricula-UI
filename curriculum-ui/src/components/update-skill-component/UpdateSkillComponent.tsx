@@ -85,11 +85,11 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
         
         return(
             this.props.skillToUpdate.skillId === 0?
-            <Container>
+            <>
                 <br/><br/><br/>
             <Form onSubmit = {this.submit}>
-            <Row>
-                <UncontrolledButtonDropdown>
+                <Row>
+                <UncontrolledButtonDropdown className = "skillDropDown">
                     <DropdownToggle caret>
                        {this.state.skillLabel}
                     </DropdownToggle>
@@ -101,18 +101,17 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
                     <DropdownToggle caret>
                         {this.state.categoryLabel}
                     </DropdownToggle>
-                    <DropdownMenu>
+                    <DropdownMenu className = "categoryDropDown"> 
                         {dropCategories}
                     </DropdownMenu>
                 </UncontrolledButtonDropdown>
                 <FormGroup>
-                <Input onChange={this.updateSkillName} className = "skillNameInput" value={this.state.name} type="text" placeholder="skill name" />
-                {/** style this add class name*/}
+                <Input onChange={this.updateSkillName} className = "skillNameInput" value={this.state.name} type="text" placeholder="new name" />
                 </FormGroup>
-                <Button>Update</Button>
-            </Row>
+                </Row>
+                <Button className= "updateButton">Update</Button>
             </Form>
-            </Container>
+            </>
             :
             <Redirect to = "/skills"/>
         )
