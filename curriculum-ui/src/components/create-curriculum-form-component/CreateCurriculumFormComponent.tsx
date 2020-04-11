@@ -77,14 +77,14 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
       this.setState({alert:"Please include at least one skill"},()=>
         setTimeout(()=>this.setState({alert:""}),5000))
     }
-    if(!this.state.name){
+    else if(!this.state.name){
       this.setState({alert:"Name is required"},()=>
         setTimeout(()=>this.setState({alert:""}),5000))
     }
     else{
       this.setState({isLoading:true})
       const curriculum = new Curriculum(0,this.state.name,this.state.existSkillList);
-      const response = await this.props.createCurriculumActionMapper(curriculum).then((e:any)=>{
+      await this.props.createCurriculumActionMapper(curriculum).then((e:any)=>{
         this.setState({isLoading:false,isRedirect:true})
       })
     }
