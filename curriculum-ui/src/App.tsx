@@ -13,6 +13,7 @@ import NavBarComponent from "./components/navbar-component/NavbarComponent";
 import { MultiRouteCategoryComponent } from "./components/multi-route-category-component/MultiRouteCategoryComponent";
 import  ViewAllVisualizationComponent  from './components/visualization-components/view-all-visualization-component/ViewAllVisualizationContainer';
 import  ViewAndUpdateVisualizationComponent from './components/visualization-components/update-view-visualization-components/ViewAndUpdateVisualizationContainer';
+import  CreateVisualizationComponent  from './components/visualization-components/create-visualization-component/CreateVisualizationContainer';
 
 function App() {
   return (
@@ -23,11 +24,12 @@ function App() {
           <NavBarComponent/>
           <Switch> 
             <Route path="/curriculum/create" component={CreateCurriculumFormComponent}/>
-            <Route path="/skills/update" component={UpdateSkillComponent}/>
+            
             <Route path="/curriculum" component={ViewAllCurriculumComponent} />
             <Route path="/skills/create" component={CreateSkillComponent}/>
             <Route path="/skills" component={ViewAllSkillsComponent}/>            
             <Route path="/category" component={MultiRouteCategoryComponent} />
+            <Route path="/visualization/create" component={CreateVisualizationComponent}/>
             <Route path="/visualization/:id" component={ViewAndUpdateVisualizationComponent}/>
             <Route path="/" component={ViewAllVisualizationComponent}/>
           </Switch>

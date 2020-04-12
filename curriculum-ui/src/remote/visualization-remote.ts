@@ -41,3 +41,27 @@ if(response.status === 200){
         throw new InternalServiceError()
     }
 }
+
+export async function createVisualization(visualizationName: string, curriculum: Array<any>): Promise<Visualization> {
+    let visualizationData = {
+       
+        curriculum: [
+            {
+               curriculum
+              
+            }
+          ],
+          visualizationName
+    }
+
+    try {
+        let response = await curriculaClient.post('/visualization',visualizationData)
+if(response.status === 200){
+    return response.data
+}else{
+    throw new InternalServiceError()
+}
+    } catch (e) {
+        throw new InternalServiceError()
+    }
+}

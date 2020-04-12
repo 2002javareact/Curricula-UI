@@ -1,18 +1,21 @@
 import { Container, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, Button, Alert} from 'reactstrap';
 import React, { SyntheticEvent } from "react";
 import { Visualization } from "../../../models/Visualization";
+import { Curriculum } from '../../../models/Curriculum';
 
-
-export interface ICreateVisualizationProps{
+ interface ICreateVisualizationProps{
     createVisualization: Visualization
      errorMessage: string
-    createVisualizationActionMapper:(n:string,c:Array<any>)=>any
+    createVisualizationActionMapper:(n:string,c:Array<any>)=>void
+    viewCurriculumListActionMapper:()=>{}
+    curriculumList:Array<Curriculum>
 }
 
-export interface ICreateVisualizationState{
+ interface ICreateVisualizationState{
     visualizationName:string,
     Curriculum:Array<any>,
-    isLoading:boolean
+    isLoading:boolean,
+    
 }
 
 export class CreateVisualizationComponent extends React.Component<ICreateVisualizationProps,ICreateVisualizationState>{
@@ -29,10 +32,22 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
     this.handlerName=this.handlerName.bind(this);
     this.handlerCurriculum=this.handlerCurriculum.bind(this);
     this.submitVisualization=this.submitVisualization.bind(this);
+    this.submitCurriculum=this.submitCurriculum.bind(this);
+  }
+  componentDidMount(){
+    
+    //this.props.viewCurriculumListActionMapper();
+      console.log('we are in mount  '+this.props.viewCurriculumListActionMapper);
+      
+    
   }
   handlerName(e:any){this.setState({visualizationName:e.target.value})}
   handlerCurriculum(e:any){this.setState({Curriculum:e.target.value})}
-  
+  submitCurriculum(e:SyntheticEvent){
+    e.preventDefault();
+    this.props.viewCurriculumListActionMapper();
+    
+  }
   
    submitVisualization = async (e: SyntheticEvent) => 
   {
@@ -44,7 +59,7 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
     Curriculum:[], 
     isLoading:false
 })
-   // console.log(this.props.createVisualizationActionMapper);
+    console.log(this.props.createVisualizationActionMapper);
   }
   render(){
     return(
@@ -58,14 +73,14 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
                 <Input type="text" onChange={this.handlerName} placeholder="Enter the Visualization Name" defaultValue={this.state.visualizationName}/>
               </FormGroup>
             </Form>
-            <Form inline onSubmit={()=>{}}>
-              <FormGroup className="col-sm-10">
-                <Label className="p-0 col-sm-2">Curriculum</Label>     
+            <Form inline onSubmit={this.submitCurriculum}>
+              <FormGroup className="col-sm-10 pl-0">
+                <Label className="text-align-left col-sm-2">Curriculum</Label>     
                 <Input type="select" name="Curriculum" className="col-sm-10" onChange={this.handlerCurriculum}>
-                  <option>1</option>
-                  {this.state.Curriculum.map(el=><option>{el.name}</option>)}
+                  {this.props.curriculumList.map((el:Curriculum)=>(<option value={el.curriculumId}>{el.curriculumName}</option>))}
                 </Input>
               </FormGroup>
+
               <Button  className="col-sm-2">Search</Button>
             </Form>
             <Form onSubmit={this.submitVisualization}>
