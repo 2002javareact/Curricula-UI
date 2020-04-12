@@ -2,6 +2,7 @@ import { Category } from "../../models/Category";
 import { Skill } from "../../models/Skill";
 import React, { SyntheticEvent } from "react";
 import { Container, Form, FormGroup, Input, DropdownItem, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, Button, Row } from "reactstrap";
+import { Redirect } from "react-router";
 
 export interface IUpdateSkillProp{
     errorMessage:string
@@ -49,7 +50,7 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
         console.log("here");
           
         this.props.updateSkillActionMapper(this.state.skill.skillId,this.state.name, this.state.category)
-        this.forceUpdate
+        this.forceUpdate()
     }
     updateSkill = (skill:Skill) => (e:any) =>{
         this.setState({
@@ -83,11 +84,12 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
         })
         
         return(
-            <Container>
+            this.props.skillToUpdate.skillId === 0?
+            <>
                 <br/><br/><br/>
             <Form onSubmit = {this.submit}>
-            <Row>
-                <UncontrolledButtonDropdown>
+                <Row>
+                <UncontrolledButtonDropdown className = "skillDropDown">
                     <DropdownToggle caret>
                        {this.state.skillLabel}
                     </DropdownToggle>
@@ -99,18 +101,19 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
                     <DropdownToggle caret>
                         {this.state.categoryLabel}
                     </DropdownToggle>
-                    <DropdownMenu>
+                    <DropdownMenu className = "categoryDropDown"> 
                         {dropCategories}
                     </DropdownMenu>
                 </UncontrolledButtonDropdown>
                 <FormGroup>
-                <Input onChange={this.updateSkillName} className = "skillNameInput" value={this.state.name} type="text" placeholder="skill name" />
-                {/** style this add class name*/}
+                <Input onChange={this.updateSkillName} className = "skillNameInput" value={this.state.name} type="text" placeholder="new name" />
                 </FormGroup>
-                <Button>Update</Button>
-            </Row>
+                </Row>
+                <Button className= "updateButton">Update</Button>
             </Form>
-            </Container>
+            </>
+            :
+            <Redirect to = "/skills"/>
         )
     }
 }
