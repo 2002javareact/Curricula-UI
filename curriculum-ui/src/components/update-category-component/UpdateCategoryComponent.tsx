@@ -1,9 +1,21 @@
 import React, { SyntheticEvent } from "react";
-import { Form, FormGroup, Label, Col, Input, Button } from "reactstrap";
+import {
+  Form,
+  FormGroup,
+  Label,
+  Col,
+  Input,
+  Button,
+  Toast,
+  ToastHeader,
+  ToastBody
+} from "reactstrap";
 import { Category } from "../../models/Category";
+import { CategoryInfoComponent } from "../category-info-component/CategoryInfoComponent";
+import { RouteComponentProps } from "react-router";
 
 //prop interface
-interface IUpdateCategoryProps {
+interface IUpdateCategoryProps extends RouteComponentProps {
   updatedCategory: Category;
   errorMessage: string;
   updateCategoryActionMapper: (
@@ -11,6 +23,9 @@ interface IUpdateCategoryProps {
     categoryColor: string,
     categoryName: string
   ) => void;
+  //not sure; would pass in id from card
+  //currentCategory: Category;
+  location: any;
 }
 
 //state interface?
@@ -29,42 +44,44 @@ export class UpdateCategoryComponent extends React.Component<
     super(props);
     this.state = {
       //category id should be whatever is passed in from that card (button)
-      categoryId: 0,
-      categoryColor: "",
-      categoryName: "",
+      categoryId: this.props.location.state.category.categoryId,
+      categoryColor: this.props.location.state.category.categoryColor,
+      categoryName: this.props.location.state.category.categoryName,
       didSubmit: false
     };
   }
 
   //dynamically update field functions
-  updateColor(c: any) {
+  updateColor = (c: any) => {
     this.setState({
       categoryColor: c.currentTarget.value
     });
-  }
+  };
 
-  updateName(n: any) {
+  updateName = (n: any) => {
     this.setState({
       categoryName: n.currentTarget.value
     });
-  }
+  };
 
   submitUpdate = async (e: SyntheticEvent) => {
-    e.preventDefault;
+    e.preventDefault();
     //call action mapper
-    this.props.updateCategoryActionMapper(
+    await this.props.updateCategoryActionMapper(
       this.state.categoryId,
       this.state.categoryColor,
       this.state.categoryName
     );
+    this.setState({ didSubmit: true });
   };
 
   render() {
+    const oldCategory = this.props.location.state.category;
+
     return (
       <>
         <h3>Update Category</h3>
         <Form onSubmit={this.submitUpdate}>
-          {/* only thing required should be the user id */}
           <FormGroup row>
             <Label for="categoryId" sm={2}>
               CategoryId:
@@ -72,12 +89,13 @@ export class UpdateCategoryComponent extends React.Component<
             <Col sm={6}>
               <Input
                 //onChange={this.updateUserId}
-                value={this.state.categoryId}
+                value={oldCategory.categoryId}
                 type="number"
                 name="categoryId"
                 id="categoryId"
                 placeholder="CategoryId"
                 required
+                disabled
               />
             </Col>
           </FormGroup>
@@ -92,7 +110,7 @@ export class UpdateCategoryComponent extends React.Component<
                 type="text"
                 name="color"
                 id="color"
-                placeholder="color"
+                placeholder="Category Color"
               />
             </Col>
           </FormGroup>
@@ -113,7 +131,24 @@ export class UpdateCategoryComponent extends React.Component<
           </FormGroup>
           <Button color="success">Update Category</Button>
         </Form>
-        {/* have some sort of ternary to display card if submitted. if not, empty paragraph */}
+        {/* If no error message, display the blank error message. Else, display a toast with the error message */}
+        {this.props.errorMessage === "" ? (
+          <></>
+        ) : (
+          <Toast>
+            <ToastHeader icon="danger">Error!</ToastHeader>
+            <ToastBody>{this.props.errorMessage}</ToastBody>
+          </Toast>
+        )}
+        {/* If the form was submitted, display a card with the updated category */}
+        {this.state.didSubmit === true ? (
+          <CategoryInfoComponent
+            currentCategory={this.props.updatedCategory}
+            key={this.props.updatedCategory.categoryId}
+          />
+        ) : (
+          <></>
+        )}
       </>
     );
   }
