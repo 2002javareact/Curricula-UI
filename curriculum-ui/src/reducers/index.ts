@@ -11,7 +11,7 @@ import { Visualization } from "../models/Visualization";
 import { visualizationReducer } from "./visualization-reducer";
 import { allCurriculumReducer } from "./all-curriculum-reducer";
 import { getSkillsByCategoryIdReducer } from "./get-skill-category-reducer";
-
+import { deleteCategoryByIdReducer } from "./delete-category-by-id-reducer";
 export interface IGetAllSkillState {
   allSkills: [];
   errorMessage: string;
@@ -64,6 +64,11 @@ export interface ICategoriesState {
   errorMessage: string;
 }
 
+export interface IDeleteCategoryByIdState {
+  deleteCategoryById: any;
+  errorMessage: string;
+}
+
 export interface IGetCurriculumByIdState {
   getCurriculumById: Curriculum;
   errorMessage: string;
@@ -91,6 +96,7 @@ export interface IState {
   curriculum: ICurriculumState;
   allCurriculum: IAllCurriculumState;
   allVisualizations: IViewAllVisualizationsState;
+  deleteCategoryById: IDeleteCategoryByIdState;
 }
 
 export const state = combineReducers<IState>({
@@ -103,5 +109,6 @@ export const state = combineReducers<IState>({
   allCurriculum: allCurriculumReducer,
   createCurriculum: curriculumReducer,
   allCategory: categoriesReducer,
-  allVisualizations: visualizationReducer
+  allVisualizations: visualizationReducer,
+  deleteCategoryById: deleteCategoryByIdReducer
 });

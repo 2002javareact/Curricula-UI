@@ -75,3 +75,28 @@ export async function updateCategory(
     }
   }
 } //end of class
+
+
+
+export async function deleteCategoryById(categoryId:number|undefined):Promise<void>{    
+  try{
+      let res = await curriculaClient.delete(`/category/${categoryId}`)
+
+         return res.data
+  } catch (e)
+  {
+      if(e.status === 400){
+          throw e
+      } else if(e.status === 404){
+          throw new  CategoryNotFoundError()
+      }
+      else{
+          throw new InternalServiceError()
+      }
+  }
+}//end of class
+
+
+
+
+
