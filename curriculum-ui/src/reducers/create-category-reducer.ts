@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { ICreateCategoryState } from ".";
-import { CreateCatTypes } from "../action-mappers/categories-create-action-mappers";
+import { CreateCatTypes } from "../action-mappers/create-categories-action-mappers";
 import { Category } from "../models/Category";
 
 

@@ -1,6 +1,6 @@
 import { IState } from "../../reducers/index"
 import { connect } from "react-redux";
-import {createCatActionMapper} from "../../action-mappers/categories-create-action-mappers"
+import {createCatActionMapper} from "../../action-mappers/create-categories-action-mappers"
 import { CreateCategoryComponent } from "./CreateCategoryComponent";
 
 

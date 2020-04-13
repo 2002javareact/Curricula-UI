@@ -24,6 +24,7 @@ const NavBarComponent = (props: any) => {
 
   return (
     <>
+    <div></div>
       <Navbar className="navbar" expand="md">
         {/* PUT TITLE HERE */}
         <NavbarBrand href="/">Visualization API</NavbarBrand>
@@ -72,7 +73,7 @@ const NavBarComponent = (props: any) => {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/">
+                  <Link className="dropdown-link" to="/curriculum/view/1">
                     View/Edit A Curriculum
                   </Link>
                 </DropdownItem>
@@ -84,19 +85,19 @@ const NavBarComponent = (props: any) => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/viewAllSkills">
+                  <Link className="dropdown-link" to="/skills">
                     View All Skills
                   </Link>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/createSkills">
+                  <Link className="dropdown-link" to="/skills/create">
                     Create A Skill
                   </Link>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/">
+                  <Link className="dropdown-link" to="/skills/update">
                     Edit A Skill
                   </Link>
                 </DropdownItem>
@@ -108,7 +109,7 @@ const NavBarComponent = (props: any) => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/">
+                  <Link className="dropdown-link" to="/category">
                     View All Categories
                   </Link>
                 </DropdownItem>
@@ -116,12 +117,6 @@ const NavBarComponent = (props: any) => {
                 <DropdownItem>
                   <Link className="dropdown-link" to="/category/create">
                     Create A Category
-                  </Link>
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-                  <Link className="dropdown-link" to="/">
-                    Update A Category
                   </Link>
                 </DropdownItem>
               </DropdownMenu>

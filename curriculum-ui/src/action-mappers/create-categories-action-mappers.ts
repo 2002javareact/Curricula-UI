@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import {CreateCategory} from "../remote/Category";
+import { CreateCategory } from "../remote/category-remote";
 
 
 export const CreateCatTypes = {

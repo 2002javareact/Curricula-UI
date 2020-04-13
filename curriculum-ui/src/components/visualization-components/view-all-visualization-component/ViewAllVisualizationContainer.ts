@@ -1,17 +1,21 @@
 import { IState } from "../../../reducers"
 import { connect } from "react-redux"
-import {viewAllVisualizationComponent} from "./ViewAllVisualizationComponent"
-import {getAllVisualizationsActionMapper} from "../../../action-mappers/get-all-visualizations-action-mapper"
+import {ViewAllVisualizationComponent} from "./ViewAllVisualizationComponent"
+import {getAllVisualizationsActionMapper,getOneVisualizationActionMapper} from "../../../action-mappers/get-all-visualizations-action-mapper"
+
 
 const mapStateToProps = (state:IState) => {
     return {
         allVisualizations: state.allVisualizations.allVisualizations,
-        errorMessage: state.allVisualizations.errorMessage        
+        visualization: state.allVisualizations.visualization,
+        errorMessage: state.allVisualizations.errorMessage,
+
     }
 }
 
 const mapDispatchToProps = {
-    getAllVisualizationsActionMapper
+    getAllVisualizationsActionMapper,
+    getOneVisualizationActionMapper
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(viewAllVisualizationComponent)
+export default connect(mapStateToProps,mapDispatchToProps)(ViewAllVisualizationComponent)
