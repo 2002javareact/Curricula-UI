@@ -1,20 +1,20 @@
 import { IState } from "../../reducers";
-import { ViewAllCategoriesComponent } from "./ViewAllCategoriesComponent";
-import { getAllCategoriesActionMapper } from "../../action-mappers/getall-categories-action-mappers";
+import { UpdateCategoryComponent } from "./UpdateCategoryComponent";
+import { updateCategoryActionMapper } from "../../action-mappers/update-category-action-mapper";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state: IState) => {
   return {
-    allCategory: state.allCategory.allCategory,
+    updatedCategory: state.allCategory.updatedCategory,
     errorMessage: state.allCategory.errorMessage
   };
 };
 
 const mapDispatchToProps = {
-  getAllCategoriesActionMapper
+  updateCategoryActionMapper
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ViewAllCategoriesComponent);
+)(UpdateCategoryComponent);
