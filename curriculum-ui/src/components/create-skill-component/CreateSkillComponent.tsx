@@ -67,13 +67,14 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
             )})
         return( 
             this.props.createdSkill.skillId === 0?               
+
             <>  
-                <br/><br/><br/>                
+              
                         <Form onSubmit = {this.submit}>
                         <Row>
                             <Input onChange={this.updateSkillName} className = "skillNameInputCreate" value={this.state.skillName} type="text" placeholder="skill name" required />
                         <UncontrolledButtonDropdown size="sm">
-                        <DropdownToggle caret>
+                        <DropdownToggle color="info" caret>
                             {/**category label */}
                             {this.state.label}
                         </DropdownToggle>
@@ -82,7 +83,7 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
                         </DropdownMenu>
                         </UncontrolledButtonDropdown>
                         </Row>
-                            <Button className = "createButton">Create</Button>
+                            <Button color="primary" className = "createButton">Create</Button>
                             
                         </Form>                    
             </>

@@ -85,9 +85,7 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
         
         return(
             this.props.skillToUpdate.skillId === 0?
-            <>
-                <br/><br/><br/>
-              
+
             <Form onSubmit = {this.submit}>
             
             <Row className="d-flex justify-content-center"> 
@@ -119,7 +117,6 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
             </Form>
             
 
-            </>
             :
             <Redirect to = "/skills"/>
         )
