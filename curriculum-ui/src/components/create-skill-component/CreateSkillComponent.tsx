@@ -67,7 +67,12 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
             )})
         return( 
             this.props.createdSkill.skillId === 0?               
+<<<<<<< HEAD
             <>                
+=======
+            <>  
+              
+>>>>>>> c8779e0a1750b73e396219d1470218bd07d4e543
                         <Form onSubmit = {this.submit}>
                         <Row>
                             <Input onChange={this.updateSkillName} className = "skillNameInputCreate" value={this.state.skillName} type="text" placeholder="skill name" required />

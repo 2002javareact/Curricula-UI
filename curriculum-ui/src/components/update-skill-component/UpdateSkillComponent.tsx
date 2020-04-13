@@ -86,8 +86,12 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
         return(
             this.props.skillToUpdate.skillId === 0?
             <>
+<<<<<<< HEAD
+=======
+                <br/><br/>
+>>>>>>> c8779e0a1750b73e396219d1470218bd07d4e543
             <Form onSubmit = {this.submit}>
-                <Row>
+                <Row className="maxHeight">
                 <UncontrolledButtonDropdown className = "skillDropDown">
                     <DropdownToggle caret>
                        {this.state.skillLabel}

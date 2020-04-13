@@ -24,6 +24,7 @@ const NavBarComponent = (props: any) => {
 
   return (
     <>
+    <div></div>
       <Navbar className="navbar" expand="md">
         {/* PUT TITLE HERE */}
         <NavbarBrand href="/">Visualization API</NavbarBrand>
