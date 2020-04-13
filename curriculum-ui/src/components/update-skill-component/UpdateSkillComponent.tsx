@@ -85,12 +85,6 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
         
         return(
             this.props.skillToUpdate.skillId === 0?
-<<<<<<< HEAD
-            <>
-                <br/><br/>
-=======
-
->>>>>>> fef35688d524d83fe3198aa79330e4d5a9a9c750
             <Form onSubmit = {this.submit}>
             
             <Row className="d-flex justify-content-center"> 
