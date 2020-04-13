@@ -12,6 +12,7 @@ import { Visualization } from "../models/Visualization";
 import { visualizationReducer } from "./visualization-reducer";
 import { allCurriculumReducer } from "./all-curriculum-reducer";
 import { getSkillsByCategoryIdReducer } from "./get-skill-category-reducer";
+import { deleteCategoryByIdReducer } from "./delete-category-by-id-reducer";
 import { createVisualizationReducer } from "./create-visualization-reduser";
 
 export interface IGetAllSkillState {
@@ -89,6 +90,11 @@ export interface ICategoriesState {
   errorMessage: string;
 }
 
+export interface IDeleteCategoryByIdState {
+  deleteCategoryById: any;
+  errorMessage: string;
+}
+
 export interface IGetCurriculumByIdState {
   getCurriculumById: Curriculum;
   errorMessage: string;
@@ -109,15 +115,16 @@ export interface IViewAllVisualizationsState {
 
 export interface IState {
   //getAllSkills:IGetAllSkillState
-  skillsByCategoryId:IGetSkillsByCategoryIdState
-  createCurriculum:ICurriculumState
-  allCategory:ICategoriesState
-  updateCurriculum:IViewCurriculumState
-  getCurriculumById:IGetCurriculumByIdState
-  skills:ISkillState
-  curriculum:ICurriculumState,
-  allCurriculum:IAllCurriculumState
-  allVisualizations: IViewAllVisualizationsState
+  skillsByCategoryId: IGetSkillsByCategoryIdState;
+  createCurriculum: ICurriculumState;
+  allCategory: ICategoriesState;
+  updateCurriculum: IViewCurriculumState;
+  getCurriculumById: IGetCurriculumByIdState;
+  skills: ISkillState;
+  curriculum: ICurriculumState;
+  allCurriculum: IAllCurriculumState;
+  allVisualizations: IViewAllVisualizationsState;
+  deleteCategoryById: IDeleteCategoryByIdState;
   newVisualization:ICreateVIsualizationState
   createCategory: ICreateCategoryState
 }
@@ -130,9 +137,10 @@ export const state = combineReducers<IState>({
   skills: skillsReducer,
   curriculum: curriculumReducer,
   allCurriculum: allCurriculumReducer,
-  createCurriculum:curriculumReducer,
-  allCategory:categoriesReducer,
-  allVisualizations:visualizationReducer,
+  createCurriculum: curriculumReducer,
+  allCategory: categoriesReducer,
+  allVisualizations: visualizationReducer,
+  deleteCategoryById: deleteCategoryByIdReducer,
   createCategory:createReducer,
   newVisualization:createVisualizationReducer,
 })
