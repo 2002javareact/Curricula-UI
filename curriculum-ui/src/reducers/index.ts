@@ -59,9 +59,30 @@ export interface ICategoriesState {
   errorMessage: string;
 }
 
+
+export interface ICategoriesState{
+  allCategory:[]
+  errorMessage:string
+}
+export interface ICreateVIsualizationState{
+    createVIsualization:Skill
+    listCurriculum:Curriculum[]
+    errorMessage:string
+  }
+
+export interface IViewAllVisualizationsState{
+  // allVisualizations:Visualization[]
+  errorMessage: string
+}
+
+export interface IGetCurriculumByIdState{
+  getCurriculumById:Curriculum
+  errorMessage:string
+
 export interface IViewCurriculumState {
   updateCurriculum: Curriculum;
   errorMessage: string;
+
 }
 export interface ICategoriesState {
   allCategory: [];
@@ -78,6 +99,7 @@ export interface ICreateVIsualizationState{
     curriculumList: Array<Curriculum>;
     errorMessage:string
   }
+
 
 export interface IViewAllVisualizationsState {
   allVisualizations: Visualization[];
