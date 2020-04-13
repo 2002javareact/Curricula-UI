@@ -111,6 +111,6 @@ export const state = combineReducers<IState>({
   createCurriculum:curriculumReducer,
   allCategory:categoriesReducer,
   allVisualizations:visualizationReducer,
-  createCategory:createReducer
+  createCategory:createReducer,
   newVisualization:createVisualizationReducer,
 })
