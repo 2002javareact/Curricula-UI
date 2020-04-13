@@ -4,13 +4,17 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { store } from './Store';
 import { Provider } from 'react-redux';
-import CreateCurriculumFormComponent from './components/create-curriculum-form-component/CreateCurriculumFormContainer';
+import CreateCurriculumFormComponent from './components/curriculum-components/create-curriculum-form-component/CreateCurriculumFormContainer';
 import ViewAllCurriculumComponent from './components/view-all-curriculum-component/ViewAllCurriculumContainer';
 import  ViewAllSkillsComponent  from './components/view-all-skill-component/ViewAllSkillsComponent';
-import { CreateSkillComponent } from './components/create-skill-component/CreateSkillComponent';
+import  CreateSkillComponent  from './components/create-skill-component/CreateSkillContainer';
+import UpdateSkillComponent from './components/update-skill-component/UpdateSkillContainer';
 import NavBarComponent from "./components/navbar-component/NavbarComponent";
 import { MultiRouteCategoryComponent } from "./components/multi-route-category-component/MultiRouteCategoryComponent";
-import  viewAllVisualizationComponent  from './components/visualization-components/view-all-visualization-component/ViewAllVisualizationContainer';
+import  ViewAllVisualizationComponent  from './components/visualization-components/view-all-visualization-component/ViewAllVisualizationContainer';
+import  ViewAndUpdateVisualizationComponent from './components/visualization-components/update-view-visualization-components/ViewAndUpdateVisualizationContainer';
+import ViewAndUpdateCurriculumComponent  from './components/curriculum-components/view-and-update-curriculum-component/ViewAndUpdateCurriculumContainer';
+
 function App() {
   return (
     <Provider store={store}>
@@ -19,12 +23,15 @@ function App() {
         <Router>
           <NavBarComponent/>
           <Switch> 
-            <Route path="/curriculum" component={ViewAllCurriculumComponent} />
             <Route path="/curriculum/create" component={CreateCurriculumFormComponent}/>
-            <Route path="/viewAllSkills" component={ViewAllSkillsComponent}/>
-            <Route path="/createSkills" component={CreateSkillComponent}/>
+            <Route path="/curriculum/view/:id" component={ViewAndUpdateCurriculumComponent}/>
+            <Route path="/skills/update" component={UpdateSkillComponent}/>
+            <Route path="/curriculum" component={ViewAllCurriculumComponent} />
+            <Route path="/skills/create" component={CreateSkillComponent}/>
+            <Route path="/skills" component={ViewAllSkillsComponent}/>            
             <Route path="/category" component={MultiRouteCategoryComponent} />
-            <Route path="/" component={viewAllVisualizationComponent}/>
+            <Route path="/visualization/:id" component={ViewAndUpdateVisualizationComponent}/>
+            <Route path="/" component={ViewAllVisualizationComponent}/>
           </Switch>
         </Router>
       </div>

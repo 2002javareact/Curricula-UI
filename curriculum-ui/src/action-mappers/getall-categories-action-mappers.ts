@@ -1,6 +1,5 @@
 import { Dispatch } from "redux";
-import { FetchAllCategories } from '../remote/Category'
-import { Category } from "../models/Category";
+import { FetchAllCategories } from '../remote/category-remote'
 
 
 export const categoriesTypes = {

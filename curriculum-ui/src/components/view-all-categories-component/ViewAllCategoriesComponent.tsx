@@ -1,17 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Card,
-  CardTitle,
-  CardText,
-  CardHeader,
-  CardBody,
-  Button,
-  Container,
-  Row
-} from "reactstrap";
+import { Card, CardTitle, CardText, Button, Container, Row } from "reactstrap";
 import { Category } from "../../models/Category";
-import { FetchAllCategories } from "../../remote/Category";
 import { RouteComponentProps } from "react-router";
 import { NavLink } from "react-router-dom";
 
@@ -28,11 +18,14 @@ export class ViewAllCategoriesComponent extends React.Component<
   IViewAllUsersProps,
   any
 > {
+  // refreshPage() {
+  //   window.location.reload(true);
+  // }
   componentDidMount() {
-    // if (this.props.allCategory.length === 0) {
     return this.props.getAllCategoriesActionMapper();
-    // } else {
-    // }
+  }
+  componentDidUpdate() {
+    return this.props.getAllCategoriesActionMapper();
   }
 
   render() {
@@ -82,6 +75,7 @@ export class ViewAllCategoriesComponent extends React.Component<
       );
     });
 
+    //this.refreshPage();
     return (
       <>
         <Card style={{ textAlign: "center" }}>

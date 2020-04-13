@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 import { Category } from "../models/Category";
-import { updateCategory } from "../remote/Category";
+import { updateCategory } from "../remote/category-remote";
 
 export const updateCategoryTypes = {
   UPDATE_CATEGORY: "UPDATE_CATEGORY",
