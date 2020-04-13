@@ -16,6 +16,7 @@ const mapStateToProps = (state:IState) => {
 const mapDispatchToProps = {
     getAllVisualizationsActionMapper,
     getOneVisualizationActionMapper
+    
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(ViewAllVisualizationComponent)

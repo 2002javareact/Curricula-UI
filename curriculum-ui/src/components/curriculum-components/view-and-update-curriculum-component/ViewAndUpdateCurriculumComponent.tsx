@@ -27,6 +27,7 @@ import {
 	Route,
 	Link,
 	useParams,
+	Redirect,
 } from "react-router-dom";
 import { Skill } from "../../../models/Skill";
 import { Category } from "../../../models/Category";
@@ -35,7 +36,7 @@ interface IViewAndUpdateCurriculumProps {
 	updateCurriculumActionMapper: (c: Curriculum) => any;
 	updatedCurriculum: Curriculum;
 	getCurriculumById: Curriculum;
-	deleteCurriculum: Curriculum;
+	
 	getCurriculumByIdActionMapper: (id: number) => any;
 	match: any;
 	// allSkills: Skill[],
@@ -58,6 +59,7 @@ interface IViewAndUpdateCurriculumState {
 	name: string;
 	isLoading: boolean;
 	alert: string;
+	isRedirect:boolean
 }
 
 export class ViewAndUpdateCurriculumComponent extends React.Component<
@@ -76,6 +78,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 			categoryId: 1,
 			isLoading: false,
 			alert: "",
+			isRedirect:false
 		};
 
 		this.handlerName = this.handlerName.bind(this);
@@ -84,7 +87,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 		this.handlerRemoveSkill = this.handlerRemoveSkill.bind(this);
 		this.submitCategory = this.submitCategory.bind(this);
 		this.submitCurriculum = this.submitCurriculum.bind(this);
-		this.deleteCurriculum = this.deleteCurriculum.bind(this);
+		this.submitDeleteCurriculum = this.submitDeleteCurriculum.bind(this);
 	}
 	async componentDidMount() {
 		let id;
@@ -146,12 +149,13 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 		};
 	}
 
-	async deleteCurriculum(e: SyntheticEvent) {
+	async submitDeleteCurriculum(e: SyntheticEvent) {
 		e.preventDefault();
-		const response = await this.props
+		 await this.props
 			.deleteCurriculumActionMapper(this.props.getCurriculumById.curriculumId)
 			.then((e: any) => {
 				this.setState({ isLoading: false });
+				this.setState({isRedirect: true })
 			});
 		this.props.deleteCurriculumActionMapper(
 			this.props.getCurriculumById.curriculumId
@@ -221,13 +225,14 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 		this.setState({ name: e.target.value || undefined });
 	}
 
-	public deleteCurriculumSubmit = () => this.setState({ isShowUpdate: true });
+	
 
 	render() {
 		return (
 			//TODO: Give option to keep Curriculum Name
 
 			<React.Fragment>
+				 {this.state.isRedirect && <Redirect to={"/curriculum"}/> }
 				{this.state.isShowUpdate ? (
 					//isShowUpdate = true
 					<Container className="curriculum-view-update-container">
@@ -241,7 +246,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 									</Col>
 									<Col lg={12}>
 										<Button
-											onClick={this.deleteCurriculumSubmit}
+											onClick={this.submitDeleteCurriculum}
 											className="curriculum-view-update-buttons"
 											color="danger"
 										>
@@ -425,7 +430,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 									</Col>
 									<Col lg={12}>
 										<Button
-											onClick={this.deleteCurriculumSubmit}
+											onClick={this.submitDeleteCurriculum}
 											className="curriculum-view-update-buttons"
 											color="danger"
 										>
