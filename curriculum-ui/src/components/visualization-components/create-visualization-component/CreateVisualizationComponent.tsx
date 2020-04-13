@@ -2,7 +2,6 @@ import { Container, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, Car
 import React, { SyntheticEvent } from "react";
 import { Visualization } from "../../../models/Visualization";
 import { Curriculum } from '../../../models/Curriculum';
-import { ifError } from 'assert';
 
  interface ICreateVisualizationProps{
     createVisualization: Visualization
@@ -54,7 +53,13 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
    submitVisualization = async (e: SyntheticEvent) => 
   {
     e.preventDefault();
-    this.props.createVisualizationActionMapper(this.state.visualizationName,this.state.Curriculum)
+    if (this.state.visualizationName.length>0){
+    this.props.createVisualizationActionMapper(this.state.visualizationName,this.state.Curriculum)}
+    else{
+     console.log('you need to put some name');
+  
+     
+    }
  
   this.setState({    
     visualizationName: '', 
@@ -69,6 +74,7 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
        curriculumOption = this.props.curriculumList.map((el:Curriculum)=>(<option value={el.curriculumId}>{el.curriculumName}</option>))}
       
     return(
+      <div>
       <Container>
         <Row className="p-4 m-4 border border-secondary">
           <Col>
@@ -76,7 +82,7 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
             <Form>
               <FormGroup>
                 <Label>Name</Label>
-                <Input type="text" onChange={this.handlerName} placeholder="Enter the Visualization Name" defaultValue={this.state.visualizationName}/>
+                <Input type="text" onChange={this.handlerName} placeholder="Enter the Visualization Name" defaultValue={this.state.visualizationName} />
               </FormGroup>
             </Form>
             <Form inline onSubmit={this.submitCurriculum}>
@@ -96,7 +102,11 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
             {this.state.isLoading && <Alert>Loading</Alert>}
           </Col>
         </Row>
+       
       </Container>
+      <>
+      <p>{this.props.errorMessage}</p></>
+      </div>
     )
   }
 }
