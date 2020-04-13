@@ -6,6 +6,8 @@ import { Skill } from "../models/Skill";
 import { Category } from "../models/Category";
 import { getAllSkillsReducer } from "./view-all-skills-reducers";
 import { categoriesReducer } from "./category-reducer";
+
+import { createReducer } from "./create-category-reducer";
 import { Visualization } from "../models/Visualization";
 import { visualizationReducer } from "./visualization-reducer";
 
@@ -44,6 +46,14 @@ export interface IViewAllVisualizationsState{
   errorMessage: string
 }
 
+
+export interface ICreateCategoryState{
+  //createCategory:Category
+  createCat: Category
+  errorMessage:string
+}
+
+
 export interface IState {
   getAllSkills:IGetAllSkillState
   createCurriculum:ICurriculumState
@@ -51,6 +61,7 @@ export interface IState {
   curriculum:ICurriculumState,
   allCurriculum:IAllCurriculumState
   allVisualizations: IViewAllVisualizationsState
+  createCategory: ICreateCategoryState
 
 }
 
@@ -61,4 +72,5 @@ export const state = combineReducers<IState>({
   createCurriculum:curriculumReducer,
   allCategory:categoriesReducer,
   allVisualizations:visualizationReducer,
+  createCategory:createReducer
 })

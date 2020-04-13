@@ -114,7 +114,7 @@ const NavBarComponent = (props: any) => {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/">
+                  <Link className="dropdown-link" to="/category/create">
                     Create A Category
                   </Link>
                 </DropdownItem>
