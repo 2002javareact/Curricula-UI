@@ -1,20 +1,26 @@
 
 import { Skill } from "../../models/Skill";
 import { Category } from "../../models/Category";
-import { Input, Container, Row, Col, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, Button } from "reactstrap";
+import { Input, Container,UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem, Form, Button, Row, Card } from "reactstrap";
 import React, { SyntheticEvent } from "react";
+import { Redirect } from "react-router";
+
+
+
 
 
 export interface ICreateSkillProps{
     createdSkill: Skill
+    allCategory:Category[]
     errorMessage: string
-    createSkillActionMapper:(n:string, c:Category)=>void
+    createSkillActionMapper:(n:string, c:Category)=>void    
+    getAllCategoriesActionMapper: () => void
 }
 
 export interface ICreateSkillState{
     skillName:string
-    category:String[]
-
+    category:Category
+    label:string
 }
 
 export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICreateSkillState>{
@@ -22,13 +28,19 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
         super(props)
         this.state = {
             skillName:'',
-            category:["database", "sourcecode", "framework", "ide", "devops", "architecture" ]
-        }
+            category: new Category(0,'',''),
+            label:"Category"
+        }      
     }
+    componentDidMount() {
+
+          return (this.props.getAllCategoriesActionMapper())
+
+      }
 
     submit =  async (e: SyntheticEvent) =>{
         e.preventDefault()
-        this.props.createSkillActionMapper(this.state.skillName,new Category(0,'',''))
+        this.props.createSkillActionMapper(this.state.skillName, this.state.category)
 
     }
 
@@ -37,44 +49,44 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
             skillName: e.currentTarget.value
         })
     }
-    updateCategory = (e:any) =>{
+
+    updateCategory = (category:Category) => (e:any) =>{
         this.setState({
-            category:e.currentTarget.value
+            category,
+            label:category.categoryName
         })
     }
-    render(){
-        
-        return(
 
-            <>
-                <Container className = "skillNameInput">
-                    <Row xs= "3">
+
+    
+ 
+    render(){
+        let view = this.props.allCategory.map((category) =>{
+            return (
+                <DropdownItem onClick= {this.updateCategory(category)}>{category.categoryName}</DropdownItem>
+            )})
+        return( 
+            this.props.createdSkill.skillId === 0?               
+            <>  
+              
                         <Form onSubmit = {this.submit}>
-                        <Col>
-                            <Input onChange={this.updateSkillName} value={this.state.skillName} type="text" placeholder="skill name" required />
-                        </Col>
-                        <Col>
+                        <Row>
+                            <Input onChange={this.updateSkillName} className = "skillNameInputCreate" value={this.state.skillName} type="text" placeholder="skill name" required />
                         <UncontrolledButtonDropdown>
                         <DropdownToggle caret>
-                            Category
+                            {this.state.label}
                         </DropdownToggle>
-                        <DropdownMenu>
-                            <DropdownItem>{this.state.category[0]}</DropdownItem>
-                            <DropdownItem >{this.state.category[1]}</DropdownItem>
-                            <DropdownItem>{this.state.category[2]}</DropdownItem>
-                            <DropdownItem>{this.state.category[3]}</DropdownItem>
-                            <DropdownItem>{this.state.category[4]}</DropdownItem>
-                            <DropdownItem>{this.state.category[5]}</DropdownItem>
+                        <DropdownMenu className = "categoryDropDown">
+                           {view}
                         </DropdownMenu>
                         </UncontrolledButtonDropdown>
-                        </Col>
-                        <Col>
-                            <Button>Create</Button>
-                        </Col>
-                        </Form>
-                    </Row>
-                 </Container>
+                        </Row>
+                            <Button className = "createButton">Create</Button>
+                            
+                        </Form>                    
             </>
+            :
+            <Redirect to = "/skills"/>
          
         )
     }
