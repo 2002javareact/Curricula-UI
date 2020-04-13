@@ -2,12 +2,13 @@ import { Container, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, Car
 import React, { SyntheticEvent } from "react";
 import { Visualization } from "../../../models/Visualization";
 import { Curriculum } from '../../../models/Curriculum';
+import { ifError } from 'assert';
 
  interface ICreateVisualizationProps{
     createVisualization: Visualization
      errorMessage: string
     createVisualizationActionMapper:(n:string,c:Array<any>)=>void
-    viewCurriculumListActionMapper:()=>{}
+    viewCurriculumListActionMapper:()=>void
     curriculumList:Array<Curriculum>
 }
 
@@ -36,7 +37,7 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
   }
   componentDidMount(){
     
-    //this.props.viewCurriculumListActionMapper();
+    this.props.viewCurriculumListActionMapper();
       console.log('we are in mount  '+this.props.viewCurriculumListActionMapper);
       
     
@@ -45,6 +46,7 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
   handlerCurriculum(e:any){this.setState({Curriculum:e.target.value})}
   submitCurriculum(e:SyntheticEvent){
     e.preventDefault();
+   
     this.props.viewCurriculumListActionMapper();
     
   }
@@ -62,6 +64,10 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
     console.log(this.props.createVisualizationActionMapper);
   }
   render(){
+      let curriculumOption 
+      if (this.props.curriculumList.length>0){
+       curriculumOption = this.props.curriculumList.map((el:Curriculum)=>(<option value={el.curriculumId}>{el.curriculumName}</option>))}
+      
     return(
       <Container>
         <Row className="p-4 m-4 border border-secondary">
@@ -77,7 +83,7 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
               <FormGroup className="col-sm-10 pl-0">
                 <Label className="text-align-left col-sm-2">Curriculum</Label>     
                 <Input type="select" name="Curriculum" className="col-sm-10" onChange={this.handlerCurriculum}>
-                  {this.props.curriculumList.map((el:Curriculum)=>(<option value={el.curriculumId}>{el.curriculumName}</option>))}
+                 {curriculumOption}
                 </Input>
               </FormGroup>
 

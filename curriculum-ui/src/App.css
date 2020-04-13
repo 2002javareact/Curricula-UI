@@ -18,14 +18,40 @@ nav.navbar {
   /* Moves NavBar above all othe elements on the page */
   z-index: 9999;
 }
-
+body::before {
+  display:block;
+  content: '';
+  height:70px;
+}
+.maxHeight{
+  height:10px;
+}
+.skillsViewAll{
+  height: auto;
+  max-height: 250px;
+  width: auto;
+  max-width: 250px;
+}
+.skillSetHeight{
+  height: auto;
+  width: auto;
+  max-height: 50px;
+  
+}
+nav.hiddenNav{
+  top: 0;
+  width: 100%;
+  border-width: .4em;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  z-index: 0;
+}
 div.visualizationCard{
   width: 24%;
   margin-top: 1em;
   margin-left: auto;
   margin-right: auto;
- 
-
   box-shadow: 8px 8px 15px black;
 }
 

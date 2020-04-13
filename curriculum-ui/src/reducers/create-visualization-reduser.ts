@@ -6,7 +6,7 @@ import { Visualization } from "../models/Visualization";
 
 const initialState: ICreateVIsualizationState={
     createVIsualization: new Visualization(0, '', []),
-    listCurriculum:  0,
+    curriculumList:  [],
     errorMessage:''
   }
     

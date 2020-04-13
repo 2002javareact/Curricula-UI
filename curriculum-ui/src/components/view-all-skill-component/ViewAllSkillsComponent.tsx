@@ -30,8 +30,10 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
 
             let view = this.props.allSkills.map((skill) => { 
             return (
-           <Button className="rounded-pill text-light m-auto font-weight-bold"
-           style={{backgroundColor: skill.category.categoryColor}}>{skill.skillName}</Button>
+                <Container>
+           <Card className="rounded-pill p-1 text-light m-auto font-weight-bold"
+           style={{backgroundColor: skill.category.categoryColor}}>{skill.skillName}</Card>
+            </Container>
         )})
                 
         let legend = this.props.allCategory.map((category) => {
@@ -45,7 +47,6 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
      
         return(
             <>
-            <br/><br/><br/>
                 <h3 className = "skillTitle">All Skills</h3>
                 <Container className ="listOfSkills">
                     <Row xs="4">
