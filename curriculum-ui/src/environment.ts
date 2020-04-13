@@ -3,10 +3,10 @@ const devEnvironment = {
 }
 
 const prodEnvironment = {
-  curriculaBaseUrl:''
+  curriculaBaseUrl:'http://3.95.224.18:8080'
 }
 
-export let environment = devEnvironment
+export let environment = prodEnvironment
 
 if(process.env.REACT_APP_ENV === 'production'){
   environment = devEnvironment
