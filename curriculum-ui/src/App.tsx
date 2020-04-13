@@ -14,6 +14,8 @@ import { MultiRouteCategoryComponent } from "./components/multi-route-category-c
 import  ViewAllVisualizationComponent  from './components/visualization-components/view-all-visualization-component/ViewAllVisualizationContainer';
 import  ViewAndUpdateVisualizationComponent from './components/visualization-components/update-view-visualization-components/ViewAndUpdateVisualizationContainer';
 import ViewAndUpdateCurriculumComponent  from './components/curriculum-components/view-and-update-curriculum-component/ViewAndUpdateCurriculumContainer';
+import  CreateVisualizationComponent  from './components/visualization-components/create-visualization-component/CreateVisualizationContainer';
+
 
 function App() {
   return (
@@ -30,6 +32,7 @@ function App() {
             <Route path="/skills/create" component={CreateSkillComponent}/>
             <Route path="/skills" component={ViewAllSkillsComponent}/>            
             <Route path="/category" component={MultiRouteCategoryComponent} />
+            <Route path="/visualization/create" component={CreateVisualizationComponent}/>
             <Route path="/visualization/:id" component={ViewAndUpdateVisualizationComponent}/>
             <Route path="/" component={ViewAllVisualizationComponent}/>
           </Switch>
