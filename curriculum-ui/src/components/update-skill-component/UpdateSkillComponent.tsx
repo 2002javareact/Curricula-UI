@@ -1,7 +1,7 @@
 import { Category } from "../../models/Category";
 import { Skill } from "../../models/Skill";
 import React, { SyntheticEvent } from "react";
-import { Container, Form, FormGroup, Input, DropdownItem, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, Button, Row } from "reactstrap";
+import { Container, Form, FormGroup, Input, DropdownItem, UncontrolledButtonDropdown, DropdownToggle, DropdownMenu, Button, Row, Card } from "reactstrap";
 import { Redirect } from "react-router";
 
 export interface IUpdateSkillProp{
@@ -86,31 +86,39 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
         return(
             this.props.skillToUpdate.skillId === 0?
             <>
-                <br/><br/>
+                <br/><br/><br/>
+              
             <Form onSubmit = {this.submit}>
-                <Row className="maxHeight">
-                <UncontrolledButtonDropdown className = "skillDropDown">
-                    <DropdownToggle caret>
+            
+            <Row className="d-flex justify-content-center"> 
+                <UncontrolledButtonDropdown>
+                    <DropdownToggle color="info" caret>
                        {this.state.skillLabel}
                     </DropdownToggle>
                     <DropdownMenu>
                         {dropSkills}
                     </DropdownMenu>
                 </UncontrolledButtonDropdown>
-                <UncontrolledButtonDropdown>
-                    <DropdownToggle caret>
+                
+                <UncontrolledButtonDropdown className="skillDropDown">
+                    <DropdownToggle color="info" caret>
                         {this.state.categoryLabel}
                     </DropdownToggle>
                     <DropdownMenu className = "categoryDropDown"> 
                         {dropCategories}
                     </DropdownMenu>
                 </UncontrolledButtonDropdown>
-                <FormGroup>
+
                 <Input onChange={this.updateSkillName} className = "skillNameInput" value={this.state.name} type="text" placeholder="new name" />
-                </FormGroup>
                 </Row>
-                <Button className= "updateButton">Update</Button>
+        
+                <Button color="primary" className= "updateButton">Update</Button>
+                
+                
+
             </Form>
+            
+
             </>
             :
             <Redirect to = "/skills"/>
