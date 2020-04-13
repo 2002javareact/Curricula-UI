@@ -61,7 +61,7 @@ const NavBarComponent = (props: any) => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/">
+                  <Link className="dropdown-link" to="/curriculum">
                     View All Curriculums
                   </Link>
                 </DropdownItem>
