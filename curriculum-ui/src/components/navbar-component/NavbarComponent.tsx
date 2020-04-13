@@ -71,12 +71,6 @@ const NavBarComponent = (props: any) => {
                     Create A Curriculum
                   </Link>
                 </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-                  <Link className="dropdown-link" to="/curriculum/view/1">
-                    View/Edit A Curriculum
-                  </Link>
-                </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
             <UncontrolledDropdown nav inNavbar>
