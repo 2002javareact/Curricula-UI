@@ -45,7 +45,6 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
      
         return(
             <>
-            <br/><br/><br/>
                 <h3 className = "skillTitle">All Skills</h3>
                 <Container className ="listOfSkills">
                     <Row xs="4">
