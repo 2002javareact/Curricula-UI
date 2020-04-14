@@ -43,7 +43,7 @@ const NavBarComponent = (props: any) => {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/">
+                  <Link className="dropdown-link" to="/visualization/create">
                     Create A Visualization
                   </Link>
                 </DropdownItem>
@@ -109,7 +109,7 @@ const NavBarComponent = (props: any) => {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/">
+                  <Link className="dropdown-link" to="/category/create">
                     Create A Category
                   </Link>
                 </DropdownItem>
