@@ -4,7 +4,6 @@ import { Skill } from "../models/Skill";
 import { skillsReducer } from "./skills-reducers";
 import { categoriesReducer } from "./category-reducer";
 import { createReducer } from "./create-category-reducer";
-// TODO add to curriculum reducer
 import { deleteCurriculumReducer } from "./delete-curriculum-reducer";
 import { Category } from "../models/Category";
 import { Visualization } from "../models/Visualization";
@@ -15,10 +14,6 @@ import { deleteCategoryByIdReducer } from "./delete-category-by-id-reducer";
 import { createVisualizationReducer } from "./create-visualization-reduser";
 
 
-export interface IGetAllSkillState {
-	allSkills: [];
-	errorMessage: string;
-}
 
 export interface IAllCurriculumState {
 	curriculumList: Array<Curriculum>;
@@ -135,10 +130,7 @@ export interface IState {
 export const state = combineReducers<IState>({
   updateCurriculum: updateReducer,
   getCurriculumById: getCurriculumByIdReducer,
-	//getAllSkills:getAllSkillsReducer,
-	// TODO add to curriculum reducer
 	deleteCurriculum: deleteCurriculumReducer,
-
   skillsByCategoryId: getSkillsByCategoryIdReducer,
   skills: skillsReducer,
   curriculum: curriculumReducer,
