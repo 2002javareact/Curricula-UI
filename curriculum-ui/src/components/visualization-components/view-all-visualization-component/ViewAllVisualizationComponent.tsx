@@ -14,6 +14,9 @@ interface IVisualizationProps{
     deleteOneVisualizationActinoMapper:(id:number) => void
 }
 
+/**
+ * @author [Anthony Cona] (Anthony-Cona)
+ **/
 export class ViewAllVisualizationComponent extends React.Component<IVisualizationProps,any>{
 
 componentDidMount(){
@@ -46,9 +49,9 @@ async deleteVisualization(e:SyntheticEvent,id:number){
                     })}
                     <CardText>{`${window.location.href}visualization/${visualization.visualizationId}`}</CardText>
                     <ButtonGroup>
-                    <Button onClick={(e: SyntheticEvent)=>this.updateView(e,visualization.visualizationId)}>Update?</Button>
+                    <Button color="success" onClick={(e: SyntheticEvent)=>this.updateView(e,visualization.visualizationId)}>Update</Button>
 
-                    <Button onClick={(e:SyntheticEvent)=>this.deleteVisualization(e,visualization.visualizationId)}>Delete?</Button>
+                    <Button color="danger" onClick={(e:SyntheticEvent)=>this.deleteVisualization(e,visualization.visualizationId)}>Delete</Button>
                     </ButtonGroup>
                 </Card>
             )
