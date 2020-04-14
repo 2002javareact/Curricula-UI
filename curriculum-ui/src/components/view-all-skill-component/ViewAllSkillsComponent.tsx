@@ -58,9 +58,9 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
         if (this.state.redirect) {
           return <Redirect to='/skills/update' />
         }
-      }
+    }
 
-    render(){
+        render(){
         this.props.allSkills.sort((a,b) =>{
             return a.category.categoryName.localeCompare(b.category.categoryName)})
 
