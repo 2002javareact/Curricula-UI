@@ -7,19 +7,22 @@ import {getCurriculumByIdActionMapper} from
 import {viewAllSkillsActionMapper} from '.././/../../action-mappers/skill-action-mapper'
 import { getSkillsByCategoryIdActionMapper } from '../../../action-mappers/get-skills-by-category-id-action-mapper';
 import { getAllCategoriesActionMapper } from '../../../action-mappers/getall-categories-action-mappers';
-
+import {deleteCurriculumActionMapper} from '../../../action-mappers/delete-curriculum-action-mapper';
 const mapStateToProps = (state:IState) =>{
 
     return{
 
-    updateCurriculum: state.updateCurriculum.updateCurriculum,
-    getCurriculumById: state.getCurriculumById.getCurriculumById,
-    errorMessageForUpdate: state.updateCurriculum.errorMessage,
-    errorMessageForById: state.getCurriculumById.errorMessage,
+    updateCurriculum: state.curriculum.updateCurriculum,
+    curriculum: state.curriculum.curriculum,
+    errorMessageForUpdate: state.curriculum.errorMessage,
+    errorMessageForById: state.curriculum.errorMessage,
     allSkills: state.skills.allSkills,
     errorMessageSkills: state.skills.errorMessage,
     allCategory:state.allCategory.allCategory,
-    skillsByCategoryId:state.skillsByCategoryId.skillsByCategoryId
+    skillsByCategoryId:state.skillsByCategoryId.skillsByCategoryId,
+    deleteCurriculum: state.deleteCurriculum.deleteCurriculum
+
+    
 }
 
 }
@@ -31,7 +34,8 @@ const mapDispatchToProps = {
     getCurriculumByIdActionMapper,
     viewAllSkillsActionMapper,
     getAllCategoriesActionMapper,
-    getSkillsByCategoryIdActionMapper
+    getSkillsByCategoryIdActionMapper,
+    deleteCurriculumActionMapper
 
 
 }

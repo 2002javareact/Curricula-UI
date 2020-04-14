@@ -1,55 +1,70 @@
 import { combineReducers } from "redux";
 import { Curriculum } from "../models/Curriculum";
-import { curriculumReducer } from "./get-all-curriculums-reducers";
-import { updateReducer } from "./update-curriculum-reducer";
 import { Skill } from "../models/Skill";
 import { skillsReducer } from "./skills-reducers";
 import { categoriesReducer } from "./category-reducer";
-import { getCurriculumByIdReducer } from "./get-curriculum-by-id-reducer";
+import { createReducer } from "./create-category-reducer";
+// TODO add to curriculum reducer
+import { deleteCurriculumReducer } from "./delete-curriculum-reducer";
 import { Category } from "../models/Category";
 import { Visualization } from "../models/Visualization";
 import { visualizationReducer } from "./visualization-reducer";
-import { allCurriculumReducer } from "./all-curriculum-reducer";
+import { curriculumReducer } from './curriculum-reducer';
 import { getSkillsByCategoryIdReducer } from "./get-skill-category-reducer";
+import { deleteCategoryByIdReducer } from "./delete-category-by-id-reducer";
 import { createVisualizationReducer } from "./create-visualization-reduser";
 
+
+export interface IGetAllSkillState {
+	allSkills: [];
+	errorMessage: string;
+}
+
 export interface IAllCurriculumState {
-  curriculumList: Array<Curriculum>;
-  errorMessage: string;
+	curriculumList: Array<Curriculum>;
+	errorMessage: string;
 }
 export interface ICreateSkillState {
-  createdSkill: Skill;
-  listCategories: Category[];
-  errorMessage: string;
+	createdSkill: Skill;
+	listCategories: Category[];
+	errorMessage: string;
 }
 
 export interface IGetSkillsByCategoryIdState {
-  skillsByCategoryId: Skill[];
-  errorMessage: string;
+	skillsByCategoryId: Skill[];
+	errorMessage: string;
 }
 
 export interface ISkillState {
-  createdSkill: Skill;
-  allSkills: Skill[];
-  updatedSkill: Skill;
-  errorMessage: string;
+	createdSkill: Skill;
+	allSkills: Skill[];
+	updatedSkill: Skill;
+	errorMessage: string;
 }
 
 export interface ICurriculumState {
+  createCurriculum: Curriculum;
   curriculum: Curriculum;
+  curriculumList: Array<Curriculum>;
+  updateCurriculum: Curriculum;
+  errorMessage: string;
+}
+
+export interface ICreateCategoryState {
+  //createCategory:Category
+  createCat: Category;
   errorMessage: string;
 }
 
 export interface ICategoriesState {
-  allCategory: [];
-  updatedCategory: Category;
-  errorMessage: string;
+	allCategory: [];
+	updatedCategory: Category;
+	errorMessage: string;
 }
 
-
-export interface ICategoriesState{
-  allCategory:[]
-  errorMessage:string
+export interface ICategoriesState {
+  allCategory: [];
+  errorMessage: string;
 }
 
 export interface IViewAllVisualizationsState{
@@ -57,62 +72,80 @@ export interface IViewAllVisualizationsState{
   errorMessage: string
 }
 
-export interface IGetCurriculumByIdState{
-  getCurriculumById:Curriculum
-  errorMessage:string
-}
+//export interface IGetCurriculumByIdState{
+//  getCurriculumById:Curriculum
+//  errorMessage:string
+//}
 
 export interface IViewCurriculumState {
   updateCurriculum: Curriculum;
   errorMessage: string;
-
 }
 export interface ICategoriesState {
-  allCategory: [];
+	allCategory: [];
+	errorMessage: string;
+}
+
+export interface IDeleteCategoryByIdState {
+  deleteCategoryById: any;
   errorMessage: string;
 }
 
 export interface IGetCurriculumByIdState {
-  getCurriculumById: Curriculum;
-  errorMessage: string;
+	getCurriculumById: Curriculum;
+	errorMessage: string;
 }
 
-export interface ICreateVIsualizationState{
-    createVIsualization:Visualization
-    curriculumList: Array<Curriculum>;
-    errorMessage:string
-  }
+export interface IDeleteCurriculumState {
+	deleteCurriculum: Curriculum;
+	errorMessage: string;
+}
 
+
+export interface ICreateVIsualizationState {
+  createVIsualization: Visualization;
+  errorMessage: string;
+}
 
 export interface IViewAllVisualizationsState {
-  allVisualizations: Visualization[];
-  errorMessage: string;
-  visualization: Visualization;
+	allVisualizations: Visualization[];
+	errorMessage: string;
+	visualization: Visualization;
 }
 
-export interface IState {
-  skillsByCategoryId:IGetSkillsByCategoryIdState
-  createCurriculum:ICurriculumState
-  allCategory:ICategoriesState
-  updateCurriculum:IViewCurriculumState
-  getCurriculumById:IGetCurriculumByIdState
-  skills:ISkillState
-  curriculum:ICurriculumState,
-  allCurriculum:IAllCurriculumState
-  allVisualizations: IViewAllVisualizationsState
-  newVisualization:ICreateVIsualizationState
 
+export interface IState {
+	//getAllSkills:IGetAllSkillState
+	// TODO add to curriculum reducer
+	deleteCurriculum: IDeleteCurriculumState;
+  skillsByCategoryId: IGetSkillsByCategoryIdState;
+  allCategory: ICategoriesState;
+  skills: ISkillState;
+  curriculum: ICurriculumState;
+  allVisualizations: IViewAllVisualizationsState;
+  deleteCategoryById: IDeleteCategoryByIdState;
+  allCurriculum:IAllCurriculumState;
+	newVisualization:ICreateVIsualizationState;
+  createCategory: ICreateCategoryState;
+  createCurriculum:ICurriculumState;
+  updateCurriculum:IViewCurriculumState;
+  getCurriculumById:IGetCurriculumByIdState;
 }
 
 export const state = combineReducers<IState>({
   updateCurriculum: updateReducer,
   getCurriculumById: getCurriculumByIdReducer,
+	//getAllSkills:getAllSkillsReducer,
+	// TODO add to curriculum reducer
+	deleteCurriculum: deleteCurriculumReducer,
+
   skillsByCategoryId: getSkillsByCategoryIdReducer,
   skills: skillsReducer,
   curriculum: curriculumReducer,
-  allCurriculum: allCurriculumReducer,
-  createCurriculum:curriculumReducer,
-  allCategory:categoriesReducer,
-  allVisualizations:visualizationReducer,
-  newVisualization:createVisualizationReducer,
-})
+  allCategory: categoriesReducer,
+  allVisualizations: visualizationReducer,
+  deleteCategoryById: deleteCategoryByIdReducer,
+  createCategory: createReducer,
+  newVisualization: createVisualizationReducer,
+});
+

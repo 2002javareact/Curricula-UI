@@ -30,15 +30,16 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
             let view = this.props.allSkills.map((skill) => { 
 
             return (
-
-           <Card style={{ width: '18rem' }} className="  .col-6 .col-sm-6 p-2 visualizationCard shadow-custom m-auto">
+                <>
+                <div className="col-3 mx-1 my-1 ">
+           <Card style={{ width: '20rem' }} className=" p-1 visualizationCard shadow-custom m-auto">
                 <CardTitle>{skill.skillName}</CardTitle>
-                <CardText style={{color: skill.category.categoryColor}}>{skill.category.categoryName}</CardText>
+                <CardText style={{color: skill.category.categoryColor}}>{skill.category.categoryName} ███</CardText>
                 <Button color="primary">Update</Button>
                 
                </Card>
-    
-            
+               </div>
+            </>
         
 
         )})
@@ -63,7 +64,7 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
             <>
                 <h3 className = "skillTitle">All Skills</h3>
             
-                <Row >
+                <Row className="d-flex justify-content-center">
                         {view}
                 </Row>
                    
@@ -71,17 +72,20 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
 
 
 
-                <br/><br/>
-                <Container>
-                    <Row xs="6">
-                    {legend}
-                    </Row>
-                </Container>
+                
             </>
+            
 
         )
     }
 }
+        //add to render for list of categories (can be used to sort skills)
+        // <br/><br/>
+        //     <Container>
+        //         <Row xs="6">
+        //         {legend}
+        //         </Row>
+        //     </Container>
 
 const mapStateToProps = (state:IState) => {
     return {

@@ -11,6 +11,7 @@ interface IVisualizationProps{
     errorMessage: string
     getAllVisualizationsActionMapper: () => void
     getOneVisualizationActionMapper:(id:number) => void
+    deleteOneVisualizationActinoMapper:(id:number) => void
 }
 
 export class ViewAllVisualizationComponent extends React.Component<IVisualizationProps,any>{
@@ -24,6 +25,12 @@ componentDidMount(){
 updateView(e: SyntheticEvent,id:number){
     e.preventDefault()
     this.props.getOneVisualizationActionMapper(id)
+}
+
+async deleteVisualization(e:SyntheticEvent,id:number){
+    e.preventDefault()
+   await this.props.deleteOneVisualizationActinoMapper(id)
+    this.props.getAllVisualizationsActionMapper()
 }
     render(){
 
@@ -41,7 +48,7 @@ updateView(e: SyntheticEvent,id:number){
                     <ButtonGroup>
                     <Button onClick={(e: SyntheticEvent)=>this.updateView(e,visualization.visualizationId)}>Update?</Button>
 
-                    <Button>stuff</Button>
+                    <Button onClick={(e:SyntheticEvent)=>this.deleteVisualization(e,visualization.visualizationId)}>Delete?</Button>
                     </ButtonGroup>
                 </Card>
             )

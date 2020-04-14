@@ -83,9 +83,16 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
         
         return(
             this.props.skillToUpdate.skillId === 0?
-            <Form onSubmit = {this.submit}>
+            <>
+            &nbsp;
+            <Row className="d-flex justify-content-center">
+                
+           <Form onSubmit = {this.submit}>
             
-            <Row className="d-flex justify-content-center"> 
+            <Card className="col-12 shadow-custom2">
+            &nbsp;
+            <Row className="d-flex justify-content-center ">
+             
                 <UncontrolledButtonDropdown>
                     <DropdownToggle color="info" caret>
                        {this.state.skillLabel}
@@ -104,16 +111,20 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
                     </DropdownMenu>
                 </UncontrolledButtonDropdown>
 
-                <Input onChange={this.updateSkillName} className = "skillNameInput" value={this.state.name} type="text" placeholder="new name" />
-                </Row>
-        
-                <Button color="primary" className= "updateButton">Update</Button>
+                <Input onChange={this.updateSkillName} className = "mx-1 col-6" value={this.state.name} type="text" placeholder="New Name" />
                 
+                </Row>
+                
+                <Row className="d-flex justify-content-center">
+                <Button color="primary" className= "col-3 updateButton">Update</Button>
+                </Row>
+                &nbsp;
+                </Card>
                 
 
             </Form>
-            
-
+            </Row>
+            </>
             :
             <Redirect to = "/skills"/>
         )
