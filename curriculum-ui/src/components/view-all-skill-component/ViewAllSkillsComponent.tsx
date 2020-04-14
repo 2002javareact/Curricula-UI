@@ -73,9 +73,10 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
                 <CardTitle>{skill.skillName}</CardTitle>
                 <CardText style={{color: skill.category.categoryColor}}>{skill.category.categoryName} ███</CardText>
                 {this.renderRedirect()}
-                <Button onClick = {this.setRedirect} color="primary">Update</Button>
-                <br/>
-                <Button onClick = {this.delete(skill.skillId)} color="primary">Delete</Button>                
+                <Row className="d-flex justify-content-center">
+                <Button onClick = {this.setRedirect} className="col-4"color="primary">Update</Button>
+                <Button onClick = {this.delete(skill.skillId)} className="col-4" color="danger">Delete</Button>                
+                </Row>
                </Card>
                </div>
             </>
