@@ -2,12 +2,18 @@ import { Curriculum } from "../models/Curriculum";
 import { IDeleteCurriculumState } from ".";
 import { deleteCurriculumTypes } from "../action-mappers/delete-curriculum-action-mapper";
 import { AnyAction } from "redux";
-
+/**
+ * Initial states for the delete curriculum reducer
+ */
 const initialState: IDeleteCurriculumState = {
 	deleteCurriculum: new Curriculum(0, "", []),
 	errorMessage: "",
 };
-
+/**
+ * This is the delete curriculum reducer that will evaluate the action and return the corresponding state
+ * @param state The initial state
+ * @param action The action that will guide the Reducer response
+ */
 export const deleteCurriculumReducer = (
 	state = initialState,
 	action: AnyAction
