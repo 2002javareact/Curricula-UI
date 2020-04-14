@@ -85,7 +85,6 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
         
         return(
             this.props.skillToUpdate.skillId === 0?
-
             <Form onSubmit = {this.submit}>
             
             <Card className="d-flex justify-content-center"> \

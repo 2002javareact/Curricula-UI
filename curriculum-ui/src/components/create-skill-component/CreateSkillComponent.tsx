@@ -67,7 +67,6 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
             )})
         return( 
             this.props.createdSkill.skillId === 0?               
-
             <>  
               
                         <Form onSubmit = {this.submit}>

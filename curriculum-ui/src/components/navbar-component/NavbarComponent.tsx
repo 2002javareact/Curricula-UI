@@ -43,7 +43,7 @@ const NavBarComponent = (props: any) => {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/">
+                  <Link className="dropdown-link" to="/visualization/create">
                     Create A Visualization
                   </Link>
                 </DropdownItem>
@@ -61,7 +61,7 @@ const NavBarComponent = (props: any) => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/">
+                  <Link className="dropdown-link" to="/curriculum">
                     View All Curriculums
                   </Link>
                 </DropdownItem>
@@ -69,12 +69,6 @@ const NavBarComponent = (props: any) => {
                 <DropdownItem>
                   <Link className="dropdown-link" to="/curriculum/create">
                     Create A Curriculum
-                  </Link>
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-                  <Link className="dropdown-link" to="/curriculum/view/1">
-                    View/Edit A Curriculum
                   </Link>
                 </DropdownItem>
               </DropdownMenu>
@@ -109,7 +103,7 @@ const NavBarComponent = (props: any) => {
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  <Link className="dropdown-link" to="/">
+                  <Link className="dropdown-link" to="/category">
                     View All Categories
                   </Link>
                 </DropdownItem>
@@ -117,12 +111,6 @@ const NavBarComponent = (props: any) => {
                 <DropdownItem>
                   <Link className="dropdown-link" to="/">
                     Create A Category
-                  </Link>
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-                  <Link className="dropdown-link" to="/">
-                    Update A Category
                   </Link>
                 </DropdownItem>
               </DropdownMenu>
