@@ -16,6 +16,7 @@ import  ViewAndUpdateVisualizationComponent from './components/visualization-com
 import ViewAndUpdateCurriculumComponent  from './components/curriculum-components/view-and-update-curriculum-component/ViewAndUpdateCurriculumContainer';
 import  CreateVisualizationComponent  from './components/visualization-components/create-visualization-component/CreateVisualizationContainer';
 
+
 function App() {
   return (
     <Provider store={store}>

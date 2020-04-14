@@ -40,6 +40,7 @@ if(response.status === 200){
     } catch (e) {
         throw new InternalServiceError()
     }
+
 }
 
 export async function createVisualization(visualizationName: string, curriculumId: Array<any>): Promise<Visualization> {

@@ -5,6 +5,7 @@ import { updateReducer } from "./update-curriculum-reducer";
 import { Skill } from "../models/Skill";
 import { skillsReducer } from "./skills-reducers";
 import { categoriesReducer } from "./category-reducer";
+import { createReducer } from "./create-category-reducer";
 import { getCurriculumByIdReducer } from "./get-curriculum-by-id-reducer";
 import { deleteCurriculumReducer } from "./delete-curriculum-reducer";
 import { Category } from "../models/Category";
@@ -12,6 +13,7 @@ import { Visualization } from "../models/Visualization";
 import { visualizationReducer } from "./visualization-reducer";
 import { allCurriculumReducer } from "./all-curriculum-reducer";
 import { getSkillsByCategoryIdReducer } from "./get-skill-category-reducer";
+import { deleteCategoryByIdReducer } from "./delete-category-by-id-reducer";
 import { createVisualizationReducer } from "./create-visualization-reduser";
 
 export interface IGetAllSkillState {
@@ -46,11 +48,38 @@ export interface ICurriculumState {
 	errorMessage: string;
 }
 
+
+export interface ICreateCategoryState{
+  //createCategory:Category
+  createCat: Category
+  errorMessage:string
+}
+
 export interface ICategoriesState {
 	allCategory: [];
 	updatedCategory: Category;
 	errorMessage: string;
 }
+
+
+export interface ICategoriesState{
+  allCategory:[]
+  errorMessage:string
+}
+export interface ICreateVIsualizationState{
+    createVIsualization:Skill
+    listCurriculum:Curriculum[]
+    errorMessage:string
+  }
+
+export interface IViewAllVisualizationsState{
+  // allVisualizations:Visualization[]
+  errorMessage: string
+}
+
+export interface IGetCurriculumByIdState{
+  getCurriculumById:Curriculum
+  errorMessage:string
 
 export interface IViewCurriculumState {
 	updateCurriculum: Curriculum;
@@ -59,6 +88,11 @@ export interface IViewCurriculumState {
 export interface ICategoriesState {
 	allCategory: [];
 	errorMessage: string;
+}
+
+export interface IDeleteCategoryByIdState {
+  deleteCategoryById: any;
+  errorMessage: string;
 }
 
 export interface IGetCurriculumByIdState {
@@ -78,6 +112,7 @@ export interface ICreateVIsualizationState{
     errorMessage:string
   }
 
+
 export interface IViewAllVisualizationsState {
 	allVisualizations: Visualization[];
 	errorMessage: string;
@@ -96,7 +131,9 @@ export interface IState {
 	curriculum: ICurriculumState;
 	allCurriculum: IAllCurriculumState;
 	allVisualizations: IViewAllVisualizationsState;
+  deleteCategoryById: IDeleteCategoryByIdState;
 	newVisualization:ICreateVIsualizationState;
+  createCategory: ICreateCategoryState
 }
 
 export const state = combineReducers<IState>({
@@ -111,5 +148,9 @@ export const state = combineReducers<IState>({
 	createCurriculum: curriculumReducer,
 	allCategory: categoriesReducer,
 	allVisualizations: visualizationReducer,
+  deleteCategoryById: deleteCategoryByIdReducer,
+  createCategory:createReducer,
 	newVisualization:createVisualizationReducer,
 });
+
+ 

@@ -1,12 +1,11 @@
 import { Skill } from "../../models/Skill"
-import { Container, Row, Button, Card, CardDeck } from "reactstrap"
+import { Container, Row, Button, Card,  CardTitle, CardText, CardDeck } from "reactstrap"
 import { IState } from "../../reducers"
 import { connect } from "react-redux"
 import React from "react"
 import { viewAllSkillsActionMapper } from "../../action-mappers/skill-action-mapper"
 import { getAllCategoriesActionMapper } from "../../action-mappers/getall-categories-action-mappers"
 import { Category } from "../../models/Category"
-import { skillCategoryTypes } from "../../action-mappers/get-skills-by-category-id-action-mapper"
 
 
 
@@ -26,16 +25,31 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
 
     render(){
         this.props.allSkills.sort((a,b) =>{
-            return a.category.categoryColor.localeCompare(b.category.categoryColor)})
+            return a.category.categoryName.localeCompare(b.category.categoryName)})
 
             let view = this.props.allSkills.map((skill) => { 
+
             return (
-                <Container>
-           <Card className="rounded-pill p-1 text-light m-auto font-weight-bold"
-           style={{backgroundColor: skill.category.categoryColor}}>{skill.skillName}</Card>
-            </Container>
-        )})
+
+           <Card style={{ width: '18rem' }} className="  .col-6 .col-sm-6 p-2 visualizationCard shadow-custom m-auto">
+                <CardTitle>{skill.skillName}</CardTitle>
+                <CardText style={{color: skill.category.categoryColor}}>{skill.category.categoryName}</CardText>
+                <Button color="primary">Update</Button>
                 
+               </Card>
+    
+            
+        
+
+        )})
+
+
+
+        
+
+        this.props.allCategory.sort((a,b) =>{
+            return a.categoryName.localeCompare(b.categoryName)}) 
+
         let legend = this.props.allCategory.map((category) => {
             return(
                 <>
@@ -48,11 +62,15 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
         return(
             <>
                 <h3 className = "skillTitle">All Skills</h3>
-                <Container className ="listOfSkills">
-                    <Row xs="4">
+            
+                <Row >
                         {view}
-                    </Row>
-                </Container>
+                </Row>
+                   
+        
+
+
+
                 <br/><br/>
                 <Container>
                     <Row xs="6">
