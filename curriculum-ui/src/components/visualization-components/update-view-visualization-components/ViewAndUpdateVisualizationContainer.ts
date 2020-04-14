@@ -9,7 +9,7 @@ const mapStatetoProps = (state: IState) => {
     return {
         visualization: state.allVisualizations.visualization,
         errorMessage: state.allVisualizations.errorMessage,
-        allCurriculumList: state.allCurriculum.curriculumList
+        allCurriculumList: state.curriculum.curriculumList
     }
 }
 

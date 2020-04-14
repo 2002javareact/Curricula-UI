@@ -8,7 +8,8 @@ import { getAllCategoriesActionMapper } from '../../../action-mappers/getall-cat
 const mapStateToProps = (state:IState) => {
   return({
     allCategory:state.allCategory.allCategory,
-    skillsByCategoryId:state.skillsByCategoryId.skillsByCategoryId
+    skillsByCategoryId:state.skillsByCategoryId.skillsByCategoryId,
+    errorMessage:state.curriculum.errorMessage
   })
 }
 

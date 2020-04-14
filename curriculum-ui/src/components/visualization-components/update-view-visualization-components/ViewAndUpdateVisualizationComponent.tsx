@@ -163,13 +163,10 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
             ))
 
         return (
-
-            <>
-                <br /><br /><br /><br />
-                <h3>{this.props.visualization.visualizationName}</h3>
-                <br />
-                <Container className="shadow-custom rounded p-3">
+            <Container>
+                <Row className="p-4 m-4 border border-light rounded shadow-custom">
                     <Row>
+                        <h3 className="col-12 mb-4">{this.props.visualization.visualizationName}</h3>
                         <Col className="col-sm-6">
                             <ButtonGroup vertical className="w-100">
                                 {displayCurriculum}
@@ -182,26 +179,29 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
                             {categoryDisplay}
                         </Col>
                     </Row>
-                </Container>
-                {this.state.updateVisualization ?
-                    <>
-                        <br /><br /><br /><br />
-
-                        <Label>Warning Refresh will remove update and progress will be lost</Label>
-                        <Form onSubmit={this.updateVisualization} className="w-50 p-3 m-auto">
-                            <Label for="exampleCheckbox">Check Curriculum to add or remove from current Visualization</Label>
-                            <FormGroup check inline>
-                                {curriculumCheckBoxes}
-                            </FormGroup>
-                            <FormGroup>
-                                <Label>Visualization Name</Label>
-                                <Input type="text" onChange={this.updateVisualizationName.bind(this)} placeholder={`${this.props.visualization.visualizationName}`} />
-                            </FormGroup>
-                            <Button>Submit</Button>
-                        </Form>
-                    </>
-                    : <></>}
-            </>)
+                    {this.state.updateVisualization &&
+                    <Row>
+                        <Col>
+                            <hr/>
+                            <p className="text-secondary">Warning: Refresh will remove update and progress will be lost</p>
+                            <Form onSubmit={this.updateVisualization} className="p-3 m-auto text-left">
+                                <FormGroup className="text-left">
+                                    <Label className="pl-2 font-weight-bold text-left">Visualization Name</Label>
+                                    <Input type="text" onChange={this.updateVisualizationName.bind(this)} placeholder={`${this.props.visualization.visualizationName}`} />
+                                </FormGroup>
+                                <Label className="m-0 pl-2 font-weight-bold" for="exampleCheckbox">Check Curriculum to add or remove from current Visualization</Label>
+                                <FormGroup check inline className="px-3">
+                                    {curriculumCheckBoxes}
+                                </FormGroup>
+                                <Button className="w-100" color="primary">Submit</Button>
+                            </Form>
+                        </Col>
+                    </Row>
+                    }
+                </Row>
+            </Container>
+    
+        )
     }
 
 }

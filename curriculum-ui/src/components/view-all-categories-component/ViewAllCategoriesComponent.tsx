@@ -5,12 +5,16 @@ import { Category } from "../../models/Category";
 import { RouteComponentProps } from "react-router";
 import { NavLink } from "react-router-dom";
 
+import { SketchPicker } from 'react-color';
+
 //prop interface
 
 interface IViewAllUsersProps extends RouteComponentProps {
   allCategory: Category[];
+  deletedCategory:any;
   errorMessage: string;
   getAllCategoriesActionMapper: () => void;
+  CategoryDeleteByIdActionMapper: (id:number) => void;
 }
 //state interface?
 
@@ -18,15 +22,28 @@ export class ViewAllCategoriesComponent extends React.Component<
   IViewAllUsersProps,
   any
 > {
-  // refreshPage() {
-  //   window.location.reload(true);
-  // }
+  refreshPage() {
+    window.location.reload(true);
+  }
   componentDidMount() {
-    return this.props.getAllCategoriesActionMapper();
+
+    if (this.props.allCategory.length === 0) {
+    return (this.props.getAllCategoriesActionMapper());
+    }
+    else {}
   }
   componentDidUpdate() {
-    return this.props.getAllCategoriesActionMapper();
+   // return this.props.getAllCategoriesActionMapper();
   }
+  deleteCategory = async (id:number) =>{
+    this.props.CategoryDeleteByIdActionMapper(id)
+    this.refreshPage();
+  }
+
+  onDeleteClick() {
+   
+    alert('clicked');
+}
 
   render() {
     let viewCategory = this.props.allCategory.map((category, index) => {
@@ -46,8 +63,7 @@ export class ViewAllCategoriesComponent extends React.Component<
           <CardTitle style={{ color: "black", fontSize: "2em" }}>
             {category.categoryName}
           </CardTitle>
-          <br />
-          <br />
+            <br />
           <br />
           <CardText style={{ color: "black", fontSize: "1.2em" }}>
             COLOR: {category.categoryColor}
@@ -61,20 +77,14 @@ export class ViewAllCategoriesComponent extends React.Component<
           >
             Update Category
           </NavLink>
-          <Button
-            style={{
-              backgroundColor: "#464646",
-              fontSize: "2em",
-              color: "black"
-            }}
-          >
+          <Button onClick={() => this.deleteCategory(category.categoryId)} style={{  backgroundColor: "#464646",   fontSize: "2em",   color: "black"  }} >
             {" "}
             DELETE
           </Button>
-        </Card>
+            </Card>
       );
-    });
-
+    }); // loop
+    //onClick={this.deleteCategory(category.categoryId)}
     //this.refreshPage();
     return (
       <>

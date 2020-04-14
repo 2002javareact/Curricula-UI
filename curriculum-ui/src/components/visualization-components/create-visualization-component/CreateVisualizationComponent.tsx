@@ -1,8 +1,7 @@
-import { Container, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, Button, Alert} from 'reactstrap';
+import { Container, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, CardTitle, Button, Alert, CustomInput} from 'reactstrap';
 import React, { SyntheticEvent } from "react";
 import { Visualization } from "../../../models/Visualization";
 import { Curriculum } from '../../../models/Curriculum';
-import { ifError } from 'assert';
 
  interface ICreateVisualizationProps{
     createVisualization: Visualization
@@ -14,36 +13,41 @@ import { ifError } from 'assert';
 
  interface ICreateVisualizationState{
     visualizationName:string,
-    Curriculum:Array<any>,
+    checkedCurriculumList:Array<any>,
     isLoading:boolean,
     
 }
 
 export class CreateVisualizationComponent extends React.Component<ICreateVisualizationProps,ICreateVisualizationState>{
-    constructor(props:any){
-        super(props)
-        this.state = {
-            visualizationName:'',
-            Curriculum:[],
-            isLoading:false
-
-        }
-        
-   
+  constructor(props:any){
+    super(props)
+    this.state = {
+        visualizationName:'',
+        checkedCurriculumList:[],
+        isLoading:false
+    }
     this.handlerName=this.handlerName.bind(this);
-    this.handlerCurriculum=this.handlerCurriculum.bind(this);
     this.submitVisualization=this.submitVisualization.bind(this);
     this.submitCurriculum=this.submitCurriculum.bind(this);
   }
-  componentDidMount(){
-    
-    this.props.viewCurriculumListActionMapper();
-      console.log('we are in mount  '+this.props.viewCurriculumListActionMapper);
-      
+  async componentDidMount(){
+    await this.props.viewCurriculumListActionMapper()
+    const checkedCurriculumList = this.props.curriculumList.map((c: Curriculum) => {
+      return this.convertCurriculumToCheckedObject(c, false);
+    })
+    this.setState({
+        checkedCurriculumList: checkedCurriculumList
+    })
     
   }
+  convertCurriculumToCheckedObject(curriculum: Curriculum, isExist: boolean) {
+    return ({
+        curriculumId: curriculum.curriculumId,
+        curriculumName: curriculum.curriculumName,
+        isExist: isExist
+    })
+}
   handlerName(e:any){this.setState({visualizationName:e.target.value})}
-  handlerCurriculum(e:any){this.setState({Curriculum:e.target.value})}
   submitCurriculum(e:SyntheticEvent){
     e.preventDefault();
    
@@ -51,52 +55,73 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
     
   }
   
-   submitVisualization = async (e: SyntheticEvent) => 
-  {
+  updateVisualizationCurriculum = (id: number) => {
+    console.log("iscalling " + id)
+    const newCurriculumList = this.state.checkedCurriculumList.map((c: any) => {
+        if (c.curriculumId === id) {
+            return {
+                curriculumId: c.curriculumId,
+                curriculumName: c.curriculumName,
+                isExist: !c.isExist
+            }
+        }
+        else {
+            return c;
+        }
+    })
+    this.setState({ checkedCurriculumList: newCurriculumList })
+  }
+
+  submitVisualization = async (e: SyntheticEvent) => {
     e.preventDefault();
-    this.props.createVisualizationActionMapper(this.state.visualizationName,this.state.Curriculum)
- 
-  this.setState({    
-    visualizationName: '', 
-    Curriculum:[], 
-    isLoading:false
-})
+    if (this.state.visualizationName.length>0){
+      console.log("Sorry i dont know what this does");
+      //this.props.createVisualizationActionMapper(this.state.visualizationName,this.state.Curriculum)}
+    }
+    else{
+      console.log('you need to put some name');
+    }   
+    const checkedCurriculumList = this.props.curriculumList.map((c: Curriculum) => {
+      return this.convertCurriculumToCheckedObject(c, false);
+    })
+    this.setState({    
+      visualizationName: '', 
+      checkedCurriculumList:checkedCurriculumList, 
+      isLoading:false
+    })
     console.log(this.props.createVisualizationActionMapper);
   }
   render(){
-      let curriculumOption 
-      if (this.props.curriculumList.length>0){
-       curriculumOption = this.props.curriculumList.map((el:Curriculum)=>(<option value={el.curriculumId}>{el.curriculumName}</option>))}
-      
+    const curriculumCheckBoxes =
+    this.state.checkedCurriculumList.map((el) => (
+        <CustomInput onChange={this.updateVisualizationCurriculum.bind(this, el.curriculumId)} className="p-3" type="checkbox" id={`${el.curriculumId}`} label={el.curriculumName} value={el.curriculumId} checked={el.isExist} />
+    ))
     return(
+      <div>
       <Container>
-        <Row className="p-4 m-4 border border-secondary">
+        <Row className="p-4 m-4 border border-light text-left rounded shadow-custom bg-light">
           <Col>
-            <h2>Create Visualization Form</h2>
-            <Form>
-              <FormGroup>
-                <Label>Name</Label>
-                <Input type="text" onChange={this.handlerName} placeholder="Enter the Visualization Name" defaultValue={this.state.visualizationName}/>
-              </FormGroup>
-            </Form>
-            <Form inline onSubmit={this.submitCurriculum}>
-              <FormGroup className="col-sm-10 pl-0">
-                <Label className="text-align-left col-sm-2">Curriculum</Label>     
-                <Input type="select" name="Curriculum" className="col-sm-10" onChange={this.handlerCurriculum}>
-                 {curriculumOption}
-                </Input>
-              </FormGroup>
-
-              <Button  className="col-sm-2">Search</Button>
-            </Form>
+            <h2 className="text-center">Create Visualization Form</h2>
             <Form onSubmit={this.submitVisualization}>
-              <Button type="submit" className="my-3 col-sm-12">Submit</Button>
+              <FormGroup>
+                <Label className="pl-2 font-weight-bold">Visualization Name</Label>
+                <Input type="text" onChange={this.handlerName} placeholder="Enter the Visualization Name" defaultValue={this.state.visualizationName} />
+              </FormGroup>
+              <Label className="pl-2 font-weight-bold m-0" for="exampleCheckbox">Check Curriculum to add or remove from current Visualization</Label>
+              <FormGroup check inline className="pl-3 w-100">
+                {curriculumCheckBoxes}
+              </FormGroup>
+              <Button color="primary" type="submit" className="my-3 col-sm-12">Submit</Button>
             </Form>
            
             {this.state.isLoading && <Alert>Loading</Alert>}
           </Col>
         </Row>
+       
       </Container>
+      <>
+      <p>{this.props.errorMessage}</p></>
+      </div>
     )
   }
 }
