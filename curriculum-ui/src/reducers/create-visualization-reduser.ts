@@ -1,12 +1,11 @@
 import {  ICreateVIsualizationState } from ".";
 import { AnyAction } from "redux";
-import { visualizationCreateTypes } from "../action-mappers/create-visualization-Action-mapper";
+import { visualizationCreateTypes } from "../action-mappers/create-visualization-action-mapper";
 import { Visualization } from "../models/Visualization";
 
 
 const initialState: ICreateVIsualizationState={
     createVIsualization: new Visualization(0, '', []),
-    curriculumList:  [],
     errorMessage:''
   }
     

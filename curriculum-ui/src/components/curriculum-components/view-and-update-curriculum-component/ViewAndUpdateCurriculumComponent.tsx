@@ -33,20 +33,20 @@ import { Skill } from "../../../models/Skill";
 import { Category } from "../../../models/Category";
 
 interface IViewAndUpdateCurriculumProps {
-	updateCurriculumActionMapper: (c: Curriculum) => any;
-	updatedCurriculum: Curriculum;
-	getCurriculumById: Curriculum;
-	
-	getCurriculumByIdActionMapper: (id: number) => any;
-	match: any;
-	// allSkills: Skill[],
-	deleteCurriculumActionMapper: (id: number) => any;
-	getAllCategoriesActionMapper: () => any;
-	getSkillsByCategoryIdActionMapper: (id: number) => any;
-	viewAllSkillsActionMapper: () => void;
-	errorMessageSkills: string;
-	allCategory: Array<Category>;
-	skillsByCategoryId: Array<Skill>;
+   updateCurriculumActionMapper:(c:Curriculum)=>any,
+    updatedCurriculum: Curriculum,
+    curriculum:Curriculum,
+    getCurriculumByIdActionMapper:(id:number)=>any,
+    match:any,
+    // allSkills: Skill[],
+    getAllCategoriesActionMapper:()=>any
+    getSkillsByCategoryIdActionMapper:(id:number)=>any,
+    viewAllSkillsActionMapper:() => void,
+    errorMessageSkills:string,
+    allCategory:Array<Category>,
+    skillsByCategoryId:Array<Skill>
+		deleteCurriculumActionMapper: (id: number) => any;
+
 }
 
 interface IViewAndUpdateCurriculumState {
@@ -102,18 +102,11 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 			// this.setState({curriculum: curriculumId});
 		}
 
-		if (id) {
-			// let curriculumId = this.props.getCurriculumByIdActionMapper(parseInt(id));
-			await this.props.deleteCurriculumActionMapper(parseInt(id));
-			//     console.log("We are in this id: " + id)
-			// this.setState({curriculum: curriculumId});
-		}
-
 		if (this.props.allCategory) {
 			await this.props.getAllCategoriesActionMapper();
 		}
 		let emptyArr: Array<Skill> = [];
-		this.props.getCurriculumById.skills.forEach((skill: Skill) =>
+		this.props.curriculum.skills.forEach((skill: Skill) =>
 			emptyArr.push(skill)
 		);
 		this.setState({
@@ -152,13 +145,13 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 	async submitDeleteCurriculum(e: SyntheticEvent) {
 		e.preventDefault();
 		 await this.props
-			.deleteCurriculumActionMapper(this.props.getCurriculumById.curriculumId)
+			.deleteCurriculumActionMapper(this.props.curriculum.curriculumId)
 			.then((e: any) => {
 				this.setState({ isLoading: false });
 				this.setState({isRedirect: true })
 			});
 		this.props.deleteCurriculumActionMapper(
-			this.props.getCurriculumById.curriculumId
+			this.props.curriculum.curriculumId
 		);
 	}
 
@@ -172,7 +165,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 		} else {
 			this.setState({ isLoading: true });
 			const curriculum = new Curriculum(
-				this.props.getCurriculumById.curriculumId,
+				this.props.curriculum.curriculumId,
 				this.state.name,
 				this.state.existSkillList
 			);
@@ -182,7 +175,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 					this.setState({ isLoading: false });
 				});
 			this.props.getCurriculumByIdActionMapper(
-				this.props.getCurriculumById.curriculumId
+				this.props.curriculum.curriculumId
 			);
 		}
 	}
@@ -215,33 +208,25 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 			),
 		});
 	}
-
-	componentDidUpdate() {
-		console.log(this.state.existSkillList);
-		console.log(this.state.notExistSkillList);
-	}
-	public updateCurriculumSubmit = () => this.setState({ isShowUpdate: true });
-	handlerName(e: any) {
-		this.setState({ name: e.target.value || undefined });
-	}
-
-	
-
+	public updateCurriculumSubmit = () => this.setState((prevState)=>({isShowUpdate:!prevState.isShowUpdate}));
+	handlerName(e:any){this.setState({name:e.target.value||undefined})}
 	render() {
 		return (
 			//TODO: Give option to keep Curriculum Name
-
-			<React.Fragment>
-				 {this.state.isRedirect && <Redirect to={"/curriculum"}/> }
-				{this.state.isShowUpdate ? (
 					//isShowUpdate = true
-					<Container className="curriculum-view-update-container">
-						<Row className="p-4 m-4 border border-light shadow text-left rounded">
-							{this.props.getCurriculumById ? (
+					
+				<Container className="curriculum-view-update-container">
+					{this.state.isRedirect && <Redirect to={"/curriculum"}/> }
+						<Row className="p-4 m-4 border border-light shadow-custom text-left rounded bg-light">
+							{!this.props.curriculum ? (								
+								<Col>
+									<h3>No Curriculum found</h3>
+								</Col>
+							):(
 								<React.Fragment>
 									<Col lg={12}>
 										<h3>
-											Curriculum: {this.props.getCurriculumById.curriculumName}
+											Curriculum: {this.props.curriculum.curriculumName}
 										</h3>
 									</Col>
 									<Col lg={12}>
@@ -264,7 +249,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
                                 <Card className="curriculum-view-update-card">
                                     <CardTitle><h3 className="curriculum-view-update-left-text">Skills:</h3></CardTitle>
                                     <CardColumns>
-                                        {this.props.getCurriculumById.skills.map(skills => <CardText>{skills.skillName}</CardText>)}
+                                        {this.props.curriculum.skills.map(skills => <CardText>{skills.skillName}</CardText>)}
                                     </CardColumns>
                                 </Card>
                             </Col> */}
@@ -273,7 +258,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 											Current curriculum:
 										</p>
 									</Col>
-									{this.props.getCurriculumById.skills.map((skills) => (
+									{this.props.curriculum.skills.map((skills) => (
 										<Card className="curriculum-view-update-card-skills">
 											<CardTitle>{skills.skillName}</CardTitle>
 										</Card>
@@ -285,6 +270,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 										</p>
 									</Col>
 
+									{this.state.isShowUpdate &&
 									<Col lg={12}>
 										<Form>
 											<Form>
@@ -404,78 +390,70 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 											</Form>
 										</Form>
 									</Col>
-									<Col>
-										{/* {this.props.allSkills.map(skills => <Card className="curriculum-view-update-card-skills"><CardTitle>{skills.skillName}</CardTitle><Button color="success">Add</Button></Card>)} */}
-									</Col>
-
-									{/* React Frgment end*/}
+									}
 								</React.Fragment>
-							) : (
-								<Col>
-									<h3>No Curriculum found</h3>
-								</Col>
 							)}
 						</Row>
 					</Container>
-				) : (
 					//isShow is false
-					<Container className="curriculum-view-update-container">
-						<Row className="p-4 m-4 border border-secondary">
-							{this.props.getCurriculumById ? (
-								<React.Fragment>
-									<Col lg={12}>
-										<h3>
-											Curriculum: {this.props.getCurriculumById.curriculumName}
-										</h3>
-									</Col>
-									<Col lg={12}>
-										<Button
-											onClick={this.submitDeleteCurriculum}
-											className="curriculum-view-update-buttons"
-											color="danger"
-										>
-											Delete Curriculum
-										</Button>
-										<Button
-											onClick={this.updateCurriculumSubmit}
-											className="curriculum-view-update-buttons"
-											color="primary"
-										>
-											Update Curriculum
-										</Button>
-									</Col>
-									<Col>
-										<Card className="curriculum-view-update-card">
-											<CardTitle>
-												<h3 className="curriculum-view-update-left-text">
-													Skills:
-												</h3>
-											</CardTitle>
-											<CardText>
-												{this.props.getCurriculumById.skills.map((skills) => (
-													<Badge
-														pill
-														className="curriculum-view-update-pills"
-														style={{
-															backgroundColor: skills.category.categoryColor,
-														}}
-													>
-														{skills.skillName}
-													</Badge>
-												))}
-											</CardText>
-										</Card>
-									</Col>
-								</React.Fragment>
-							) : (
-								<Col>
-									<h3>No Curriculum found</h3>
-								</Col>
-							)}
-						</Row>
-					</Container>
-				)}
-			</React.Fragment>
-		);
+		// 			<Container className="curriculum-view-update-container">
+		// 				<Row className="p-4 m-4 border border-secondary">
+		// 					{this.props.curriculum ? (
+		// 						<React.Fragment>
+		// 							<Col lg={12}>
+		// 								<h3>
+		// 									Curriculum: {this.props.curriculum.curriculumName}
+		// 								</h3>
+		// 							</Col>
+		// 							<Col lg={12}>
+		// 								<Button
+		// 									onClick={this.submitDeleteCurriculum}
+		// 									className="curriculum-view-update-buttons"
+		// 									color="danger"
+		// 								>
+		// 									Delete Curriculum
+		// 								</Button>
+		// 								<Button
+		// 									onClick={this.updateCurriculumSubmit}
+		// 									className="curriculum-view-update-buttons"
+		// 									color="primary"
+		// 								>
+		// 									Update Curriculum
+		// 								</Button>
+		// 							</Col>
+		// 							<Col>
+		// 								<Card className="curriculum-view-update-card">
+		// 									<CardTitle>
+		// 										<h3 className="curriculum-view-update-left-text">
+		// 											Skills:
+		// 										</h3>
+		// 									</CardTitle>
+		// 									<CardText>
+		// 										{this.props.curriculum.skills.map((skills) => (
+		// 											<Badge
+		// 												pill
+		// 												className="curriculum-view-update-pills"
+		// 												style={{
+		// 													backgroundColor: skills.category.categoryColor,
+		// 												}}
+		// 											>
+		// 												{skills.skillName}
+		// 											</Badge>
+		// 										))}
+		// 									</CardText>
+		// 								</Card>
+		// 							</Col>
+		// 						</React.Fragment>
+		// 					) : (
+		// 						<Col>
+		// 							<h3>No Curriculum found</h3>
+		// 						</Col>
+		// 					)}
+		// 				</Row>
+		// 			</Container>
+		// 		)}
+		// 	</React.Fragment>
+		// );\
+		)
 	}
 }

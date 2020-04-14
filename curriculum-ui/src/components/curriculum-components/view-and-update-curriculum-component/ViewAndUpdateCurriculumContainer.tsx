@@ -12,10 +12,10 @@ const mapStateToProps = (state:IState) =>{
 
     return{
 
-    updateCurriculum: state.updateCurriculum.updateCurriculum,
-    getCurriculumById: state.getCurriculumById.getCurriculumById,
-    errorMessageForUpdate: state.updateCurriculum.errorMessage,
-    errorMessageForById: state.getCurriculumById.errorMessage,
+    updateCurriculum: state.curriculum.updateCurriculum,
+    curriculum: state.curriculum.curriculum,
+    errorMessageForUpdate: state.curriculum.errorMessage,
+    errorMessageForById: state.curriculum.errorMessage,
     allSkills: state.skills.allSkills,
     errorMessageSkills: state.skills.errorMessage,
     allCategory:state.allCategory.allCategory,
