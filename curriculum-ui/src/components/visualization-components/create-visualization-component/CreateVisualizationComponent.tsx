@@ -2,6 +2,7 @@ import { Container, Row, Col, Form, FormGroup, Label, Input, Card, CardBody, Car
 import React, { SyntheticEvent } from "react";
 import { Visualization } from "../../../models/Visualization";
 import { Curriculum } from '../../../models/Curriculum';
+import { Redirect } from 'react-router';
 
  interface ICreateVisualizationProps{
     createVisualization: Visualization
@@ -15,7 +16,8 @@ import { Curriculum } from '../../../models/Curriculum';
     visualizationName:string,
     checkedCurriculumList:Array<any>,
     isLoading:boolean,
-    
+    isRedirect:boolean,
+    isEmpty:boolean,
 }
 
 export class CreateVisualizationComponent extends React.Component<ICreateVisualizationProps,ICreateVisualizationState>{
@@ -24,7 +26,9 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
     this.state = {
         visualizationName:'',
         checkedCurriculumList:[],
-        isLoading:false
+        isLoading:false,
+        isRedirect:false,
+        isEmpty:false
     }
     this.handlerName=this.handlerName.bind(this);
     this.submitVisualization=this.submitVisualization.bind(this);
@@ -75,12 +79,7 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
   submitVisualization = async (e: SyntheticEvent) => {
     e.preventDefault();
     if (this.state.visualizationName.length>0){
-      console.log("Sorry i dont know what this does");
-      //this.props.createVisualizationActionMapper(this.state.visualizationName,this.state.Curriculum)}
-    }
-    else{
-      console.log('you need to put some name');
-    }   
+      
     const checkedCurriculumList = this.props.curriculumList.map((c: Curriculum) => {
       return this.convertCurriculumToCheckedObject(c, false);
     })
@@ -88,8 +87,24 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
       visualizationName: '', 
       checkedCurriculumList:checkedCurriculumList, 
       isLoading:false
+    }) 
+   
+
+    let array: any[] = []
+
+    this.state.checkedCurriculumList.forEach((element: any) => {
+        if (element.isExist) {
+            array.push({ curriculumId: element.curriculumId })
+        }
     })
-    console.log(this.props.createVisualizationActionMapper);
+    
+    this.props.createVisualizationActionMapper(this.state.visualizationName,array)
+    this.setState({isRedirect:true})
+    }
+  else{
+    this.setState({isEmpty:true})
+    console.log('you need to Enter Visulaization name');
+  }   
   }
   render(){
     const curriculumCheckBoxes =
@@ -98,6 +113,7 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
     ))
     return(
       <div>
+        {this.state.isRedirect && <Redirect to={"/"}/> }
       <Container>
         <Row className="p-4 m-4 border border-light text-left rounded shadow-custom bg-light">
           <Col>
@@ -113,14 +129,15 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
               </FormGroup>
               <Button color="primary" type="submit" className="my-3 col-sm-12">Submit</Button>
             </Form>
-           
+            <p>{this.props.errorMessage}</p>
             {this.state.isLoading && <Alert>Loading</Alert>}
+            {this.state.isEmpty && <Alert color='danger'>Please Enter Visualization Name</Alert>}
           </Col>
         </Row>
        
       </Container>
-      <>
-      <p>{this.props.errorMessage}</p></>
+      
+      
       </div>
     )
   }
