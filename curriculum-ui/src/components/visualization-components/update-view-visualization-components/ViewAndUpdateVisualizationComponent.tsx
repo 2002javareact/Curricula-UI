@@ -14,6 +14,7 @@ interface IUpdateViewVisualizationProps {
     getOneVisualizationActionMapper: (id: number) => void
     updateVisualizationActionMapper: (visualizationToUpdate: Visualization) => void
     viewCurriculumListActionMapper: () => void
+    match: any
 }
 
 interface IUpdateViewVisualizationState {
@@ -36,8 +37,14 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
     }
 
     async componentDidMount() {
+		let id;
+		if (this.props.match) {
+			id = this.props.match.params.id;
+			console.log(id);
+		}
         if (this.props.visualization.visualizationId === 0) {
-            await this.props.getOneVisualizationActionMapper(+window.location.href.substring(window.location.href.lastIndexOf('/') + 1))
+            //await this.props.getOneVisualizationActionMapper(+window.location.href.substring(window.location.href.lastIndexOf('/') + 1))
+            await this.props.getOneVisualizationActionMapper(id)
         } else {
             await this.props.viewCurriculumListActionMapper()
             const checkedCurriculumList = this.props.allCurriculumList.map((c: Curriculum) => {

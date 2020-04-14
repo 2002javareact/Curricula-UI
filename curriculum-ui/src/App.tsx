@@ -25,7 +25,6 @@ function App() {
         <Router>
           <NavBarComponent/>
           <Switch> 
-            <Route strict path="/" component={ViewAllVisualizationComponent}/>
             <Route exact path="/curriculum/create" component={CreateCurriculumFormComponent}/>
             <Route exact path="/curriculum/view/:id" component={ViewAndUpdateCurriculumComponent}/>
             <Route exact path="/skills/update" component={UpdateSkillComponent}/>
@@ -35,6 +34,7 @@ function App() {
             <Route exact path="/category" component={MultiRouteCategoryComponent} />
             <Route exact path="/visualization/create" component={CreateVisualizationComponent}/>
             <Route exact path="/visualization/:id" component={ViewAndUpdateVisualizationComponent}/>
+            <Route exact path="/" component={ViewAllVisualizationComponent}/>
           </Switch>
         </Router>
       </div>
