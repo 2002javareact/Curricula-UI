@@ -76,7 +76,7 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
                         &nbsp;
                         <Row className="justify-content-md-center">
                         
-                            <Input onChange={this.updateSkillName} className = "skillNameInputCreate" value={this.state.skillName} type="text" placeholder="skill name" required />
+                            <Input onChange={this.updateSkillName} className = "skillNameInputCreate" value={this.state.skillName} type="text" placeholder="Skill Name" required />
                         <UncontrolledButtonDropdown>
                         <DropdownToggle color="info" caret>
                             {/**category label */}

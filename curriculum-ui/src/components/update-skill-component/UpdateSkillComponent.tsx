@@ -113,7 +113,7 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
                     </DropdownMenu>
                 </UncontrolledButtonDropdown>
 
-                <Input onChange={this.updateSkillName} className = "mx-1 col-6" value={this.state.name} type="text" placeholder="new name" />
+                <Input onChange={this.updateSkillName} className = "mx-1 col-6" value={this.state.name} type="text" placeholder="New Name" />
                 
                 </Row>
                 
