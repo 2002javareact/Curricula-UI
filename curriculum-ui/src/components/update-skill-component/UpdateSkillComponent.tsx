@@ -88,7 +88,8 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
 
             <Form onSubmit = {this.submit}>
             
-            <Row className="d-flex justify-content-center"> 
+            <Card className="d-flex justify-content-center"> \
+
                 <UncontrolledButtonDropdown>
                     <DropdownToggle color="info" caret>
                        {this.state.skillLabel}
@@ -108,7 +109,7 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
                 </UncontrolledButtonDropdown>
 
                 <Input onChange={this.updateSkillName} className = "skillNameInput" value={this.state.name} type="text" placeholder="new name" />
-                </Row>
+                </Card>
         
                 <Button color="primary" className= "updateButton">Update</Button>
                 
