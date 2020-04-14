@@ -240,7 +240,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 										<Button
 											onClick={this.updateCurriculumSubmit}
 											className="curriculum-view-update-buttons"
-											color="primary"
+											color="success"
 										>
 											Update Curriculum
 										</Button>
