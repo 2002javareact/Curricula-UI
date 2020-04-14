@@ -46,13 +46,9 @@ if(response.status === 200){
 export async function createVisualization(visualizationName: string, curriculumId: Array<any>): Promise<Visualization> {
     let visualizationData = {
         visualizationName,
-        curriculum: [
-            {
+        curriculum: 
+            
                 curriculumId
-            }
-          ]
-          
-          
     }
 
     try {
