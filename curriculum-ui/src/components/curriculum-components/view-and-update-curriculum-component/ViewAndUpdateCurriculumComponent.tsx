@@ -8,7 +8,7 @@ import { Category } from '../../../models/Category';
 interface IViewAndUpdateCurriculumProps {
    updateCurriculumActionMapper:(c:Curriculum)=>any,
     updatedCurriculum: Curriculum,
-    getCurriculumById:Curriculum,
+    curriculum:Curriculum,
     getCurriculumByIdActionMapper:(id:number)=>any,
     match:any,
     // allSkills: Skill[],
@@ -40,7 +40,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<IViewAndUp
         super(props);
         this.state={
           
-             name:'',
+            name:'',
             currentSkillList:[],
             isShowUpdate: false,
             skills:[],
@@ -78,7 +78,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<IViewAndUp
           
         }
         let emptyArr:Array<Skill> = [];
-        this.props.getCurriculumById.skills.forEach((skill:Skill)=>
+        this.props.curriculum.skills.forEach((skill:Skill)=>
           emptyArr.push(skill)
         )
         this.setState({
@@ -121,11 +121,11 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<IViewAndUp
     }
     else{
       this.setState({isLoading:true})
-      const curriculum = new Curriculum( this.props.getCurriculumById.curriculumId,this.state.name,this.state.existSkillList);
+      const curriculum = new Curriculum( this.props.curriculum.curriculumId,this.state.name,this.state.existSkillList);
       const response = await this.props.updateCurriculumActionMapper(curriculum).then((e:any)=>{
         this.setState({isLoading:false})
       })
-      this.props.getCurriculumByIdActionMapper(this.props.getCurriculumById.curriculumId)
+      this.props.getCurriculumByIdActionMapper(this.props.curriculum.curriculumId)
     }
   }
       handlerCategory(e:any){this.setState({categoryId:e.target.value})}
@@ -150,7 +150,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<IViewAndUp
         console.log(this.state.existSkillList)
         console.log(this.state.notExistSkillList)
       }
-    public updateCurriculumSubmit = () => this.setState({isShowUpdate:true });
+    public updateCurriculumSubmit = () => this.setState((prevState)=>({isShowUpdate:!prevState.isShowUpdate}));
     handlerName(e:any){this.setState({name:e.target.value||undefined})}
  
     render(){
@@ -166,10 +166,10 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<IViewAndUp
                 //isShowUpdate = true
                 <Container className="curriculum-view-update-container">
                 <Row className="p-4 m-4 border border-secondary">
-                    {this.props.getCurriculumById?(
+                    {this.props.curriculum?(
                         <React.Fragment>
                             <Col lg={12}>
-                                <h3>Curriculum: {this.props.getCurriculumById.curriculumName}</h3>
+                                <h3>Curriculum: {this.props.curriculum.curriculumName}</h3>
                             </Col>
                             <Col lg={12}>
                                 <Button className="curriculum-view-update-buttons" color="danger">
@@ -190,7 +190,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<IViewAndUp
                             <Col lg={12}>
                                 <p className="curriculum-view-update-left-text">Current curriculum:</p>
                             </Col>
-                            {this.props.getCurriculumById.skills.map(skills => <Card className="curriculum-view-update-card-skills"><CardTitle>{skills.skillName}</CardTitle></Card>)}
+                            {this.props.curriculum.skills.map(skills => <Card className="curriculum-view-update-card-skills"><CardTitle>{skills.skillName}</CardTitle></Card>)}
                             <Col lg={12}>
                                 <br/>
                                 <p className="curriculum-view-update-left-text">Update curriculum:</p>
@@ -278,10 +278,10 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<IViewAndUp
                 //isShow is false
                 <Container className="curriculum-view-update-container">
                 <Row className="p-4 m-4 border border-secondary">
-                    {this.props.getCurriculumById?(
+                    {this.props.curriculum?(
                         <React.Fragment>
                             <Col lg={12}>
-                                <h3>Curriculum: {this.props.getCurriculumById.curriculumName}</h3>
+                                <h3>Curriculum: {this.props.curriculum.curriculumName}</h3>
                             </Col>
                             <Col lg={12}>
                                 <Button className="curriculum-view-update-buttons" color="danger">
@@ -295,7 +295,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<IViewAndUp
                                 <Card className="curriculum-view-update-card">
                                     <CardTitle><h3 className="curriculum-view-update-left-text">Skills:</h3></CardTitle>
                                         <CardText>
-                                        {this.props.getCurriculumById.skills.map(skills => <Badge pill className="curriculum-view-update-pills" style={{backgroundColor:skills.category.categoryColor}}>{skills.skillName}</Badge>)}
+                                        {this.props.curriculum.skills.map(skills => <Badge pill className="curriculum-view-update-pills" style={{backgroundColor:skills.category.categoryColor}}>{skills.skillName}</Badge>)}
                                         </CardText>
                                 </Card>
                             </Col>

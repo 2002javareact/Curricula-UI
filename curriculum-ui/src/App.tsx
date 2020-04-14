@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { store } from './Store';
 import { Provider } from 'react-redux';
 import CreateCurriculumFormComponent from './components/curriculum-components/create-curriculum-form-component/CreateCurriculumFormContainer';
-import ViewAllCurriculumComponent from './components/view-all-curriculum-component/ViewAllCurriculumContainer';
+import ViewAllCurriculumComponent from './components/curriculum-components/view-all-curriculum-component/ViewAllCurriculumContainer';
 import  ViewAllSkillsComponent  from './components/view-all-skill-component/ViewAllSkillsComponent';
 import  CreateSkillComponent  from './components/create-skill-component/CreateSkillContainer';
 import UpdateSkillComponent from './components/update-skill-component/UpdateSkillContainer';
