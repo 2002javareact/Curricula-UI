@@ -65,11 +65,6 @@ export interface ICategoriesState{
   allCategory:[]
   errorMessage:string
 }
-export interface ICreateVIsualizationState{
-    createVIsualization:Skill
-    listCurriculum:Curriculum[]
-    errorMessage:string
-  }
 
 export interface IViewAllVisualizationsState{
   // allVisualizations:Visualization[]
@@ -79,7 +74,7 @@ export interface IViewAllVisualizationsState{
 export interface IGetCurriculumByIdState{
   getCurriculumById:Curriculum
   errorMessage:string
-
+}
 export interface IViewCurriculumState {
   updateCurriculum: Curriculum;
   errorMessage: string;
