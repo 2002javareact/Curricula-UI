@@ -22,6 +22,8 @@ body::before {
   display:block;
   content: '';
   height:70px;
+  /* Revature's main font */
+  /* font-family: 'futura-pt'; */
 }
 .maxHeight{
   height:10px;
@@ -63,32 +65,56 @@ div.row{
 a{
   color: #f26925;
 }
-
-.navbar-light .navbar-nav .nav-link{
-  color: white;
+a:hover{
+  color: #f26925;
 }
-
-.navbar-light .navbar-brand {
-  color: white;
+.navbar {
+  border-bottom: #474c55;
 }
-/* Changes color of Navbar Brand when hovering over */
-.navbar-light .navbar-brand:hover {
-  color: white;
+.nav-link {
+  margin:0
 }
-.navbar-light .navbar-nav .nav-link:hover {
-  color: orange;
+/* Changes color of Navbar Brand when hovering over
+.navbar .navbar-brand:hover {
+  color: white;
+} */
+.navbar-item .nav-link:hover {
+  color: #f26925;
+}
+.dropdown.nav-item:hover .nav-link{
+  border-bottom: 2px solid #f26925;
+}
+.nav-item a{
+  font-weight:bold;
+  color: #474c55;
+}
+.dropdown-menu{
+  margin:0
 }
 /* Makes the dropdown appear when hovering over */
 .dropdown:hover .dropdown-menu {
   display: block;
 }
 /* dropdown link styling */
-.dropdown-link {
+.dropdown-item {
   color: #f26925;
 }
-.dropdown-link:hover {
-  color: green;
-  text-decoration: none;
+.dropdown-item:active {
+  color: #f26925;
+  background-color: #ffffff;
+}
+.dropdown-item.active {
+  color: #f26925;
+  background-color: #ffffff;
+
+}
+.dropdown-item:hover {
+  color: #f26925;
+}
+.dropdown-item:focus {
+  color: #474c55;
+  background-color: #ffffff;
+  outline:none;
 }
 
 .curriculum-view-update-container{

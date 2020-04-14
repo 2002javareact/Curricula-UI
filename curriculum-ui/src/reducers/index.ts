@@ -119,22 +119,19 @@ export interface IState {
   curriculum: ICurriculumState;
   allVisualizations: IViewAllVisualizationsState;
   deleteCategoryById: IDeleteCategoryByIdState;
-  allCurriculum:IAllCurriculumState;
 	newVisualization:ICreateVIsualizationState;
   createCategory: ICreateCategoryState;
-  createCurriculum:ICurriculumState;
-  updateCurriculum:IViewCurriculumState;
-  getCurriculumById:IGetCurriculumByIdState;
 }
 
 export const state = combineReducers<IState>({
-  updateCurriculum: updateReducer,
-  getCurriculumById: getCurriculumByIdReducer,
+  
+	//getAllSkills:getAllSkillsReducer,
+	// TODO add to curriculum reducer
 	deleteCurriculum: deleteCurriculumReducer,
   skillsByCategoryId: getSkillsByCategoryIdReducer,
+  allCategory: categoriesReducer,
   skills: skillsReducer,
   curriculum: curriculumReducer,
-  allCategory: categoriesReducer,
   allVisualizations: visualizationReducer,
   deleteCategoryById: deleteCategoryByIdReducer,
   createCategory: createReducer,
