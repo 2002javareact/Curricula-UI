@@ -25,16 +25,16 @@ function App() {
         <Router>
           <NavBarComponent/>
           <Switch> 
-            <Route path="/curriculum/create" component={CreateCurriculumFormComponent}/>
-            <Route path="/curriculum/view/:id" component={ViewAndUpdateCurriculumComponent}/>
-            <Route path="/skills/update" component={UpdateSkillComponent}/>
-            <Route path="/curriculum" component={ViewAllCurriculumComponent} />
-            <Route path="/skills/create" component={CreateSkillComponent}/>
-            <Route path="/skills" component={ViewAllSkillsComponent}/>            
-            <Route path="/category" component={MultiRouteCategoryComponent} />
-            <Route path="/visualization/create" component={CreateVisualizationComponent}/>
-            <Route path="/visualization/:id" component={ViewAndUpdateVisualizationComponent}/>
-            <Route path="/" component={ViewAllVisualizationComponent}/>
+            <Route exact path="/curriculum/create" component={CreateCurriculumFormComponent}/>
+            <Route exact path="/curriculum/view/:id" component={ViewAndUpdateCurriculumComponent}/>
+            <Route exact path="/skills/update" component={UpdateSkillComponent}/>
+            <Route exact path="/curriculum" component={ViewAllCurriculumComponent} />
+            <Route exact path="/skills/create" component={CreateSkillComponent}/>
+            <Route exact path="/skills" component={ViewAllSkillsComponent}/>            
+            <Route exact path="/category" component={MultiRouteCategoryComponent} />
+            <Route exact path="/visualization/create" component={CreateVisualizationComponent}/>
+            <Route exact path="/visualization/:id" component={ViewAndUpdateVisualizationComponent}/>
+            <Route exact path="/" component={ViewAllVisualizationComponent}/>
           </Switch>
         </Router>
       </div>
