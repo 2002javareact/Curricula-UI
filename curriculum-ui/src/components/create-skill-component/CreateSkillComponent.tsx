@@ -95,7 +95,7 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
                         </Row>
                         </Form>   
                         </Container>  
-                        <p>this.state.errorMessage</p>               
+                        <p>{this.props.errorMessage}</p>               
             </>
             :
             <Redirect to = "/skills"/>

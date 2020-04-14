@@ -36,9 +36,9 @@ const NavBarComponent = (props: any) => {
                 VISUALIZATIONS
               </DropdownToggle>
               <DropdownMenu right>
-                <NavLink exact className="dropdown-item" to="/">
+                <a className="dropdown-item" href="/">
                   View All Visualizations
-                </NavLink>
+                </a>
                 <DropdownItem divider />
                 <NavLink exact className="dropdown-item" to="/visualization/create">
                   Create A Visualization
