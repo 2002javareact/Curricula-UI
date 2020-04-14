@@ -46,9 +46,7 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
      
     }
     submit =  async (e: SyntheticEvent) =>{
-        e.preventDefault()     
-        console.log("here");
-          
+        e.preventDefault()             
         this.props.updateSkillActionMapper(this.state.skill.skillId,this.state.name, this.state.category)
         this.forceUpdate()
     }
