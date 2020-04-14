@@ -10,7 +10,7 @@ import {
   DropdownMenu,
   DropdownItem
 } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 //this is a function component
 const NavBarComponent = (props: any) => {
@@ -21,98 +21,74 @@ const NavBarComponent = (props: any) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
-
+  
   return (
     <>
     <div></div>
-      <Navbar className="navbar" expand="md">
+      <Navbar className="px-5 border-bottom" expand="md">
         {/* PUT TITLE HERE */}
-        <NavbarBrand href="/">Visualization API</NavbarBrand>
+        <NavbarBrand href="/" className="font-weight-bold text-monospace">VISUALIZATION API</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <UncontrolledDropdown nav inNavbar>
+          <Nav className="ml-auto" navbar>
+            <UncontrolledDropdown nav inNavbar >
               <DropdownToggle nav caret>
-                Visualizations
+                VISUALIZATIONS
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>
-                  <Link className="dropdown-link" to="/">
-                    View All Visualizations
-                  </Link>
-                </DropdownItem>
+                <NavLink exact className="dropdown-item" to="/">
+                  View All Visualizations
+                </NavLink>
                 <DropdownItem divider />
-                <DropdownItem>
-                  <Link className="dropdown-link" to="/visualization/create">
-                    Create A Visualization
-                  </Link>
-                </DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>
-                  <Link className="dropdown-link" to="/">
-                    View/Edit A Visualization
-                  </Link>
-                </DropdownItem>
+                <NavLink exact className="dropdown-item" to="/visualization/create">
+                  Create A Visualization
+                </NavLink>
               </DropdownMenu>
             </UncontrolledDropdown>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                Curriculums
+                CURRICULUMS
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>
-                  <Link className="dropdown-link" to="/curriculum">
-                    View All Curriculums
-                  </Link>
-                </DropdownItem>
+                <NavLink exact className="dropdown-item" to="/curriculum">
+                  View All Curriculums
+                </NavLink>
                 <DropdownItem divider />
-                <DropdownItem>
-                  <Link className="dropdown-link" to="/curriculum/create">
-                    Create A Curriculum
-                  </Link>
-                </DropdownItem>
+                <NavLink exact className="dropdown-item" to="/curriculum/create">
+                  Create A Curriculum
+                </NavLink>
               </DropdownMenu>
             </UncontrolledDropdown>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                Skills
+                SKILLS
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>
-                  <Link className="dropdown-link" to="/skills">
-                    View All Skills
-                  </Link>
-                </DropdownItem>
+                <NavLink exact className="dropdown-item" to="/skills">
+                  View All Skills
+                </NavLink>
                 <DropdownItem divider />
-                <DropdownItem>
-                  <Link className="dropdown-link" to="/skills/create">
-                    Create A Skill
-                  </Link>
-                </DropdownItem>
+                <NavLink exact className="dropdown-item" to="/skills/create">
+                  Create A Skill
+                </NavLink>
                 <DropdownItem divider />
-                <DropdownItem>
-                  <Link className="dropdown-link" to="/skills/update">
-                    Edit A Skill
-                  </Link>
-                </DropdownItem>
+                <NavLink exact className="dropdown-item" to="/skills/update">
+                  Edit A Skill
+                </NavLink>
               </DropdownMenu>
             </UncontrolledDropdown>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
-                Categories
+                CATEGORIES
               </DropdownToggle>
               <DropdownMenu right>
-                <DropdownItem>
-                  <Link className="dropdown-link" to="/category">
-                    View All Categories
-                  </Link>
-                </DropdownItem>
+                <NavLink exact className="dropdown-item" to="/category">
+                  View All Categories
+                </NavLink>
                 <DropdownItem divider />
-                <DropdownItem>
-                  <Link className="dropdown-link" to="/category/create">
-                    Create A Category
-                  </Link>
-                </DropdownItem>
+                <NavLink exact className="dropdown-item" to="/category/create">
+                  Create A Category
+                </NavLink>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>
