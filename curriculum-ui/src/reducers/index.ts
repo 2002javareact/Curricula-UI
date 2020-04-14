@@ -70,6 +70,7 @@ export interface IViewAllVisualizationsState {
   errorMessage: string;
 }
 
+
 export interface IGetCurriculumByIdState {
   getCurriculumById: Curriculum;
   errorMessage: string;
@@ -145,3 +146,4 @@ export const state = combineReducers<IState>({
   createCategory: createReducer,
   newVisualization: createVisualizationReducer,
 });
+
