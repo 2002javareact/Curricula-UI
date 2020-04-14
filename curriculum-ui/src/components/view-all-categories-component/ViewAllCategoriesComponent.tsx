@@ -5,6 +5,7 @@ import { Category } from "../../models/Category";
 import { RouteComponentProps } from "react-router";
 import { NavLink } from "react-router-dom";
 
+
 //prop interface
 
 interface IViewAllUsersProps extends RouteComponentProps {
