@@ -5,7 +5,7 @@ import { Visualization } from "../models/Visualization";
 
 
 const initialState: ICreateVIsualizationState={
-    createVIsualization: new Visualization(0, '', []),
+    createVIsualization: new Visualization(0,'',[]),
     errorMessage:''
   }
     
