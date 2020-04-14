@@ -5,8 +5,6 @@ import { Category } from "../../models/Category";
 import { RouteComponentProps } from "react-router";
 import { NavLink } from "react-router-dom";
 
-import { SketchPicker } from 'react-color';
-
 //prop interface
 
 interface IViewAllUsersProps extends RouteComponentProps {

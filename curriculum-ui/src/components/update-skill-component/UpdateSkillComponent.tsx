@@ -122,10 +122,9 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
                 </Row>
                 &nbsp;
                 </Card>
-                
-
             </Form>
             </Row>
+            <p>this.state.errorMessage</p> 
             </>
             :
             <Redirect to = "/skills"/>

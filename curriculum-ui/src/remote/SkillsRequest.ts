@@ -65,3 +65,22 @@ export const updateSkill = async (id:number, name:string, category:Category)=>{
 }
 
 }
+
+export const deleteSkill = async (id:number)=>{
+    
+    try{
+        let res = await curriculaClient.delete(`/skill/${id}`)
+        if(res.status === 404){
+            throw new CategoryNotFoundError()
+        }
+        
+        return res.data
+    }catch(e){
+        if(e.status === 404){
+            throw e
+        }
+        else{
+            throw new InternalServiceError()
+        }
+    }
+}
