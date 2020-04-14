@@ -68,11 +68,16 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
         return( 
             this.props.createdSkill.skillId === 0?               
             <>  
-              
+            &nbsp;
+              <Container className=".container-md ">
                         <Form onSubmit = {this.submit}>
-                        <Row>
+                        <Row className="justify-content-md-center"> 
+                        <Card className="col-6 shadow-custom2">
+                        &nbsp;
+                        <Row className="justify-content-md-center">
+                        
                             <Input onChange={this.updateSkillName} className = "skillNameInputCreate" value={this.state.skillName} type="text" placeholder="skill name" required />
-                        <UncontrolledButtonDropdown size="sm">
+                        <UncontrolledButtonDropdown>
                         <DropdownToggle color="info" caret>
                             {/**category label */}
                             {this.state.label}
@@ -82,9 +87,14 @@ export class CreateSkillComponent extends React.Component<ICreateSkillProps,ICre
                         </DropdownMenu>
                         </UncontrolledButtonDropdown>
                         </Row>
+                        <Row className="justify-content-md-center">
                             <Button color="primary" className = "createButton">Create</Button>
-                            
-                        </Form>                    
+                        </Row>
+                        &nbsp;
+                        </Card>
+                        </Row>
+                        </Form>   
+                        </Container>                 
             </>
             :
             <Redirect to = "/skills"/>
