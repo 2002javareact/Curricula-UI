@@ -3,6 +3,7 @@ const devEnvironment = {
 };
 
 const prodEnvironment = {
+
   curriculaBaseUrl: "http://3.95.224.18",
 };
 
