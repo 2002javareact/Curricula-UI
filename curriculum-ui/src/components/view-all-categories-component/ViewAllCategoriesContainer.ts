@@ -13,8 +13,8 @@ const mapStateToProps = (state: IState) => {
 };
 
 const mapDispatchToProps = {
-  getAllCategoriesActionMapper,
-  CategoryDeleteByIdActionMapper
+  getAllCategoriesActionMapper
+ , CategoryDeleteByIdActionMapper
 };
 
 const mapDeleteProps = 
@@ -22,4 +22,4 @@ const mapDeleteProps =
   CategoryDeleteByIdActionMapper
 };
 
-export default connect(  mapStateToProps,  mapDispatchToProps/*, mapDeleteProps }*/ )(ViewAllCategoriesComponent);
+export default connect(  mapStateToProps,  mapDispatchToProps )(ViewAllCategoriesComponent);

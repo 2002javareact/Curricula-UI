@@ -5,9 +5,7 @@ import { Category } from "../../models/Category";
 import { RouteComponentProps } from "react-router";
 import { NavLink } from "react-router-dom";
 
-import { SketchPicker } from 'react-color';
 
-//prop interface
 
 interface IViewAllUsersProps extends RouteComponentProps {
   allCategory: Category[];
@@ -16,7 +14,7 @@ interface IViewAllUsersProps extends RouteComponentProps {
   getAllCategoriesActionMapper: () => void;
   CategoryDeleteByIdActionMapper: (id:number) => void;
 }
-//state interface?
+
 
 export class ViewAllCategoriesComponent extends React.Component<
   IViewAllUsersProps,
@@ -25,12 +23,8 @@ export class ViewAllCategoriesComponent extends React.Component<
   refreshPage() {
     window.location.reload(true);
   }
-  componentDidMount() {
-
-    if (this.props.allCategory.length === 0) {
+  componentDidMount() {   
     return (this.props.getAllCategoriesActionMapper());
-    }
-    else {}
   }
   componentDidUpdate() {
    // return this.props.getAllCategoriesActionMapper();
@@ -39,11 +33,6 @@ export class ViewAllCategoriesComponent extends React.Component<
     this.props.CategoryDeleteByIdActionMapper(id)
     this.refreshPage();
   }
-
-  onDeleteClick() {
-   
-    alert('clicked');
-}
 
   render() {
     let viewCategory = this.props.allCategory.map((category, index) => {
@@ -83,9 +72,8 @@ export class ViewAllCategoriesComponent extends React.Component<
           </Button>
             </Card>
       );
-    }); // loop
-    //onClick={this.deleteCategory(category.categoryId)}
-    //this.refreshPage();
+    }); 
+   
     return (
       <>
         <Card style={{ textAlign: "center" }}>
