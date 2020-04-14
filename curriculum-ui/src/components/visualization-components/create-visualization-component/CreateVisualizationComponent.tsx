@@ -99,7 +99,7 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
     return(
       <div>
       <Container>
-        <Row className="p-4 m-4 border border-light text-left rounded shadow-custom">
+        <Row className="p-4 m-4 border border-light text-left rounded shadow-custom bg-light">
           <Col>
             <h2 className="text-center">Create Visualization Form</h2>
             <Form onSubmit={this.submitVisualization}>

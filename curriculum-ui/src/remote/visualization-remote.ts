@@ -66,3 +66,16 @@ if(response.status === 200){
         throw new InternalServiceError()
     }
 }
+
+export const deleteVisualization =  async (id:number) => {
+    try {
+        let response = await curriculaClient.delete(`/visualization/${id}`)
+if(response.status === 200){
+    return response.data
+}else{
+    throw new InternalServiceError()
+}
+    } catch (e) {
+        throw new InternalServiceError()
+    }
+}
