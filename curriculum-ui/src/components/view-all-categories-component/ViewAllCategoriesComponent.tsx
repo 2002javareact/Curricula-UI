@@ -20,19 +20,20 @@ export class ViewAllCategoriesComponent extends React.Component<
   IViewAllUsersProps,
   any
 > {
-  refreshPage() {
-    window.location.reload(true);
-  }
+  // refreshPage() {
+  //   window.location.reload(true);
+  // }
   componentDidMount() {
     return this.props.getAllCategoriesActionMapper();
   }
-  componentDidUpdate() {
-    return this.props.getAllCategoriesActionMapper();
-  }
+  // componentDidUpdate() {
+  //   return this.props.getAllCategoriesActionMapper();
+  // }
 
   deleteCategory = async (id: number) => {
-    this.props.CategoryDeleteByIdActionMapper(id);
-    this.refreshPage();
+   await this.props.CategoryDeleteByIdActionMapper(id);
+    this.props.getAllCategoriesActionMapper()
+    //this.refreshPage();
   };
 
   render() {

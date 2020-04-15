@@ -9,6 +9,7 @@ import { Redirect } from 'react-router';
      errorMessage: string
     createVisualizationActionMapper:(n:string,c:Array<any>)=>void
     viewCurriculumListActionMapper:()=>void
+    getAllVisualizationsActionMapper: () => void
     curriculumList:Array<Curriculum>
 }
 
@@ -98,7 +99,8 @@ export class CreateVisualizationComponent extends React.Component<ICreateVisuali
         }
     })
     
-    this.props.createVisualizationActionMapper(this.state.visualizationName,array)
+    await this.props.createVisualizationActionMapper(this.state.visualizationName,array)
+    this.props.getAllVisualizationsActionMapper()
     this.setState({isRedirect:true})
     }
   else{

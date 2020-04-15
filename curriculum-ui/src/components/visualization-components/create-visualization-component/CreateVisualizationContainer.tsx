@@ -4,6 +4,7 @@ import { CreateVisualizationComponent } from "./CreateVisualizationComponent";
 
 import {createVisualizationActionMapper} from "../../../action-mappers/create-visualization-action-mapper"
 import {viewCurriculumListActionMapper} from  "../../../action-mappers/view-curriculum-list-action-mapper"
+import {getAllVisualizationsActionMapper} from "../../../action-mappers/get-all-visualizations-action-mapper"
 
 const mapStateToProps = (state:IState) => {
   return({
@@ -16,7 +17,8 @@ const mapStateToProps = (state:IState) => {
 const mapDispatchToProps = {
   //TODO viewskillactionmapper
   createVisualizationActionMapper,
-  viewCurriculumListActionMapper
+  viewCurriculumListActionMapper,
+  getAllVisualizationsActionMapper
 };
 
 export default connect(
