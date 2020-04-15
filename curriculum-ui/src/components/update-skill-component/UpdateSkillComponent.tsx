@@ -94,7 +94,7 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
             <Row className="d-flex justify-content-center ">
              
                 <UncontrolledButtonDropdown>
-                    <DropdownToggle color="info" caret>
+                    <DropdownToggle color="success" caret>
                        {this.state.skillLabel}
                     </DropdownToggle>
                     <DropdownMenu>
@@ -103,7 +103,7 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
                 </UncontrolledButtonDropdown>
                 
                 <UncontrolledButtonDropdown className="skillDropDown">
-                    <DropdownToggle color="info" caret>
+                    <DropdownToggle color="success" caret>
                         {this.state.categoryLabel}
                     </DropdownToggle>
                     <DropdownMenu className = "categoryDropDown"> 
@@ -116,7 +116,7 @@ export class UpdateSkillComponent extends React.Component<IUpdateSkillProp,IUpda
                 </Row>
                 
                 <Row className="d-flex justify-content-center">
-                <Button color="primary" className= "col-3 updateButton">Update</Button>
+                <Button color="info" className= "col-3 updateButton">Update</Button>
                 </Row>
                 &nbsp;
                 </Card>

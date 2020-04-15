@@ -69,12 +69,12 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
             return (
                 <>
                 <div className="col-3 mx-1 my-1 ">
-                <Card style={{ width: '20rem' }} className=" p-1 visualizationCard shadow-custom m-auto">
+                <Card style={{ width: '20rem' }} className=" p-1 visualizationCard shadow-custom">
                 <CardTitle>{skill.skillName}</CardTitle>
                 <CardText style={{color: skill.category.categoryColor}}>{skill.category.categoryName} ███</CardText>
                 {this.renderRedirect()}
                 <Row className="d-flex justify-content-center">
-                <Button onClick = {this.setRedirect} className="col-4"color="primary">Update</Button>
+                <Button onClick = {this.setRedirect} className="col-4"color="info">Update</Button>
                 <Button onClick = {this.delete(skill.skillId)} className="col-4" color="danger">Delete</Button>                
                 </Row>
                </Card>

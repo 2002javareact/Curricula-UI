@@ -53,7 +53,7 @@ async deleteVisualization(e:SyntheticEvent,id:number){
                             <CardText className="ButtonsDown m-4 px-4">{`${window.location.href}visualization/${visualization.visualizationId}`}</CardText>
                             {/*<ButtonGroup className="ButtonsDown">*/}
                             <ButtonGroup className="mt-auto row">
-                                <Button className="col-sm-12 col-md-6 border-right border-white rounded" color="success" onClick={(e: SyntheticEvent)=>this.updateView(e,visualization.visualizationId)}>Update</Button>
+                                <Button className="col-sm-12 col-md-6 border-right border-white rounded" color="info" onClick={(e: SyntheticEvent)=>this.updateView(e,visualization.visualizationId)}>Update</Button>
                                 <Button className="col-sm-12 col-md-6 border-left border-white rounded" color="danger" onClick={(e:SyntheticEvent)=>this.deleteVisualization(e,visualization.visualizationId)}>Delete</Button>
                             </ButtonGroup>
                             </CardBody>
