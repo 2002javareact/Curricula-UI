@@ -1,11 +1,12 @@
 import { Skill } from "../../models/Skill"
-import { Container, Row, Button, Card,  CardTitle, CardText, CardDeck } from "reactstrap"
+import { Row, Button, Card,  CardTitle, CardText, CardDeck } from "reactstrap"
 import { IState } from "../../reducers"
 import { connect } from "react-redux"
-import React from "react"
-import { viewAllSkillsActionMapper } from "../../action-mappers/skill-action-mapper"
+import React, { SyntheticEvent } from "react"
+import { viewAllSkillsActionMapper, deleteSkillActionMapper } from "../../action-mappers/skill-action-mapper"
 import { getAllCategoriesActionMapper } from "../../action-mappers/getall-categories-action-mappers"
 import { Category } from "../../models/Category"
+import { Redirect } from "react-router"
 
 
 
@@ -15,15 +16,51 @@ export interface IViewAllSkillsProps{
     errorMessage:string
     viewAllSkillsActionMapper:()=>void   
     getAllCategoriesActionMapper:()=>void
+    deleteSkillActionMapper:(id:number)=>void
+}
+
+export interface IViewAllSkillState{
+    redirect:boolean
 }
 
 
 export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,any>{
+    constructor(props:any){
+        super(props)
+        this.state ={
+            redirect: false
+        }
+    }
     componentWillMount(){
             return (this.props.viewAllSkillsActionMapper(),this.props.getAllCategoriesActionMapper())
     }
 
-    render(){
+    update = async (e: SyntheticEvent) =>{
+        e.preventDefault()
+        return (
+            <Redirect to = "/skills/update"/>
+        )
+    }
+
+    delete = (id:number) => async (e: SyntheticEvent) =>{
+        e.preventDefault()
+        this.props.deleteSkillActionMapper(id)
+
+    }
+
+    setRedirect = () => {
+        this.setState({
+          redirect: true
+        })
+      }
+
+      renderRedirect = () => {
+        if (this.state.redirect) {
+          return <Redirect to='/skills/update' />
+        }
+    }
+
+        render(){
         this.props.allSkills.sort((a,b) =>{
             return a.category.categoryName.localeCompare(b.category.categoryName)})
 
@@ -32,21 +69,18 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
             return (
                 <>
                 <div className="col-3 mx-1 my-1 ">
-           <Card style={{ width: '20rem' }} className=" p-1 visualizationCard shadow-custom m-auto">
+                <Card style={{ width: '20rem' }} className=" p-1 visualizationCard shadow-custom m-auto">
                 <CardTitle>{skill.skillName}</CardTitle>
                 <CardText style={{color: skill.category.categoryColor}}>{skill.category.categoryName} ███</CardText>
-                <Button color="primary">Update</Button>
-                
+                {this.renderRedirect()}
+                <Row className="d-flex justify-content-center">
+                <Button onClick = {this.setRedirect} className="col-4"color="primary">Update</Button>
+                <Button onClick = {this.delete(skill.skillId)} className="col-4" color="danger">Delete</Button>                
+                </Row>
                </Card>
                </div>
             </>
-        
-
-        )})
-
-
-
-        
+        )})     
 
         this.props.allCategory.sort((a,b) =>{
             return a.categoryName.localeCompare(b.categoryName)}) 
@@ -66,13 +100,7 @@ export class ViewAllSkillsComponent extends React.Component<IViewAllSkillsProps,
             
                 <Row className="d-flex justify-content-center">
                         {view}
-                </Row>
-                   
-        
-
-
-
-                
+                </Row>        
             </>
             
 
@@ -97,7 +125,8 @@ const mapStateToProps = (state:IState) => {
 
 const mapDispatchToProps = {
     viewAllSkillsActionMapper,
-    getAllCategoriesActionMapper
+    getAllCategoriesActionMapper,
+    deleteSkillActionMapper
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(ViewAllSkillsComponent)

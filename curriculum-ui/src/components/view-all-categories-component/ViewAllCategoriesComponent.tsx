@@ -26,6 +26,9 @@ export class ViewAllCategoriesComponent extends React.Component<
   componentDidMount() {
     return this.props.getAllCategoriesActionMapper();
   }
+  componentDidUpdate() {
+    return this.props.getAllCategoriesActionMapper();
+  }
 
   deleteCategory = async (id: number) => {
     this.props.CategoryDeleteByIdActionMapper(id);

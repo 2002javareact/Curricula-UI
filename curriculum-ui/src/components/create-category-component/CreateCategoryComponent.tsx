@@ -20,7 +20,6 @@ import { Category } from "../../models/Category";
 import { SyntheticEvent } from "react";
 import React from "react";
 import { SketchPicker } from "react-color";
-import { CategoryInfoComponent } from "../category-info-component/CategoryInfoComponent";
 
 //prop interface
 
