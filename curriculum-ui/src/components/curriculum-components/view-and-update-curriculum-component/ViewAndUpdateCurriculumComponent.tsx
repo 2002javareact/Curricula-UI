@@ -144,21 +144,23 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 
 	async submitDeleteCurriculum(e: SyntheticEvent) {
 		e.preventDefault();
-		 await this.props
-			.deleteCurriculumActionMapper(this.props.curriculum.curriculumId)
-			.then((e: any) => {
-				this.setState({ isLoading: false });
-				this.setState({isRedirect: true })
-			});
-		this.props.deleteCurriculumActionMapper(
-			this.props.curriculum.curriculumId
-		);
+		if(this.props.curriculum){
+			await this.props
+				.deleteCurriculumActionMapper(this.props.curriculum.curriculumId)
+				.then((e: any) => {
+					this.setState({ isLoading: false });
+					this.setState({isRedirect: true })
+				});
+			this.props.deleteCurriculumActionMapper(
+				this.props.curriculum.curriculumId
+			);
+		}
 	}
 
 	async submitCurriculum(e: SyntheticEvent) {
 		e.preventDefault();
 		//TODO
-		if (this.state.existSkillList.length === 0) {
+		if (this.state.existSkillList && this.state.existSkillList.length === 0) {
 			this.setState({ alert: "Please include at least one skill" }, () =>
 				setTimeout(() => this.setState({ alert: "" }), 5000)
 			);
@@ -169,7 +171,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 				this.state.name,
 				this.state.existSkillList
 			);
-			const response = await this.props
+			await this.props
 				.updateCurriculumActionMapper(curriculum)
 				.then((e: any) => {
 					this.setState({ isLoading: false });

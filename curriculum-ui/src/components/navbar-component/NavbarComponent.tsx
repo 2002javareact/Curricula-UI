@@ -25,9 +25,9 @@ const NavBarComponent = (props: any) => {
   return (
     <>
     <div></div>
-      <Navbar className="px-5 border-bottom" expand="md">
+      <Navbar className="py-3 px-5 border-bottom" expand="md">
         {/* PUT TITLE HERE */}
-        <NavbarBrand href="/" className="font-weight-bold text-monospace">VISUALIZATION API</NavbarBrand>
+        <NavbarBrand href="/" className="font-weight-bold">Visualization API</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>

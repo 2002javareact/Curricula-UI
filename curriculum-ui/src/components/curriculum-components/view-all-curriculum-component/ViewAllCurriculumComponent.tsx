@@ -32,8 +32,8 @@ export class ViewAllCurriculumComponent extends React.Component<IViewAllCurricul
       <Container>
         <Row className="p-4 m-4 border border-light rounded shadow-custom bg-light">
           {this.props.errorMessage && <Alert className="col-12" color="danger">{this.props.errorMessage}</Alert>}
-          <Col className="col-12">
-            <h2> Curriculum List </h2>
+          <Col className="col-12 mb-2">
+            <h2 > Curriculum List </h2>
           </Col>
             {this.props.curriculumList && this.props.curriculumList.map((el)=>(
               <Col className="col-4 p-0 mb-3">

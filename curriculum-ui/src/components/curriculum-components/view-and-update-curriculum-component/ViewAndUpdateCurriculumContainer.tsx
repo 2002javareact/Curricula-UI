@@ -20,7 +20,7 @@ const mapStateToProps = (state:IState) =>{
     errorMessageSkills: state.skills.errorMessage,
     allCategory:state.allCategory.allCategory,
     skillsByCategoryId:state.skillsByCategoryId.skillsByCategoryId,
-    deleteCurriculum: state.deleteCurriculum.deleteCurriculum
+    deleteCurriculum: state.curriculum.deleteCurriculum
 
     
 }

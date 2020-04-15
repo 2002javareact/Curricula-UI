@@ -33,7 +33,6 @@ interface ICreateCurriculumFormState {
  * Component for showing a form to create a curriculum.
  * 
  * @component
- * @version 1.0.0
  * @author [Gerard Cancino](https://github.com/Gerard-Cancino)
  * @author [Charles Perry](https://github.com/perryc85)
  * @author [Nikoloi Ellis](https://github.com/nikoloiellis)
@@ -161,7 +160,7 @@ export class CreateCurriculumFormComponent extends React.Component<ICreateCurric
     return(
       <Container>
         {this.state.isRedirect && <Redirect to={"/curriculum"}/> }
-        <Row className="p-4 m-4 border border-light text-left rounded shadow-custom">
+        <Row className="p-4 m-4 border border-light text-left rounded shadow-custom bg-light">
           {this.props.errorMessage && <Alert color="danger">{this.props.errorMessage}</Alert>}
           <Col >
             <h2 className="text-center">Create Curriculum Form</h2>
