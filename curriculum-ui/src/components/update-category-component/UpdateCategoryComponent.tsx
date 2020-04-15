@@ -13,6 +13,7 @@ import {
 import { Category } from "../../models/Category";
 import { CategoryInfoComponent } from "../category-info-component/CategoryInfoComponent";
 import { RouteComponentProps } from "react-router";
+import { SketchPicker } from "react-color";
 
 //prop interface
 interface IUpdateCategoryProps extends RouteComponentProps {
@@ -34,6 +35,7 @@ interface IUpdateCategoryState {
   categoryColor: string;
   categoryName: string;
   didSubmit: boolean;
+  displayColorPicker: boolean;
 }
 
 export class UpdateCategoryComponent extends React.Component<
@@ -47,7 +49,8 @@ export class UpdateCategoryComponent extends React.Component<
       categoryId: this.props.location.state.category.categoryId,
       categoryColor: this.props.location.state.category.categoryColor,
       categoryName: this.props.location.state.category.categoryName,
-      didSubmit: false
+      didSubmit: false,
+      displayColorPicker: false
     };
   }
 
@@ -75,7 +78,37 @@ export class UpdateCategoryComponent extends React.Component<
     this.setState({ didSubmit: true });
   };
 
+  //color picker methods
+  handleClick = () => {
+    this.setState({
+      displayColorPicker: !this.state.displayColorPicker
+    });
+  };
+  handleClose = () => {
+    this.setState({ displayColorPicker: false });
+  };
+  handleChange = (color: any) => {
+    this.setState({ categoryColor: color.hex });
+    console.log(this.state.categoryColor); // testing
+  };
+
   render() {
+    //color picker stuff
+    var swatch = {
+      padding: "5px",
+      background: "#fff",
+      borderRadius: "1px",
+      boxShadow: "0 0 0 1px rgba(0,0,0,.1)",
+      display: "inline-block",
+      cursor: "pointer"
+    };
+    var color = {
+      width: "36px",
+      height: "14px",
+      borderRadius: "2px",
+      background: this.state.categoryColor
+    };
+
     const oldCategory = this.props.location.state.category;
 
     return (
@@ -99,21 +132,35 @@ export class UpdateCategoryComponent extends React.Component<
               />
             </Col>
           </FormGroup>
+          {this.state.displayColorPicker ? (
+            <div style={{ position: "absolute", right: "5vw" }}>
+              <div onClick={this.handleClose} />
+              ​
+              <SketchPicker
+                color={this.state.categoryColor}
+                onChange={this.handleChange}
+              />
+            </div>
+          ) : null}
           <FormGroup row>
             <Label for="color" sm={2}>
               Color:
             </Label>
             <Col sm={6}>
               <Input
-                onChange={this.updateColor}
+                onChange={this.handleChange}
                 value={this.state.categoryColor}
                 type="text"
                 name="color"
                 id="color"
                 placeholder="Category Color"
+                disabled
               />
             </Col>
           </FormGroup>
+          <div style={swatch} onClick={this.handleClick}>
+            <div style={color} />
+          </div>
           <FormGroup row>
             <Label for="name" sm={2}>
               Category Name:
