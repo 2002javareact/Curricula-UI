@@ -29,6 +29,7 @@ interface ICreateCatProps {
   CreateCat: Category;
   errorMessage: string;
   createCatActionMapper: (ci: number, cc: string, cn: string) => void;
+  getAllCategoriesActionMapper: ()=> void
 }
 
 interface ICatState {
@@ -56,11 +57,14 @@ export class CreateCategoryComponent extends React.Component<
 
   submitNewCategory = async (e: SyntheticEvent) => {
     e.preventDefault();
-    this.props.createCatActionMapper(
+  await  this.props.createCatActionMapper(
       this.state.categoryId,
       this.state.categoryColor,
       this.state.categoryName
     );
+
+    this.props.getAllCategoriesActionMapper()
+
     this.setState({
       categoryId: 0,
       categoryColor: "",
