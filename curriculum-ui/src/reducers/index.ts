@@ -4,7 +4,6 @@ import { Skill } from "../models/Skill";
 import { skillsReducer } from "./skills-reducers";
 import { categoriesReducer } from "./category-reducer";
 import { createReducer } from "./create-category-reducer";
-import { deleteCurriculumReducer } from "./delete-curriculum-reducer";
 import { Category } from "../models/Category";
 import { Visualization } from "../models/Visualization";
 import { visualizationReducer } from "./visualization-reducer";
@@ -42,6 +41,7 @@ export interface ICurriculumState {
   curriculum: Curriculum;
   curriculumList: Array<Curriculum>;
   updateCurriculum: Curriculum;
+	deleteCurriculum: Curriculum;
   errorMessage: string;
 }
 
@@ -67,11 +67,6 @@ export interface IViewAllVisualizationsState{
   errorMessage: string
 }
 
-//export interface IGetCurriculumByIdState{
-//  getCurriculumById:Curriculum
-//  errorMessage:string
-//}
-
 export interface IViewCurriculumState {
   updateCurriculum: Curriculum;
   errorMessage: string;
@@ -91,12 +86,6 @@ export interface IGetCurriculumByIdState {
 	errorMessage: string;
 }
 
-export interface IDeleteCurriculumState {
-	deleteCurriculum: Curriculum;
-	errorMessage: string;
-}
-
-
 export interface ICreateVIsualizationState {
   createVIsualization: Visualization;
   errorMessage: string;
@@ -112,7 +101,6 @@ export interface IViewAllVisualizationsState {
 export interface IState {
 	//getAllSkills:IGetAllSkillState
 	// TODO add to curriculum reducer
-	deleteCurriculum: IDeleteCurriculumState;
   skillsByCategoryId: IGetSkillsByCategoryIdState;
   allCategory: ICategoriesState;
   skills: ISkillState;
@@ -124,10 +112,9 @@ export interface IState {
 }
 
 export const state = combineReducers<IState>({
-  
+
 	//getAllSkills:getAllSkillsReducer,
 	// TODO add to curriculum reducer
-	deleteCurriculum: deleteCurriculumReducer,
   skillsByCategoryId: getSkillsByCategoryIdReducer,
   allCategory: categoriesReducer,
   skills: skillsReducer,

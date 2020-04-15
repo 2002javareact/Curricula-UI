@@ -5,15 +5,21 @@ import { curriculumListTypes } from "../action-mappers/view-curriculum-list-acti
 import { updateCurriculumTypes } from '../action-mappers/update-curriculum-action-mapper';
 import { getCurriculumTypes } from '../action-mappers/get-curriculum-by-id-action-mapper'
 import { ICurriculumState } from '.'
+import { deleteCurriculumTypes } from "../action-mappers/delete-curriculum-action-mapper";
 
+/**
+ * Inital State of Curriculum Reducer
+ */
 const initialState:ICurriculumState = {
   curriculum:new Curriculum(0,'',[]),
   createCurriculum: new Curriculum(0,'',[]),
   curriculumList: [],
   updateCurriculum: new Curriculum(0,'',[]),
+	deleteCurriculum: new Curriculum(0, "", []),
   errorMessage: ""
 }
 
+// Reducers 
 export const curriculumReducer = (state=initialState,action:AnyAction)=>{
   switch(action.type){
     case curriculumTypes.CREATE_CURRICULUM:{
@@ -63,7 +69,19 @@ export const curriculumReducer = (state=initialState,action:AnyAction)=>{
         ...state,
         errorMessage:action.payload.errorMessage
       }
-    }
+    }		
+    case deleteCurriculumTypes.DELETE_CURRICULUM: {
+			return {
+				...state,
+				deleteCurriculum: action.payload.deleteCurriculum,
+			};
+		}
+		case deleteCurriculumTypes.FAILED_TO_DELETE_CURRICULUM: {
+			return {
+				...state,
+				errorMessage: action.payload.errorMessage,
+			};
+		}
     default: return state;
   }
 }

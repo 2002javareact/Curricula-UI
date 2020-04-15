@@ -3,6 +3,32 @@
   /* put background color to change that white form background */
   background-color: var(--charcoal);
 }
+/* Customized Font from Google fonts */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), 
+       url('/fonts/Open_Sans/OpenSans-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), 
+       url('/fonts/Open_Sans/OpenSans-Bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 1000;
+  src: local('Open Sans Extra Bold'), 
+       url('/fonts/Open_Sans/OpenSans-ExtraBold.ttf') format('truetype');
+}
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
 /* Used to change the color of the navbar */
 nav.navbar {
   background-color:  white;
