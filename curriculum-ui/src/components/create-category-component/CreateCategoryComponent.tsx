@@ -13,7 +13,8 @@ import {
   Card,
   Toast,
   ToastHeader,
-  ToastBody
+  ToastBody,
+  Row
 } from "reactstrap";
 import { Redirect } from "react-router";
 import { Category } from "../../models/Category";
@@ -50,7 +51,7 @@ export class CreateCategoryComponent extends React.Component<
       categoryColor: "#000000",
       categoryName: "",
       didSubmit: false,
-      displayColorPicker: false
+      displayColorPicker: true
     };
   }
 
@@ -118,12 +119,16 @@ export class CreateCategoryComponent extends React.Component<
     };
 
     return (
-      <div>
+      <div className="d-flex justify-content-center">
+       
+        <Card className="shadow-custom d-flex justify-content-center col-6">
+        &nbsp;
         <Form onSubmit={this.submitNewCategory}>
-          <FormGroup row>
+          <FormGroup>
+            <Row className="p-1 d-flex justify-content-center">
             <Label for="Create Catagory id" sm={3}>
               {" "}
-              Catagory id
+              Catagory Id:
             </Label>
             <Col sm={6}>
               <Input
@@ -137,20 +142,30 @@ export class CreateCategoryComponent extends React.Component<
                 disabled
               />
             </Col>
+            </Row>
           </FormGroup>
-          <br />
-
-          {this.state.displayColorPicker ? (
-            <div style={{ position: "absolute", right: "5vw" }}>
-              <div onClick={this.handleClose} />
-              ​
-              <SketchPicker
-                color={this.state.categoryColor}
-                onChange={this.handleChange}
+          <FormGroup>
+          <Row className="p-1 d-flex justify-content-center">
+            <Label for="Create Category Name" sm={3}>
+              Category Name
+            </Label>
+            <Col sm={6}>
+              <Input
+                onChange={this.createCategoryName}
+                value={this.state.categoryName}
+                type="text"
+                name=" createCatName"
+                id="createCatName"
+                placeholder="Please enter the Catagory Name"
+                required
               />
-            </div>
-          ) : null}
-          <FormGroup row>
+            </Col>
+            </Row>
+
+          </FormGroup>
+         
+          <FormGroup>
+          <Row className="p-1 d-flex justify-content-center">
             <Label for="Create Category Color" sm={3}>
               Category Color
             </Label>
@@ -166,33 +181,35 @@ export class CreateCategoryComponent extends React.Component<
                 disabled
               />
             </Col>
+            </Row>
           </FormGroup>
-          <div style={swatch} onClick={this.handleClick}>
+          {/* {<div style={swatch} onClick={this.handleClick}>
             <div style={color} />
-          </div>
-          <br />
-
-          <FormGroup row>
-            <Label for="Create Category Name" sm={3}>
-              Category Name
-            </Label>
-            <Col sm={6}>
-              <Input
-                onChange={this.createCategoryName}
-                value={this.state.categoryName}
-                type="text"
-                name=" createCatName"
-                id="createCatName"
-                placeholder="Please enter the Catagory Name"
-                required
+          </div>} */}
+         {/* color picker */}
+          <Row className="d-flex justify-content-center">
+          {this.state.displayColorPicker ? (
+            <>
+              <div onClick={this.handleClose} />
+              ​
+              <SketchPicker
+                color={this.state.categoryColor}
+                onChange={this.handleChange}
               />
-            </Col>
-          </FormGroup>
-
-          <br />
-          <Button color="info">Submit</Button>
+              
+            </>
+            
+          ) : null}
+          
+          </Row>
+          &nbsp;
+          <Row className="d-flex justify-content-center">
+          <Button color="primary">Submit</Button>
+          </Row>
         </Form>
-
+        &nbsp;
+        
+        </Card>
         {/* If no error message, display the blank error message. Else, display a toast with the error message */}
         {this.props.errorMessage === "" ? (
           <></>
