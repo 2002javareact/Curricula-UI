@@ -39,7 +39,7 @@ async deleteVisualization(e:SyntheticEvent,id:number){
         let visualizationDisplay = this.props.allVisualizations.map((visualization) => {
             if(visualization.curriculum){
             return(
-                <Card className="visualizationCard"> 
+                <Card className="visualizationCard shadow-custom2"> 
                     <CardTitle className="font-weight-bold m-2 ButtonDown">{visualization.visualizationName}</CardTitle>
                     <br/>
                     {/* The map take the array of curriculums and maps them to this CardText, this will do it for all the elements */}
