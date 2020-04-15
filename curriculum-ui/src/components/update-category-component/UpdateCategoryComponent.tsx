@@ -8,7 +8,9 @@ import {
   Button,
   Toast,
   ToastHeader,
-  ToastBody
+  ToastBody,
+  Card,
+  Row
 } from "reactstrap";
 import { Category } from "../../models/Category";
 import { CategoryInfoComponent } from "../category-info-component/CategoryInfoComponent";
@@ -50,7 +52,7 @@ export class UpdateCategoryComponent extends React.Component<
       categoryColor: this.props.location.state.category.categoryColor,
       categoryName: this.props.location.state.category.categoryName,
       didSubmit: false,
-      displayColorPicker: false
+      displayColorPicker: true
     };
   }
 
@@ -114,12 +116,16 @@ export class UpdateCategoryComponent extends React.Component<
     return (
       <>
         <h3>Update Category</h3>
+        <div className="d-flex justify-content-center">
+        <Card className="shadow-custom d-flex justify-content-center col-6">
+          &nbsp;
         <Form onSubmit={this.submitUpdate}>
-          <FormGroup row>
-            <Label for="categoryId" sm={2}>
+          <FormGroup>
+            <Row className="p-1 d-flex justify-content-center">
+            <Label sm={2}for="categoryId" >
               CategoryId:
             </Label>
-            <Col sm={6}>
+            <Col sm={10}>
               <Input
                 //onChange={this.updateUserId}
                 value={oldCategory.categoryId}
@@ -131,22 +137,33 @@ export class UpdateCategoryComponent extends React.Component<
                 disabled
               />
             </Col>
+            </Row>
           </FormGroup>
-          {this.state.displayColorPicker ? (
-            <div style={{ position: "absolute", right: "5vw" }}>
-              <div onClick={this.handleClose} />
-              ​
-              <SketchPicker
-                color={this.state.categoryColor}
-                onChange={this.handleChange}
+          
+          
+          <FormGroup>
+          <Row className="p-1 d-flex justify-content-center">
+            <Label for="name" sm={2}>
+              Category Name:
+            </Label>
+            <Col sm={10}>
+              <Input
+                onChange={this.updateName}
+                value={this.state.categoryName}
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Category Name"
               />
-            </div>
-          ) : null}
-          <FormGroup row>
+            </Col>
+            </Row>
+          </FormGroup>
+          <FormGroup >
+          <Row className="p-1 d-flex justify-content-center">
             <Label for="color" sm={2}>
               Color:
             </Label>
-            <Col sm={6}>
+            <Col sm={10}>
               <Input
                 onChange={this.handleChange}
                 value={this.state.categoryColor}
@@ -157,27 +174,36 @@ export class UpdateCategoryComponent extends React.Component<
                 disabled
               />
             </Col>
+            </Row>
           </FormGroup>
+          <Row className="d-flex justify-content-center">
+          {this.state.displayColorPicker ? (
+            <>
+              <div onClick={this.handleClose} />
+              ​
+              <SketchPicker
+                color={this.state.categoryColor}
+                onChange={this.handleChange}
+              />
+            </>
+          ) : null}
+          </Row>
+
+          {/* {<Row className="m-1 d-flex justify-content-center">
           <div style={swatch} onClick={this.handleClick}>
             <div style={color} />
           </div>
-          <FormGroup row>
-            <Label for="name" sm={2}>
-              Category Name:
-            </Label>
-            <Col sm={6}>
-              <Input
-                onChange={this.updateName}
-                value={this.state.categoryName}
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Category Name"
-              />
-            </Col>
-          </FormGroup>
-          <Button color="success">Update Category</Button>
+          </Row>} */}
+          &nbsp;
+          <Row className="m-2 d-flex justify-content-center">
+          <Button color="info">Update Category</Button>
+          </Row>
         </Form>
+        &nbsp;
+        </Card>
+        </div>
+
+            
         {/* If no error message, display the blank error message. Else, display a toast with the error message */}
         {this.props.errorMessage === "" ? (
           <></>

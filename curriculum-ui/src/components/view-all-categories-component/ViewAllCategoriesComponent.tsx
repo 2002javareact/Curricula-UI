@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, CardTitle, CardText, Button, Container, Row } from "reactstrap";
 import { Category } from "../../models/Category";
 import { RouteComponentProps } from "react-router";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 //prop interface
 
@@ -38,16 +38,14 @@ export class ViewAllCategoriesComponent extends React.Component<
   render() {
     let viewCategory = this.props.allCategory.map((category, index) => {
       return (
+        <>
         <Card
           key={index}
           body
           inverse
+          className="shadow-custom2 col-3"
           style={{
-            backgroundColor: category.categoryColor,
-            borderColor: "#333",
             margin: "1em",
-            width: "20vw",
-            height: "40vh"
           }}
         >
           <CardTitle style={{ color: "black", fontSize: "2em" }}>
@@ -55,42 +53,47 @@ export class ViewAllCategoriesComponent extends React.Component<
           </CardTitle>
           <br />
           <br />
-          <CardText style={{ color: "black", fontSize: "1.2em" }}>
-            COLOR: {category.categoryColor}
+          <CardText style={{ color: category.categoryColor, fontSize: "1.2em" }}>
+            COLOR: {category.categoryColor} ██
           </CardText>
-          <NavLink
-            className="btn btn-dark"
+          <Row className="d-flex justify-content-center">
+          
+            <Button tag={Link}
+          color="info"
+            className="col-5 mx-1"
             to={{
               pathname: `/category/${category.categoryId}`,
-              state: { category }
-            }}
+              state: { category }}}
           >
-            Update Category
-          </NavLink>
-          <Button
+            
+            UPDATE
+            
+          </Button>
+          
+          
+          <Button className="col-5 mx-1"
             onClick={() => this.deleteCategory(category.categoryId)}
-            style={{
-              backgroundColor: "#464646",
-              fontSize: "2em",
-              color: "black"
-            }}
+            color = "danger"
           >
+            
             {" "}
             DELETE
           </Button>
+          </Row>
         </Card>
+        </>
       );
     }); // loop
     //onClick={this.deleteCategory(category.categoryId)}
     //this.refreshPage();
     return (
       <>
-        <Card style={{ textAlign: "center" }}>
-          <h4>All Categories</h4>
-        </Card>
-        <Container className="listOfCategories">
-          <Row xs="3">{viewCategory}</Row>
-        </Container>
+      
+          <h4 style={{ textAlign: "center" }}>All Categories</h4>
+        
+        <div className="d-flex justify-content-center">
+          <Row className="col-8 d-flex justify-content-center">{viewCategory}</Row>
+        </div>
       </>
     );
   }
