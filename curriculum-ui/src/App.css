@@ -45,6 +45,12 @@ div.visualizationCard{
   margin-top: 1em;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: auto;
+  min-height: 300px;
+}
+
+.ButtonsDown{
+  margin-top: auto;
 }
 
 .bg-vis{

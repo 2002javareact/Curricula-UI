@@ -19,10 +19,8 @@ interface IVisualizationProps{
  **/
 export class ViewAllVisualizationComponent extends React.Component<IVisualizationProps,any>{
 
-componentDidMount(){
-    if(this.props.allVisualizations.length === 0){
+componentDidMount(){    
         this.props.getAllVisualizationsActionMapper()
-    }
 }
 
 updateView(e: SyntheticEvent,id:number){
@@ -41,14 +39,16 @@ async deleteVisualization(e:SyntheticEvent,id:number){
         let visualizationDisplay = this.props.allVisualizations.map((visualization) => {
             if(visualization.curriculum){
             return(
-                <Card className="visualizationCard"> 
-                    <CardTitle>{visualization.visualizationName}</CardTitle>
+                <Card className="visualizationCard shadow-custom2"> 
+                    <CardTitle className="font-weight-bold m-2 ButtonDown">{visualization.visualizationName}</CardTitle>
+                    <br/>
                     {/* The map take the array of curriculums and maps them to this CardText, this will do it for all the elements */}
                     {visualization.curriculum.map(element => {return(
-                    <CardText>{element.curriculumName}</CardText>)
+                    <CardText className="ButtonsDown">{element.curriculumName}</CardText>)
                     })}
-                    <CardText>{`${window.location.href}visualization/${visualization.visualizationId}`}</CardText>
-                    <ButtonGroup>
+                    
+                    <CardText className="ButtonsDown">{`${window.location.href}visualization/${visualization.visualizationId}`}</CardText>
+                    <ButtonGroup className="ButtonsDown">
                     <Button color="success" onClick={(e: SyntheticEvent)=>this.updateView(e,visualization.visualizationId)}>Update</Button>
 
                     <Button color="danger" onClick={(e:SyntheticEvent)=>this.deleteVisualization(e,visualization.visualizationId)}>Delete</Button>
