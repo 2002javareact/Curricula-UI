@@ -7,6 +7,10 @@ export const updateCurriculumTypes = {
     FAILED_TO_VIEW_AND_UPDATE_CURRICULUM: "CURRICULA_FAILED_TO_VIEW_AND_UPDATE_CURRICULUM"
 }
 
+/**
+ * Updates a curriculum in the database. 
+ * @param curriculum 
+ */
 export const updateCurriculumActionMapper = (curriculum:Curriculum) => async (dispatch:Dispatch) => {
     try {
         let updateCurriculum = await curriculaUpdateCurriculum(curriculum);
