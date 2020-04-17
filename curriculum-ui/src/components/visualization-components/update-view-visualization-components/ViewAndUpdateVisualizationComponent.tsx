@@ -1,5 +1,3 @@
-
-
 import React, { SyntheticEvent } from "react"
 import { Visualization } from "../../../models/Visualization";
 import { Button, Card, Row, Container, Col, ButtonGroup, Form, FormGroup, Label, CustomInput, Input } from "reactstrap";
@@ -25,6 +23,7 @@ interface IUpdateViewVisualizationState {
 /**
  * @author [Anthony Cona] (Anthony-Cona)
  * @author [Gerard Cancino] (Gerard-Cancino)
+ * @author [Shana Brown] (Shanabrown513)
  **/
 export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdateViewVisualizationProps, IUpdateViewVisualizationState>{
 
@@ -38,7 +37,7 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
         }
     }
 
-    //Custom object Used for radio buttons that holds the curriculum Id informations and name but not the skills list, and if in current Visualization
+    //Custom object Used for checkboxes that holds the curriculum Id informations and name but not the skills list, and if in current Visualization
     convertCurriculumToCheckedObject(curriculum: Curriculum, isExist: boolean) {
         return ({
             curriculumId: curriculum.curriculumId,
@@ -53,7 +52,7 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
             await this.props.getOneVisualizationActionMapper(+window.location.href.substring(window.location.href.lastIndexOf('/') + 1))
         } else { //If the Id value is not in the inital state then it will grab the curriculms in the DB to display for update
             await this.props.viewCurriculumListActionMapper()
-            //maps the All curriculums list into custom object above <-- used to make radio buttons clickable and update when pressed
+            //maps the All curriculums list into custom object above <-- used to make checkboxes clickable and update when pressed
             //If the curriculm is in the current visualization it gets a value of true otherwise it gets a false value
             const checkedCurriculumList = this.props.allCurriculumList.map((c: Curriculum) => {
                 if (this.props.visualization.curriculum.some((c2: Curriculum) => c.curriculumId === c2.curriculumId)) {
@@ -109,7 +108,7 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
         //Empty array used to store the curriculmns that are checked and should be apart of the visualization
         let array: any[] = []
 
-        //If isChecked is ture it puts that object into the new array else it does nothing
+        //If isExist is ture it puts that object into the new array else it does nothing
         this.state.updateCurriculumList.forEach((element: any) => {
             if (element.isExist) {
                 array.push({ curriculumId: element.curriculumId })
@@ -221,7 +220,6 @@ export class ViewAndUpdateVisualizationComponent extends React.Component<IUpdate
                 {this.state.updateVisualization &&
                     <>
                         <br /><br /><br /><br />
-
                         <Label>Warning Refresh will remove update and progress will be lost</Label>
                         <Form onSubmit={this.updateVisualization} className="w-50 p-3 m-auto">
                             <Label for="exampleCheckbox">Check Curriculum to add or remove from current Visualization</Label>
