@@ -3,8 +3,9 @@ import { AnyAction } from "redux";
 import { Category } from "../models/Category";
 import { updateCategoryTypes } from "../action-mappers/update-category-action-mapper";
 import { categoriesTypes } from "../action-mappers/getall-categories-action-mappers";
-import {deleteCategoryType} from '../action-mappers/delete-category-action-mappers'
+import { deleteCategoryType } from "../action-mappers/delete-category-action-mappers";
 
+//Sets the default states for these fields
 const initialState: ICategoriesState = {
   allCategory: [],
   updatedCategory: new Category(0, "", ""),
@@ -37,23 +38,18 @@ export const categoriesReducer = (state = initialState, action: AnyAction) => {
         errorMessage: "Failed to Update Category"
       };
     }
-
-    case deleteCategoryType.SUCCESSFUL:{
+    case deleteCategoryType.SUCCESSFUL: {
       return {
         ...state,
-        deleteCategoryById:action.payload.deletedCategory
-      }
+        deleteCategoryById: action.payload.deletedCategory
+      };
     }
-    case deleteCategoryType.CATEGORY_NOT_FOUND:{
+    case deleteCategoryType.CATEGORY_NOT_FOUND: {
       return {
         ...state,
-        errorMessage:"Failed to Delete Category"
-      }
+        errorMessage: "Failed to Delete Category"
+      };
     }
-
-
-
-
     default:
       return state;
   }

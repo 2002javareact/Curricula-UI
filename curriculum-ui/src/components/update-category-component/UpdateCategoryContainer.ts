@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state: IState) => {
   return {
+    //Passes in the updated category to the component
     updatedCategory: state.allCategory.updatedCategory,
     errorMessage: state.allCategory.errorMessage
   };
@@ -13,7 +14,7 @@ const mapStateToProps = (state: IState) => {
 const mapDispatchToProps = {
   updateCategoryActionMapper
 };
-
+//Used to connect the container to the component
 export default connect(
   mapStateToProps,
   mapDispatchToProps

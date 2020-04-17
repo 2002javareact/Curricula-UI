@@ -1,3 +1,4 @@
+//This component serves as a multi route for anything category related. As specified in App.tsx, the base path for this component is '/category'. Any paths in this component extend the base path by using 'this.props.match.path'.
 import React from "react";
 import { Switch, Route } from "react-router";
 import ViewAllCategoriesComponent from "../view-all-categories-component/ViewAllCategoriesContainer";

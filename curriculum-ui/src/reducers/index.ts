@@ -7,33 +7,31 @@ import { createReducer } from "./create-category-reducer";
 import { Category } from "../models/Category";
 import { Visualization } from "../models/Visualization";
 import { visualizationReducer } from "./visualization-reducer";
-import { curriculumReducer } from './curriculum-reducer';
+import { curriculumReducer } from "./curriculum-reducer";
 import { getSkillsByCategoryIdReducer } from "./get-skill-category-reducer";
 import { deleteCategoryByIdReducer } from "./delete-category-by-id-reducer";
 import { createVisualizationReducer } from "./create-visualization-reduser";
 
-
-
 export interface IAllCurriculumState {
-	curriculumList: Array<Curriculum>;
-	errorMessage: string;
+  curriculumList: Array<Curriculum>;
+  errorMessage: string;
 }
 export interface ICreateSkillState {
-	createdSkill: Skill;
-	listCategories: Category[];
-	errorMessage: string;
+  createdSkill: Skill;
+  listCategories: Category[];
+  errorMessage: string;
 }
 
 export interface IGetSkillsByCategoryIdState {
-	skillsByCategoryId: Skill[];
-	errorMessage: string;
+  skillsByCategoryId: Skill[];
+  errorMessage: string;
 }
 
 export interface ISkillState {
-	createdSkill: Skill;
-	allSkills: Skill[];
-	updatedSkill: Skill;
-	errorMessage: string;
+  createdSkill: Skill;
+  allSkills: Skill[];
+  updatedSkill: Skill;
+  errorMessage: string;
 }
 
 export interface ICurriculumState {
@@ -41,20 +39,19 @@ export interface ICurriculumState {
   curriculum: Curriculum;
   curriculumList: Array<Curriculum>;
   updateCurriculum: Curriculum;
-	deleteCurriculum: Curriculum;
+  deleteCurriculum: Curriculum;
   errorMessage: string;
 }
 
 export interface ICreateCategoryState {
-  //createCategory:Category
   createCat: Category;
   errorMessage: string;
 }
 
 export interface ICategoriesState {
-	allCategory: [];
-	updatedCategory: Category;
-	errorMessage: string;
+  allCategory: [];
+  updatedCategory: Category;
+  errorMessage: string;
 }
 
 export interface ICategoriesState {
@@ -62,9 +59,9 @@ export interface ICategoriesState {
   errorMessage: string;
 }
 
-export interface IViewAllVisualizationsState{
-  allVisualizations:Visualization[]
-  errorMessage: string
+export interface IViewAllVisualizationsState {
+  allVisualizations: Visualization[];
+  errorMessage: string;
 }
 
 export interface IViewCurriculumState {
@@ -72,8 +69,8 @@ export interface IViewCurriculumState {
   errorMessage: string;
 }
 export interface ICategoriesState {
-	allCategory: [];
-	errorMessage: string;
+  allCategory: [];
+  errorMessage: string;
 }
 
 export interface IDeleteCategoryByIdState {
@@ -82,8 +79,8 @@ export interface IDeleteCategoryByIdState {
 }
 
 export interface IGetCurriculumByIdState {
-	getCurriculumById: Curriculum;
-	errorMessage: string;
+  getCurriculumById: Curriculum;
+  errorMessage: string;
 }
 
 export interface ICreateVIsualizationState {
@@ -92,29 +89,27 @@ export interface ICreateVIsualizationState {
 }
 
 export interface IViewAllVisualizationsState {
-	allVisualizations: Visualization[];
-	errorMessage: string;
-	visualization: Visualization;
+  allVisualizations: Visualization[];
+  errorMessage: string;
+  visualization: Visualization;
 }
 
-
 export interface IState {
-	//getAllSkills:IGetAllSkillState
-	// TODO add to curriculum reducer
+  //getAllSkills:IGetAllSkillState
+  // TODO add to curriculum reducer
   skillsByCategoryId: IGetSkillsByCategoryIdState;
   allCategory: ICategoriesState;
   skills: ISkillState;
   curriculum: ICurriculumState;
   allVisualizations: IViewAllVisualizationsState;
   deleteCategoryById: IDeleteCategoryByIdState;
-	newVisualization:ICreateVIsualizationState;
+  newVisualization: ICreateVIsualizationState;
   createCategory: ICreateCategoryState;
 }
 
 export const state = combineReducers<IState>({
-
-	//getAllSkills:getAllSkillsReducer,
-	// TODO add to curriculum reducer
+  //getAllSkills:getAllSkillsReducer,
+  // TODO add to curriculum reducer
   skillsByCategoryId: getSkillsByCategoryIdReducer,
   allCategory: categoriesReducer,
   skills: skillsReducer,
@@ -122,6 +117,5 @@ export const state = combineReducers<IState>({
   allVisualizations: visualizationReducer,
   deleteCategoryById: deleteCategoryByIdReducer,
   createCategory: createReducer,
-  newVisualization: createVisualizationReducer,
+  newVisualization: createVisualizationReducer
 });
-

@@ -1,9 +1,7 @@
 import { HttpError } from "./HttpErrors";
 
-
-export class CategoryNotFoundError extends HttpError{
-    constructor(){
-        super('User Not Found', 404)
-    }
+export class CategoryNotFoundError extends HttpError {
+  constructor() {
+    super("Category Not Found", 404);
+  }
 }
-
