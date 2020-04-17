@@ -1,7 +1,6 @@
 import React, { SyntheticEvent } from "react"
 import { Visualization } from "../../../models/Visualization";
 import { Card, CardTitle, Button, CardText, Row, ButtonGroup, Container, Col, CardBody } from "reactstrap";
-import {CardDeck} from "../../CardDeckComponent"
 import { Redirect } from "react-router";
 
 
@@ -28,6 +27,7 @@ updateView(e: SyntheticEvent,id:number){
     this.props.getOneVisualizationActionMapper(id)
 }
 
+// Calls getAllVisualizationsActionMapper() to rerender the view all page
 async deleteVisualization(e:SyntheticEvent,id:number){
     e.preventDefault()
    await this.props.deleteOneVisualizationActinoMapper(id)
@@ -41,7 +41,7 @@ async deleteVisualization(e:SyntheticEvent,id:number){
             return(
                 <Col className="col-4 p-0 mb-3">
                     <div className="border-0 shadow h-100 mx-2">
-                        <Card className="h-100 border-0" > {/*visualizationCard shadow-custom2">*/} 
+                        <Card className="h-100 border-0">
                             <br/>
                             <CardBody className="d-flex flex-column">
                             <CardTitle className="ButtonDown m-0 mb-4 "><h5 className="m-0">{visualization.visualizationName}</h5></CardTitle>
@@ -51,7 +51,6 @@ async deleteVisualization(e:SyntheticEvent,id:number){
                             })}
                             
                             <CardText className="ButtonsDown m-4 px-4">{`${window.location.href}visualization/${visualization.visualizationId}`}</CardText>
-                            {/*<ButtonGroup className="ButtonsDown">*/}
                             <ButtonGroup className="mt-auto row">
                                 <Button className="col-sm-12 col-md-6 border-right border-white rounded" color="info" onClick={(e: SyntheticEvent)=>this.updateView(e,visualization.visualizationId)}>Update</Button>
                                 <Button className="col-sm-12 col-md-6 border-left border-white rounded" color="danger" onClick={(e:SyntheticEvent)=>this.deleteVisualization(e,visualization.visualizationId)}>Delete</Button>
@@ -71,15 +70,6 @@ async deleteVisualization(e:SyntheticEvent,id:number){
             this.props.visualization.visualizationId !== 0 ?
             <Redirect to={`/visualization/${this.props.visualization.visualizationId}`}></Redirect>
             :
-        // <>
-        // <br/> <br/> <br/> <br/>
-        // <h3>All Visualizations</h3>
-        // <br/>
-        //     <CardDeck elementsPerRow={4}>
-        //     {visualizationDisplay}
-        //     </CardDeck>
-        
-        // </>)
         <Container>
             <Row className="p-4 m-4 border border-light text-center rounded shadow-custom bg-light">
                 <Col className="col-12 mb-2">
