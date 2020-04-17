@@ -44,6 +44,7 @@ export interface IUpdateSkillState {
  * return a updated skill name of our choice
  */
 
+
 export class UpdateSkillComponent extends React.Component<
   IUpdateSkillProp,
   IUpdateSkillState
@@ -173,3 +174,4 @@ export class UpdateSkillComponent extends React.Component<
     );
   }
 }
+

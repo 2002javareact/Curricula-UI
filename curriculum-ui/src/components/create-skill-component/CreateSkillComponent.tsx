@@ -31,6 +31,7 @@ export interface ICreateSkillState {
   label: string;
 }
 
+
 /**
  * this is a child class of the React.component framework
  * here we take in the state and props that we have provided above and
@@ -125,3 +126,4 @@ export class CreateSkillComponent extends React.Component<
     );
   }
 }
+

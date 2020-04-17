@@ -8,11 +8,14 @@ import {
   Button,
   Toast,
   ToastHeader,
-  ToastBody
+  ToastBody,
+  Card,
+  Row
 } from "reactstrap";
 import { Category } from "../../models/Category";
 import { CategoryInfoComponent } from "../category-info-component/CategoryInfoComponent";
 import { RouteComponentProps } from "react-router";
+import { SketchPicker } from "react-color";
 
 //prop interface
 interface IUpdateCategoryProps extends RouteComponentProps {
@@ -34,6 +37,7 @@ interface IUpdateCategoryState {
   categoryColor: string;
   categoryName: string;
   didSubmit: boolean;
+  displayColorPicker: boolean;
 }
 
 export class UpdateCategoryComponent extends React.Component<
@@ -47,7 +51,8 @@ export class UpdateCategoryComponent extends React.Component<
       categoryId: this.props.location.state.category.categoryId,
       categoryColor: this.props.location.state.category.categoryColor,
       categoryName: this.props.location.state.category.categoryName,
-      didSubmit: false
+      didSubmit: false,
+      displayColorPicker: true
     };
   }
 
@@ -75,18 +80,52 @@ export class UpdateCategoryComponent extends React.Component<
     this.setState({ didSubmit: true });
   };
 
+  //color picker methods
+  handleClick = () => {
+    this.setState({
+      displayColorPicker: !this.state.displayColorPicker
+    });
+  };
+  handleClose = () => {
+    this.setState({ displayColorPicker: false });
+  };
+  handleChange = (color: any) => {
+    this.setState({ categoryColor: color.hex });
+    console.log(this.state.categoryColor); // testing
+  };
+
   render() {
+    //color picker stuff
+    var swatch = {
+      padding: "5px",
+      background: "#fff",
+      borderRadius: "1px",
+      boxShadow: "0 0 0 1px rgba(0,0,0,.1)",
+      display: "inline-block",
+      cursor: "pointer"
+    };
+    var color = {
+      width: "36px",
+      height: "14px",
+      borderRadius: "2px",
+      background: this.state.categoryColor
+    };
+
     const oldCategory = this.props.location.state.category;
 
     return (
       <>
         <h3>Update Category</h3>
+        <div className="d-flex justify-content-center">
+        <Card className="shadow-custom d-flex justify-content-center col-6">
+          &nbsp;
         <Form onSubmit={this.submitUpdate}>
-          <FormGroup row>
-            <Label for="categoryId" sm={2}>
+          <FormGroup>
+            <Row className="p-1 d-flex justify-content-center">
+            <Label sm={2}for="categoryId" >
               CategoryId:
             </Label>
-            <Col sm={6}>
+            <Col sm={10}>
               <Input
                 //onChange={this.updateUserId}
                 value={oldCategory.categoryId}
@@ -98,27 +137,16 @@ export class UpdateCategoryComponent extends React.Component<
                 disabled
               />
             </Col>
+            </Row>
           </FormGroup>
-          <FormGroup row>
-            <Label for="color" sm={2}>
-              Color:
-            </Label>
-            <Col sm={6}>
-              <Input
-                onChange={this.updateColor}
-                value={this.state.categoryColor}
-                type="text"
-                name="color"
-                id="color"
-                placeholder="Category Color"
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup row>
+          
+          
+          <FormGroup>
+          <Row className="p-1 d-flex justify-content-center">
             <Label for="name" sm={2}>
               Category Name:
             </Label>
-            <Col sm={6}>
+            <Col sm={10}>
               <Input
                 onChange={this.updateName}
                 value={this.state.categoryName}
@@ -128,9 +156,54 @@ export class UpdateCategoryComponent extends React.Component<
                 placeholder="Category Name"
               />
             </Col>
+            </Row>
           </FormGroup>
-          <Button color="success">Update Category</Button>
+          <FormGroup >
+          <Row className="p-1 d-flex justify-content-center">
+            <Label for="color" sm={2}>
+              Color:
+            </Label>
+            <Col sm={10}>
+              <Input
+                onChange={this.handleChange}
+                value={this.state.categoryColor}
+                type="text"
+                name="color"
+                id="color"
+                placeholder="Category Color"
+                disabled
+              />
+            </Col>
+            </Row>
+          </FormGroup>
+          <Row className="d-flex justify-content-center">
+          {this.state.displayColorPicker ? (
+            <>
+              <div onClick={this.handleClose} />
+              ​
+              <SketchPicker
+                color={this.state.categoryColor}
+                onChange={this.handleChange}
+              />
+            </>
+          ) : null}
+          </Row>
+
+          {/* {<Row className="m-1 d-flex justify-content-center">
+          <div style={swatch} onClick={this.handleClick}>
+            <div style={color} />
+          </div>
+          </Row>} */}
+          &nbsp;
+          <Row className="m-2 d-flex justify-content-center">
+          <Button color="info">Update Category</Button>
+          </Row>
         </Form>
+        &nbsp;
+        </Card>
+        </div>
+
+            
         {/* If no error message, display the blank error message. Else, display a toast with the error message */}
         {this.props.errorMessage === "" ? (
           <></>

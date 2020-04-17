@@ -3,18 +3,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, CardTitle, CardText, Button, Container, Row } from "reactstrap";
 import { Category } from "../../models/Category";
 import { RouteComponentProps } from "react-router";
-import { NavLink } from "react-router-dom";
-
-import { SketchPicker } from 'react-color';
+import { NavLink, Link } from "react-router-dom";
 
 //prop interface
 
 interface IViewAllUsersProps extends RouteComponentProps {
   allCategory: Category[];
-  deletedCategory:any;
+  deletedCategory: any;
   errorMessage: string;
   getAllCategoriesActionMapper: () => void;
-  CategoryDeleteByIdActionMapper: (id:number) => void;
+  CategoryDeleteByIdActionMapper: (id: number) => void;
 }
 //state interface?
 
@@ -22,78 +20,81 @@ export class ViewAllCategoriesComponent extends React.Component<
   IViewAllUsersProps,
   any
 > {
-  refreshPage() {
-    window.location.reload(true);
-  }
+  // refreshPage() {
+  //   window.location.reload(true);
+  // }
   componentDidMount() {
+    return this.props.getAllCategoriesActionMapper();
+  }
+  // componentDidUpdate() {
+  //   return this.props.getAllCategoriesActionMapper();
+  // }
 
-    if (this.props.allCategory.length === 0) {
-    return (this.props.getAllCategoriesActionMapper());
-    }
-    else {}
-  }
-  componentDidUpdate() {
-   // return this.props.getAllCategoriesActionMapper();
-  }
-  deleteCategory = async (id:number) =>{
-    this.props.CategoryDeleteByIdActionMapper(id)
-    this.refreshPage();
-  }
-
-  onDeleteClick() {
-   
-    alert('clicked');
-}
+  deleteCategory = async (id: number) => {
+   await this.props.CategoryDeleteByIdActionMapper(id);
+    this.props.getAllCategoriesActionMapper()
+    //this.refreshPage();
+  };
 
   render() {
     let viewCategory = this.props.allCategory.map((category, index) => {
       return (
+        <>
         <Card
           key={index}
           body
           inverse
+          className="shadow-custom2 col-3"
           style={{
-            backgroundColor: category.categoryColor,
-            borderColor: "#333",
             margin: "1em",
-            width: "20vw",
-            height: "40vh"
           }}
         >
           <CardTitle style={{ color: "black", fontSize: "2em" }}>
             {category.categoryName}
           </CardTitle>
-            <br />
           <br />
-          <CardText style={{ color: "black", fontSize: "1.2em" }}>
-            COLOR: {category.categoryColor}
+          <br />
+          <CardText style={{ color: category.categoryColor, fontSize: "1.2em" }}>
+            COLOR: {category.categoryColor} ██
           </CardText>
-          <NavLink
-            className="btn btn-dark"
+          <Row className="d-flex justify-content-center">
+          
+            <Button tag={Link}
+          color="info"
+            className="col-5 mx-1"
             to={{
               pathname: `/category/${category.categoryId}`,
-              state: { category }
-            }}
+              state: { category }}}
           >
-            Update Category
-          </NavLink>
-          <Button onClick={() => this.deleteCategory(category.categoryId)} style={{  backgroundColor: "#464646",   fontSize: "2em",   color: "black"  }} >
+            
+            UPDATE
+            
+          </Button>
+          
+          
+          <Button className="col-5 mx-1"
+            onClick={() => this.deleteCategory(category.categoryId)}
+            color = "danger"
+          >
+            
             {" "}
             DELETE
           </Button>
-            </Card>
+          </Row>
+        </Card>
+        </>
       );
     }); // loop
     //onClick={this.deleteCategory(category.categoryId)}
     //this.refreshPage();
     return (
       <>
-        <Card style={{ textAlign: "center" }}>
-          <h4>All Categories</h4>
-        </Card>
-        <Container className="listOfCategories">
-          <Row xs="3">{viewCategory}</Row>
-        </Container>
+      
+          <h4 style={{ textAlign: "center" }}>All Categories</h4>
+        
+        <div className="d-flex justify-content-center">
+          <Row className="col-8 d-flex justify-content-center">{viewCategory}</Row>
+        </div>
       </>
     );
   }

@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { ISkillState } from ".";
-import { getAllSkillTypes, createSkillTypes, updateSkillTypes } from "../action-mappers/skill-action-mapper";
+import { getAllSkillTypes, createSkillTypes, updateSkillTypes, deletedSkillTypes } from "../action-mappers/skill-action-mapper";
 import { Skill } from "../models/Skill";
 import { Category } from "../models/Category";
 
@@ -52,6 +52,19 @@ export const skillsReducer = (state = initialState, action:AnyAction ) =>{
                 errorMessage:'Failed to Update Skills'
             }
         } 
+        case deletedSkillTypes.DELETED_SKILL:{
+            return {
+                ...state,
+                allSkills: action.payload.deletedSkill,
+                errorMessage:''
+            }
+        }
+        case deletedSkillTypes.FAILED_DELETE_SKILL:{
+            return {
+                ...state,
+                errorMessage:'Failed to delete Skill'
+            }
+        }
         default:
             return state;
     }

@@ -1,5 +1,5 @@
 import { Dispatch } from "redux"
-import { getAllSkills, createSkill, updateSkill } from "../remote/SkillsRequest"
+import { getAllSkills, createSkill, updateSkill, deleteSkill } from "../remote/SkillsRequest"
 import { Category } from "../models/Category"
 import { Skill } from "../models/Skill"
 
@@ -16,6 +16,11 @@ export const createSkillTypes ={
 export const updateSkillTypes = {
     UPDATED_SKILL: 'PROJECT-3_UPDATED_SKILL',
     FAILED_TO_UPDATE_SKILL:'PROJECT-3_FAILED_TO_UPDATE_SKILL'
+}
+
+export const deletedSkillTypes ={
+    DELETED_SKILL: 'PROJECT-3_DELETED_SKILL',
+    FAILED_DELETE_SKILL: 'PROJECT-3_FAILED_DELETE_SKILL'
 }
 
 
@@ -70,3 +75,21 @@ export const updateSkillActionMapper = (id:number, name:string, category:Categor
     }
     //function completes
 }
+
+export const deleteSkillActionMapper = (id:number) => async (dispatch:Dispatch) => {
+    try{
+        let deletedSkill = await deleteSkill(id)
+        dispatch({
+            type: deletedSkillTypes.DELETED_SKILL,
+            payload:{
+                deletedSkill
+            }
+        })
+    }catch(e){
+        dispatch({
+            type:deletedSkillTypes.FAILED_DELETE_SKILL
+        })
+    }
+}
+
+
