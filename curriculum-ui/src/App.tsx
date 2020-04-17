@@ -22,6 +22,7 @@ function App() {
       {/* Remove once App.test.tsx is fixed*/}
       <div className="App">
         <Router>
+          {/* Renders the NavBar Component */}
           <NavBarComponent />
           <Switch>
             <Route
@@ -50,6 +51,7 @@ function App() {
               component={CreateSkillComponent}
             />
             <Route exact path="/skills" component={ViewAllSkillsComponent} />
+            {/* Renders the multi route component for category with the specified base path */}
             <Route path="/category" component={MultiRouteCategoryComponent} />
             <Route
               exact

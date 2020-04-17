@@ -1,13 +1,14 @@
 import { Category } from "../models/Category";
-
 import { CategoryNotFoundError } from "../errors/CategoryNotFoundError";
 import { InternalServiceError } from "../errors/InternalServiceError";
 import { curriculaClient } from "./CurriculaClient";
 
+//Function used to get a category by id. Returns a Category
 export async function getCategoryById(
   categoryId: number | undefined
 ): Promise<Category> {
   try {
+    //Uses Axios client to sent HTTP request to database
     let res = await curriculaClient.get(`/category/${categoryId}`);
 
     if (res.status === 400) {
@@ -23,12 +24,13 @@ export async function getCategoryById(
       throw new InternalServiceError();
     }
   }
-} //end of class
+}
 
+//Function used to get all categories. Returns an array of type Category
 export const FetchAllCategories = async () => {
   try {
+    //Uses Axios client to sent HTTP request to database
     let allCategory = await curriculaClient.get(`/category`);
-    //console.log(allCategory);
 
     if (allCategory.status === 400) {
       throw new CategoryNotFoundError();
@@ -44,33 +46,37 @@ export const FetchAllCategories = async () => {
       throw new InternalServiceError();
     }
   }
-}; //end of class
+};
 
-//create category
-export async function CreateCategory(categoryId: number, categoryColor: string, categoryName: string): Promise<Category> {
+//Function used to create a category. Returns a Category
+export async function CreateCategory(
+  categoryId: number,
+  categoryColor: string,
+  categoryName: string
+): Promise<Category> {
   let catData = {
-      categoryId,categoryColor, categoryName
-  }
+    categoryId,
+    categoryColor,
+    categoryName
+  };
   try {
-     // console.log('we are in remote');
-      
+    //Uses Axios client to sent HTTP request to database
+    let allCategory = await curriculaClient.post("/category", catData);
 
-      let allCategory = await curriculaClient.post('/category', catData)
-      //console.log('we are in remote '+response);
-      if(allCategory.status === 404){
-          throw new CategoryNotFoundError()
-      }
-      return allCategory.data
+    if (allCategory.status === 404) {
+      throw new CategoryNotFoundError();
+    }
+    return allCategory.data;
   } catch (e) {
-      if(e.status === 404){
-          throw e
-      } else{
-          throw new InternalServiceError()
-      }
+    if (e.status === 404) {
+      throw e;
+    } else {
+      throw new InternalServiceError();
+    }
   }
 }
 
-//update category
+//Function used to update a category. Returns a Category
 export async function updateCategory(
   categoryId: number,
   categoryColor: string,
@@ -82,8 +88,8 @@ export async function updateCategory(
     categoryName
   };
   try {
+    //Uses Axios client to sent HTTP request to database
     let res = await curriculaClient.patch(`/category`, updatedCategory);
-    console.log(res);
 
     if (res.status === 400) {
       throw new CategoryNotFoundError();
@@ -98,29 +104,24 @@ export async function updateCategory(
       throw new InternalServiceError();
     }
   }
-} //end of class
+}
 
+//Function used to delete a category by id. Returns void
+export async function deleteCategoryById(
+  categoryId: number | undefined
+): Promise<void> {
+  try {
+    //Uses Axios client to sent HTTP request to database
+    let res = await curriculaClient.delete(`/category/${categoryId}`);
 
-
-export async function deleteCategoryById(categoryId:number|undefined):Promise<void>{    
-  try{
-      let res = await curriculaClient.delete(`/category/${categoryId}`)
-
-         return res.data
-  } catch (e)
-  {
-      if(e.status === 400){
-          throw e
-      } else if(e.status === 404){
-          throw new  CategoryNotFoundError()
-      }
-      else{
-          throw new InternalServiceError()
-      }
+    return res.data;
+  } catch (e) {
+    if (e.status === 400) {
+      throw e;
+    } else if (e.status === 404) {
+      throw new CategoryNotFoundError();
+    } else {
+      throw new InternalServiceError();
+    }
   }
-}//end of class
-
-
-
-
-
+}

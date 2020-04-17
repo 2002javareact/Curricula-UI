@@ -1,7 +1,10 @@
+//This file does not necessarily have to be used. This file can be used if you would like to reuse the display of a category. This code is exactly the same as code for the Card that is rendered in the ViewAllCategoriesComponent. You can do it that way, or refer to the UpdateCategoryComponent where this component is rendered.
+
 import React from "react";
 import { Card, CardTitle, CardText, Button } from "reactstrap";
 import { Category } from "../../models/Category";
 
+//Prop used to get the category that this component would be displaying the information for
 interface ICategoryInfoProps {
   currentCategory: Category;
 }
@@ -11,8 +14,11 @@ export class CategoryInfoComponent extends React.Component<
   any
 > {
   render() {
+    //Variable used to store the current category. This is to eliminate the need to rewrite this.props.currentCategory every time.
     const currentCategory = this.props.currentCategory;
+    //Ternary used to check if the ID value of the category exists. If not, displays nothing.
     return currentCategory.categoryId ? (
+      //Same Card as the one in ViewAllCategoriesComponent
       <Card
         body
         inverse
