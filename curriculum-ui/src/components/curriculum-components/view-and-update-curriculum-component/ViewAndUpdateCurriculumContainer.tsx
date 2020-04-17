@@ -8,6 +8,12 @@ import {viewAllSkillsActionMapper} from '.././/../../action-mappers/skill-action
 import { getSkillsByCategoryIdActionMapper } from '../../../action-mappers/get-skills-by-category-id-action-mapper';
 import { getAllCategoriesActionMapper } from '../../../action-mappers/getall-categories-action-mappers';
 import {deleteCurriculumActionMapper} from '../../../action-mappers/delete-curriculum-action-mapper';
+/**
+ * This is the container that wraps the ViewAndUpdateComponent. This maps the state information from 
+ * the component to props 
+ * 
+ * @param state the state is passed to the mapStateToProps function
+ */
 const mapStateToProps = (state:IState) =>{
 
     return{
@@ -26,7 +32,6 @@ const mapStateToProps = (state:IState) =>{
 }
 
 }
-
 
 const mapDispatchToProps = {
 

@@ -6,39 +6,30 @@ import {
 	Col,
 	Card,
 	CardTitle,
-	CardText,
-	CardColumns,
-	InputGroup,
 	Input,
-	InputGroupButtonDropdown,
-	DropdownToggle,
-	DropdownMenu,
-	DropdownItem,
 	Label,
-	UncontrolledDropdown,
 	Form,
 	FormGroup,
-	Badge,
 	CardBody,
 } from "reactstrap";
 import { Curriculum } from "../../../models/Curriculum";
 import {
 	BrowserRouter as Router,
-	Route,
-	Link,
-	useParams,
 	Redirect,
 } from "react-router-dom";
 import { Skill } from "../../../models/Skill";
 import { Category } from "../../../models/Category";
 
+/**
+ * This is the interface for accepting props into view and update. 
+ * It includes action mappers 
+ */
 interface IViewAndUpdateCurriculumProps {
    updateCurriculumActionMapper:(c:Curriculum)=>any,
     updatedCurriculum: Curriculum,
     curriculum:Curriculum,
     getCurriculumByIdActionMapper:(id:number)=>any,
     match:any,
-    // allSkills: Skill[],
     getAllCategoriesActionMapper:()=>any
     getSkillsByCategoryIdActionMapper:(id:number)=>any,
     viewAllSkillsActionMapper:() => void,
@@ -49,6 +40,7 @@ interface IViewAndUpdateCurriculumProps {
 
 }
 
+/** This is the interface for the View and Update Curriculum state */
 interface IViewAndUpdateCurriculumState {
 	currentSkillList: Array<any>;
 	isShowUpdate: boolean;
@@ -62,6 +54,10 @@ interface IViewAndUpdateCurriculumState {
 	isRedirect:boolean
 }
 
+/** This is the ViewandUpdateCurriculum component. It uses the interfaces IViewAndUpdateCurriculumProps and IViewAndUpdateCurriculumState. Its state has the following fields:
+ * name, currentSkills, isShowUpdate, skills, existSkillList, notExistSkillsList, categoryId,
+ * isLoading, alert, isRedirect
+ */
 export class ViewAndUpdateCurriculumComponent extends React.Component<
 	IViewAndUpdateCurriculumProps,
 	IViewAndUpdateCurriculumState
@@ -89,6 +85,14 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 		this.submitCurriculum = this.submitCurriculum.bind(this);
 		this.submitDeleteCurriculum = this.submitDeleteCurriculum.bind(this);
 	}
+
+	/** This is the method for verifying if a the compenent mounted to the DOM. 
+	 * 	We call the getCurriculumByIdActionMapper because we need the id. 
+	 *  We also call the getAllCategoriesActionMapper to retrieve data from categories.
+	 *  fields:
+	 * 		id, this.props.getCurriculumByIdActionMapper(parseInt(id)), this.props.getAllCategoriesActionMapper()
+	 * 
+	 */
 	async componentDidMount() {
 		let id;
 		if (this.props.match) {
@@ -96,10 +100,7 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 			console.log(id);
 		}
 		if (id) {
-			// let curriculumId = this.props.getCurriculumByIdActionMapper(parseInt(id));
 			await this.props.getCurriculumByIdActionMapper(parseInt(id));
-			//     console.log("We are in this id: " + id)
-			// this.setState({curriculum: curriculumId});
 		}
 
 		if (this.props.allCategory) {
@@ -112,12 +113,6 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 		this.setState({
 			existSkillList: emptyArr,
 		});
-
-		//     if(this.props.allSkills.length === 0){this.props.viewAllSkillsActionMapper()}
-
-		// else{
-
-		// }
 	}
 
 	/*
@@ -142,6 +137,12 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 		};
 	}
 
+	/**
+	 * This is the function that gets called from the component as a result of clicking on
+	 * the delete button. It calls the deleteCurriculumMapper passing the curriculumId that is
+	 * obtained from the props
+	 * @param e This function is started from a click event therefore it takes a SyntheticEvent * as a parameter
+	 */
 	async submitDeleteCurriculum(e: SyntheticEvent) {
 		e.preventDefault();
 		if(this.props.curriculum){
@@ -156,7 +157,12 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 			);
 		}
 	}
-
+/**
+ * This function gets called when the update button is submitted. It calls the 
+ *  updateCurriculumActionMapper inside passing a Curriculum
+ * @param e As the execution is the result of a click, a SyntheticEvent is 
+ * passed to the function
+ */
 	async submitCurriculum(e: SyntheticEvent) {
 		e.preventDefault();
 		//TODO
@@ -181,13 +187,29 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 			);
 		}
 	}
+
+	/**
+	 * This function sets the state for category id, when a user is selecting a skill from the category dropdown menu.
+	 * @param e As the execution is the result of a click, a SyntheticEvent is passed to the function
+	 */
 	handlerCategory(e: any) {
 		this.setState({ categoryId: e.target.value });
 	}
+
+	/**
+	 * This function gets called when the submit button for category is clicked. It calls the getSkillsByCategoryIdActionMapper and passes in the category id. 
+	 * @param e As the execution is the result of a click, a SyntheticEvent is passed to the function
+	 */
 	submitCategory(e: SyntheticEvent) {
 		e.preventDefault();
 		this.props.getSkillsByCategoryIdActionMapper(this.state.categoryId);
 	}
+
+	/**
+	 * This method is called when a skill is added. 
+	 * @param e As the execution is the result of a click, a SyntheticEvent is passed to the function
+	 * @param skill The skill is passed into the function as a param. 
+	 */
 	handlerAddSkill(e: SyntheticEvent, skill: Skill) {
 		const newSkillList = [...this.state.existSkillList, skill].sort(
 			(a: Skill, b: Skill) => {
@@ -201,6 +223,12 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 			),
 		});
 	}
+
+	/**
+	 * This function is called when a skill is removed from a curriculum. 
+	 * @param e As the execution is the result of a click, a SyntheticEvent is passed to the function
+	 * @param skill This param is the skill that get's removed when the function is called. 
+	 */
 	handlerRemoveSkill(e: SyntheticEvent, skill: Skill) {
 		const newNotSkillList = [...this.state.existSkillList, skill];
 		this.setState({ notExistSkillList: newNotSkillList });
@@ -210,12 +238,14 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 			),
 		});
 	}
+
+	/**
+	 * This function is called when when the submit button is clickec after all the changes are made. 
+	 */
 	public updateCurriculumSubmit = () => this.setState((prevState)=>({isShowUpdate:!prevState.isShowUpdate}));
 	handlerName(e:any){this.setState({name:e.target.value||undefined})}
 	render() {
 		return (
-			//TODO: Give option to keep Curriculum Name
-					//isShowUpdate = true
 					
 				<Container className="curriculum-view-update-container">
 					{this.state.isRedirect && <Redirect to={"/curriculum"}/> }
@@ -397,65 +427,6 @@ export class ViewAndUpdateCurriculumComponent extends React.Component<
 							)}
 						</Row>
 					</Container>
-					//isShow is false
-		// 			<Container className="curriculum-view-update-container">
-		// 				<Row className="p-4 m-4 border border-secondary">
-		// 					{this.props.curriculum ? (
-		// 						<React.Fragment>
-		// 							<Col lg={12}>
-		// 								<h3>
-		// 									Curriculum: {this.props.curriculum.curriculumName}
-		// 								</h3>
-		// 							</Col>
-		// 							<Col lg={12}>
-		// 								<Button
-		// 									onClick={this.submitDeleteCurriculum}
-		// 									className="curriculum-view-update-buttons"
-		// 									color="danger"
-		// 								>
-		// 									Delete Curriculum
-		// 								</Button>
-		// 								<Button
-		// 									onClick={this.updateCurriculumSubmit}
-		// 									className="curriculum-view-update-buttons"
-		// 									color="primary"
-		// 								>
-		// 									Update Curriculum
-		// 								</Button>
-		// 							</Col>
-		// 							<Col>
-		// 								<Card className="curriculum-view-update-card">
-		// 									<CardTitle>
-		// 										<h3 className="curriculum-view-update-left-text">
-		// 											Skills:
-		// 										</h3>
-		// 									</CardTitle>
-		// 									<CardText>
-		// 										{this.props.curriculum.skills.map((skills) => (
-		// 											<Badge
-		// 												pill
-		// 												className="curriculum-view-update-pills"
-		// 												style={{
-		// 													backgroundColor: skills.category.categoryColor,
-		// 												}}
-		// 											>
-		// 												{skills.skillName}
-		// 											</Badge>
-		// 										))}
-		// 									</CardText>
-		// 								</Card>
-		// 							</Col>
-		// 						</React.Fragment>
-		// 					) : (
-		// 						<Col>
-		// 							<h3>No Curriculum found</h3>
-		// 						</Col>
-		// 					)}
-		// 				</Row>
-		// 			</Container>
-		// 		)}
-		// 	</React.Fragment>
-		// );\
 		)
 	}
 }
